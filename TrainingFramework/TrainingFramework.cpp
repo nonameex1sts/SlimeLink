@@ -10,18 +10,21 @@
 
 
 GLuint vboId;
+GLuint iboId;
 Shaders myShaders;
 
-int Init ( ESContext *esContext )
+int Init(ESContext* esContext)
 {
-	glClearColor ( 1.0f, 1.0f, 1.0f, 1.0f );
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//triangle data (heap)
 	Vertex verticesData[3];
 
-	verticesData[0].pos.x =  0.0f;  verticesData[0].pos.y =  0.5f;  verticesData[0].pos.z =  0.0f;
-	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z =  0.0f;
-	verticesData[2].pos.x =  0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z =  0.0f;
+	verticesData[0].pos.x = 0.0f;  verticesData[0].pos.y = 0.5f;  verticesData[0].pos.z = 0.0f;
+	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z = 0.0f;
+	verticesData[2].pos.x = 0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z = 0.0f;
+
+	GLuint vereticalIndices[] = { 0, 1, 2 };
 
 	//buffer object
 	glGenBuffers(1, &vboId);
@@ -29,12 +32,17 @@ int Init ( ESContext *esContext )
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+	glGenBuffers(1, &iboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vereticalIndices), vereticalIndices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
 }
 
-void Draw ( ESContext *esContext )
+void Draw(ESContext* esContext)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 
@@ -42,26 +50,29 @@ void Draw ( ESContext *esContext )
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 
-	
-	if(myShaders.positionAttribute != -1)
+	if (myShaders.positionAttribute != -1)
 	{
 		glEnableVertexAttribArray(myShaders.positionAttribute);
 		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+
+	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-	eglSwapBuffers ( esContext->eglDisplay, esContext->eglSurface );
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
-void Update ( ESContext *esContext, float deltaTime )
+void Update(ESContext* esContext, float deltaTime)
 {
 
 }
 
-void Key ( ESContext *esContext, unsigned char key, bool bIsPressed)
+void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
 
 }
@@ -75,18 +86,18 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	ESContext esContext;
 
-    esInitContext ( &esContext );
+	esInitContext(&esContext);
 
-	esCreateWindow ( &esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
+	esCreateWindow(&esContext, "Hello Triangle", Globals::screenWidth, Globals::screenHeight, ES_WINDOW_RGB | ES_WINDOW_DEPTH);
 
-	if ( Init ( &esContext ) != 0 )
+	if (Init(&esContext) != 0)
 		return 0;
 
-	esRegisterDrawFunc ( &esContext, Draw );
-	esRegisterUpdateFunc ( &esContext, Update );
-	esRegisterKeyFunc ( &esContext, Key);
+	esRegisterDrawFunc(&esContext, Draw);
+	esRegisterUpdateFunc(&esContext, Update);
+	esRegisterKeyFunc(&esContext, Key);
 
-	esMainLoop ( &esContext );
+	esMainLoop(&esContext);
 
 	//releasing OpenGL resources
 	CleanUp();
@@ -98,4 +109,3 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	return 0;
 }
-

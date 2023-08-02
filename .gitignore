@@ -30,4 +30,4 @@
 
 #Ignore folders
 .vs
-./Debug
+Debug/
