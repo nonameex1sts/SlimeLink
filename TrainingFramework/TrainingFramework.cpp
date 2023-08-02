@@ -24,6 +24,10 @@ int Init(ESContext* esContext)
 	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z = 0.0f;
 	verticesData[2].pos.x = 0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z = 0.0f;
 
+	verticesData[0].color = Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+	verticesData[1].color = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+	verticesData[2].color = Vector4(0.0f, 0.0f, 1.0f, 0.0f);
+
 	GLuint vereticalIndices[] = { 0, 1, 2 };
 
 	//buffer object
@@ -54,6 +58,11 @@ void Draw(ESContext* esContext)
 	{
 		glEnableVertexAttribArray(myShaders.positionAttribute);
 		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
+	}
+
+	if (myShaders.colorAttribute != -1) {
+		glEnableVertexAttribArray(myShaders.colorAttribute);
+		glVertexAttribPointer(myShaders.colorAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void* ) 12);
 	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
