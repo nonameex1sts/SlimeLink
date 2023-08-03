@@ -7,47 +7,52 @@
 #include "Shaders.h"
 #include "Globals.h"
 #include <conio.h>
+#include "Model.h"
 
+struct Vertex;
 
 GLuint vboId;
 GLuint iboId;
 GLuint itextureId;
 Shaders myShaders;
+Model* woman = new Model("../Resources/Models/Woman1.nfg");
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	//triangle data (heap)
-	Vertex verticesData[4];
+	//triangle data (heap) 
+	//Vertex* verticesData = new Vertex[4];
 
-	verticesData[0].pos = Vector3(-0.5f, -0.5f, 0.0f);
-	verticesData[1].pos = Vector3(0.5f, -0.5f, 0.0f);
-	verticesData[2].pos = Vector3(-0.5f, 0.5f, 0.0f);
-	verticesData[3].pos = Vector3(0.5f, 0.5f, 0.0f);
+	//verticesData[0].pos = Vector3(-0.5f, -0.5f, 0.0f);
+	//verticesData[1].pos = Vector3(0.5f, -0.5f, 0.0f);
+	//verticesData[2].pos = Vector3(-0.5f, 0.5f, 0.0f);
+	//verticesData[3].pos = Vector3(0.5f, 0.5f, 0.0f);
 
-	verticesData[0].uv = Vector2(0.0f, 0.0f);
-	verticesData[1].uv = Vector2(1.0f, 0.0f);
-	verticesData[2].uv = Vector2(0.0f, 1.0f);
-	verticesData[3].uv = Vector2(1.0f, 1.0f);
+	//verticesData[0].uv = Vector2(0.0f, 0.0f);
+	//verticesData[1].uv = Vector2(1.0f, 0.0f);
+	//verticesData[2].uv = Vector2(0.0f, 1.0f);
+	//verticesData[3].uv = Vector2(1.0f, 1.0f);
 
-	GLuint vereticalIndices[] = { 0, 1, 2, 1, 2, 3 };
+	//GLuint vereticalIndices[] = { 0, 1, 2, 1, 2, 3 };
 
 	//buffer object
 	glGenBuffers(1, &vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(verticesData), verticesData, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, woman->inumVertex * sizeof(woman->vertices[0]), woman->vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glGenBuffers(1, &iboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vereticalIndices), vereticalIndices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(vereticalIndices), vereticalIndices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, woman->inumIndices * sizeof(woman->ivereticalIndices[0]), woman->ivereticalIndices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 	//buffer texture
 	int widthImage, heightImage, bppImage;
 
-	glGenTextures(GL_TEXTURE_2D, &itextureId);
+	glGenTextures(1, &itextureId);
 	glBindTexture(GL_TEXTURE_2D, itextureId);
 	char* imageData = LoadTGA("../Resources/Textures/Woman1.tga", &widthImage, &heightImage, &bppImage);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthImage, heightImage, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
@@ -57,6 +62,8 @@ int Init(ESContext* esContext)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	glEnable(GL_DEPTH_TEST);
+
 	//creation of shaders and program 
 	return myShaders.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
@@ -64,7 +71,7 @@ int Init(ESContext* esContext)
 
 void Draw(ESContext* esContext)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glUseProgram(myShaders.program);
 
@@ -94,7 +101,7 @@ void Draw(ESContext* esContext)
 	glBindTexture(GL_TEXTURE_2D, itextureId);
 	glUniform1i(myShaders.textureUniform, 0);
 
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, woman->inumIndices, GL_UNSIGNED_INT, 0);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
