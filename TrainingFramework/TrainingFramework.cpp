@@ -18,17 +18,19 @@ int Init(ESContext* esContext)
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//triangle data (heap)
-	Vertex verticesData[3];
+	Vertex verticesData[4];
 
-	verticesData[0].pos.x = 0.0f;  verticesData[0].pos.y = 0.5f;  verticesData[0].pos.z = 0.0f;
-	verticesData[1].pos.x = -0.5f;  verticesData[1].pos.y = -0.5f;  verticesData[1].pos.z = 0.0f;
-	verticesData[2].pos.x = 0.5f;  verticesData[2].pos.y = -0.5f;  verticesData[2].pos.z = 0.0f;
+	verticesData[0].pos = Vector3(0.0f, 0.0f, 0.0f);
+	verticesData[1].pos = Vector3(0.5f, 0.0f, 0.0f);
+	verticesData[2].pos = Vector3(0.0f, 0.5f, 0.0f);
+	verticesData[3].pos = Vector3(0.5f, 0.5f, 0.0f);
 
-	verticesData[0].color = Vector4(1.0f, 0.0f, 0.0f, 0.0f);
-	verticesData[1].color = Vector4(0.0f, 1.0f, 0.0f, 0.0f);
-	verticesData[2].color = Vector4(0.0f, 0.0f, 1.0f, 0.0f);
+	verticesData[0].color = Vector4(0.0f, 1.0f, 1.0f, 0.0f);
+	verticesData[1].color = Vector4(1.0f, 1.0f, 0.0f, 0.0f);
+	verticesData[2].color = Vector4(1.0f, 1.0f, 0.0f, 0.0f);
+	verticesData[3].color = Vector4(1.0f, 0.0f, 1.0f, 0.0f);
 
-	GLuint vereticalIndices[] = { 0, 1, 2 };
+	GLuint vereticalIndices[] = { 0, 1, 2, 1, 2, 3 };
 
 	//buffer object
 	glGenBuffers(1, &vboId);
@@ -54,20 +56,22 @@ void Draw(ESContext* esContext)
 
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
 
+	// Get color attribute from shader
 	if (myShaders.positionAttribute != -1)
 	{
 		glEnableVertexAttribArray(myShaders.positionAttribute);
 		glVertexAttribPointer(myShaders.positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
 	}
 
+	// Get color attribute from shader
 	if (myShaders.colorAttribute != -1) {
 		glEnableVertexAttribArray(myShaders.colorAttribute);
-		glVertexAttribPointer(myShaders.colorAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void* ) 12);
+		glVertexAttribPointer(myShaders.colorAttribute, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3)));
 	}
 
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
 
-	glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
