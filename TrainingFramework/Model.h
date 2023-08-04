@@ -9,6 +9,11 @@ public:
 	GLuint inumIndices;
 	Vertex* vertices;
 	GLuint* ivereticalIndices;
+	GLuint vboId;
+	GLuint iboId;
+	Model();
 	Model(char* filePath);
+	void BindBuffer();
+	void Cleanup();
 	~Model();
 };

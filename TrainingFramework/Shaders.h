@@ -12,5 +12,6 @@ public:
 	GLint textureUniform;
 	GLint uvPosition;
 	int Init(char * fileVertexShader, char * fileFragmentShader);
+	void BindBuffer();
 	~Shaders();
 };
