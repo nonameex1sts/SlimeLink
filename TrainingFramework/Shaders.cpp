@@ -28,33 +28,9 @@ int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 
 	uvPosition = glGetAttribLocation(program, "a_uv");
 
+	u_WVP = glGetUniformLocation(program, "u_WVP");
+
 	return 0;
-}
-
-void Shaders::BindBuffer() {
-	glUseProgram(program);
-
-	// Get position attribute
-	if (positionAttribute != -1)
-	{
-		glEnableVertexAttribArray(positionAttribute);
-		glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), 0);
-	}
-
-	// Get uv position for texture
-	if (uvPosition != -1) {
-		glEnableVertexAttribArray(uvPosition);
-		glVertexAttribPointer(uvPosition, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(sizeof(Vector3)));
-	}
-
-	// Get texture
-	if (textureUniform != -1)
-	{
-		glActiveTexture(GL_TEXTURE0);
-		glUniform1i(textureUniform, 0);
-	}
-
-	glUniform1i(textureUniform, 0);
 }
 
 Shaders::~Shaders()

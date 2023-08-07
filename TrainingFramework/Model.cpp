@@ -53,6 +53,7 @@ void Model::BindBuffer() {
 
 void Model::Cleanup() {
 	glDeleteBuffers(1, &vboId);
+	glDeleteBuffers(1, &iboId);
 }
 
 Model::~Model() {

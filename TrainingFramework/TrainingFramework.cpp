@@ -10,6 +10,7 @@
 #include "Model.h"
 #include "Object.h"
 
+int KeyPressed = 0;
 Object* object;
 
 int Init(ESContext* esContext)
@@ -38,12 +39,45 @@ void Draw(ESContext* esContext)
 
 void Update(ESContext* esContext, float deltaTime)
 {
-
+	if (KeyPressed != 0) {
+		object->camera->Inputs(deltaTime, KeyPressed);
+	}
+	KeyPressed = 0;
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
-
+	if (bIsPressed) {
+		switch (key)
+		{
+		case 37:
+			KeyPressed += 1 << 0;
+			break;
+		case 38:
+			KeyPressed += 1 << 1;
+			break;
+		case 39:
+			KeyPressed += 1 << 2;
+			break;
+		case 40:
+			KeyPressed += 1 << 3;
+			break;
+		case 65:
+			KeyPressed += 1 << 4;
+			break;
+		case 87:
+			KeyPressed += 1 << 5;
+			break;
+		case 68:
+			KeyPressed += 1 << 6;
+			break;
+		case 83:
+			KeyPressed += 1 << 7;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void CleanUp()

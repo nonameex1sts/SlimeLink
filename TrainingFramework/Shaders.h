@@ -10,8 +10,8 @@ public:
 	GLint positionAttribute;
 	//GLint colorAttribute;
 	GLint textureUniform;
+	GLint u_WVP;
 	GLint uvPosition;
 	int Init(char * fileVertexShader, char * fileFragmentShader);
-	void BindBuffer();
 	~Shaders();
 };
