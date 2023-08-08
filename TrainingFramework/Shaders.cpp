@@ -28,7 +28,7 @@ int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 
 	uvPosition = glGetAttribLocation(program, "a_uv");
 
-	u_WVP = glGetUniformLocation(program, "u_WVP");
+	wvpUniform = glGetUniformLocation(program, "u_WVP");
 
 	return 0;
 }

@@ -1,10 +1,7 @@
 #include "stdafx.h"
 #include "Object.h"
 
-Object::Object(){
-}
-
-Object::Object(char* modelLink, char* textureLink) {
+Object::Object(char* modelLink, char* textureLink, Camera* camera) {
 	//Initialize model
 	model = new Model(modelLink);
 	//model->BindBuffer();
@@ -23,13 +20,15 @@ Object::Object(char* modelLink, char* textureLink) {
 
 	world = Scale * Rotation * Translation;
 
-	camera = new Camera(Globals::screenWidth, Globals::screenHeight, Vector3(0.0f, 0.0f, -1.5f), Vector3(0.0f, 0.0f, 0.0f));
+	//Initialize camera
+	this->camera = camera;
 }
 
 void Object::Draw() {
 	//Bind model, texture and shader buffer
-	model->BindBuffer();
-	texture->BindBuffer();
+	glBindBuffer(GL_ARRAY_BUFFER, model->vboId);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->iboId);
+	glBindTexture(GL_TEXTURE_2D, texture->itextureId);
 	
 	glUseProgram(shader.program);
 
@@ -55,8 +54,9 @@ void Object::Draw() {
 
 	glUniform1i(shader.textureUniform, 0);
 
+	//Calculate world_view_perspective matrix
 	Matrix wvp = world * camera->CalculateViewMatrix() * camera->CalculatePerspectiveMatrix();
-	glUniformMatrix4fv(shader.u_WVP, 1, false, &wvp.m[0][0]);
+	glUniformMatrix4fv(shader.wvpUniform, 1, false, &wvp.m[0][0]);
 
 	// Draw object
 	glDrawElements(GL_TRIANGLES, model->inumIndices, GL_UNSIGNED_INT, 0);
@@ -76,5 +76,4 @@ void Object::Cleanup() {
 Object::~Object() {
 	delete model;
 	delete texture;
-	delete camera;
 }

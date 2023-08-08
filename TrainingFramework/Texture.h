@@ -5,13 +5,8 @@
 
 class Texture {
 public:
-	char* imageData;
-	int widthImage;
-	int heightImage;
-	int bppImage;
 	GLuint itextureId;
 	Texture();
 	Texture(char* tgaLink);
-	void BindBuffer();
 	~Texture();
 };

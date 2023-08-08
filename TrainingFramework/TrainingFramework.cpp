@@ -10,7 +10,8 @@
 #include "Model.h"
 #include "Object.h"
 
-int KeyPressed = 0;
+unsigned char KeyPressed = 0;
+Camera camera = Camera(Vector3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 0.0f, 0.0f));
 Object* object;
 
 int Init(ESContext* esContext)
@@ -18,7 +19,7 @@ int Init(ESContext* esContext)
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//Initialize object with model, texture and shader
-	object = new Object("../Resources/Models/Woman1.nfg", "../Resources/Textures/Woman1.tga");
+	object = new Object("../Resources/Models/Woman1.nfg", "../Resources/Textures/Woman1.tga", &camera);
 
 	glEnable(GL_DEPTH_TEST);
 
@@ -47,6 +48,7 @@ void Update(ESContext* esContext, float deltaTime)
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
+	//Arrowkeys for movement, ASWD for rotation
 	if (bIsPressed) {
 		switch (key)
 		{
@@ -83,6 +85,7 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 void CleanUp()
 {
 	object->Cleanup();
+	delete object;
 }
 
 int _tmain(int argc, _TCHAR* argv[])

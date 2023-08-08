@@ -6,6 +6,10 @@ Model::Model() {
 }
 
 Model::Model(char* filePath) {
+	GLuint inumVertex;
+	Vertex* vertices;
+	GLuint* ivereticalIndices;
+
 	FILE* filePointer = fopen(filePath, "r");
 	if (filePointer == NULL) {
 		// Unknown
@@ -43,12 +47,9 @@ Model::Model(char* filePath) {
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inumIndices * sizeof(ivereticalIndices[0]), ivereticalIndices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-}
 
-void Model::BindBuffer() {
-	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
+	delete ivereticalIndices;
+	delete vertices;
 }
 
 void Model::Cleanup() {
@@ -57,6 +58,4 @@ void Model::Cleanup() {
 }
 
 Model::~Model() {
-	delete vertices;
-	delete ivereticalIndices;
 };

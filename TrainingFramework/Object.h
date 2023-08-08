@@ -4,7 +4,6 @@
 #include "Texture.h"
 #include "Shaders.h"
 #include "Camera.h"
-#include "Globals.h"
 #include "../Utilities/utilities.h"
 
 class Object {
@@ -16,8 +15,7 @@ public:
 	int shaderInit;
 	Matrix world;
 
-	Object();
-	Object(char* modelLink, char* textureLink);
+	Object(char* modelLink, char* textureLink, Camera* camera);
 	void Draw();
 	void Cleanup();
 	~Object();

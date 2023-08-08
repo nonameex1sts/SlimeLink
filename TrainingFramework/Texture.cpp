@@ -6,7 +6,10 @@ Texture::Texture() {
 
 Texture::Texture(char* tgaLink) {
 	//Load data
-	imageData = LoadTGA(tgaLink, &widthImage, &heightImage, &bppImage);
+	int widthImage;
+	int heightImage;
+	int bppImage;
+	char* imageData = LoadTGA(tgaLink, &widthImage, &heightImage, &bppImage);
 
 	//Bind buffer
 	glGenTextures(1, &itextureId);
@@ -16,13 +19,11 @@ Texture::Texture(char* tgaLink) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glBindTexture(GL_TEXTURE_2D, 0);
-}
+	glBindTexture(GL_TEXTURE_2D, 0);	
 
-void Texture::BindBuffer() {
-	glBindTexture(GL_TEXTURE_2D, itextureId);
+	delete imageData;
 }
 
 Texture::~Texture() {
-	delete imageData;
+	
 }
