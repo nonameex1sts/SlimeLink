@@ -24,6 +24,11 @@ Texture::Texture(char* tgaLink) {
 	delete imageData;
 }
 
+GLuint Texture::GetTextureId()
+{
+	return itextureId;
+}
+
 Texture::~Texture() {
 	
 }

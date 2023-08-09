@@ -7,16 +7,23 @@
 #include "../Utilities/utilities.h"
 
 class Object {
-public:
+private:
 	Model* model;
 	Texture* texture;
 	Camera* camera;
-	Shaders shader;
+	Shaders* shader;
 	int shaderInit;
 	Matrix world;
 
+public:
 	Object(char* modelLink, char* textureLink, Camera* camera);
+	int GetShaderInit();
+	void Update();
 	void Draw();
+	void Key();
+	void Move();
+	void Rotate();
+	Matrix CalculateWVP();
 	void Cleanup();
 	~Object();
 };

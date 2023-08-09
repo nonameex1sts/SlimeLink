@@ -4,9 +4,12 @@
 #include "../Utilities/utilities.h"
 
 class Texture {
-public:
+private:
 	GLuint itextureId;
+
+public:
 	Texture();
 	Texture(char* tgaLink);
+	GLuint GetTextureId();
 	~Texture();
 };

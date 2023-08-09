@@ -51,6 +51,21 @@ Model::Model(char* filePath) {
 	delete vertices;
 }
 
+GLuint Model::GetNumberOfIndicies()
+{
+	return inumIndices;
+}
+
+GLuint Model::GetVBOId()
+{
+	return vboId;
+}
+
+GLuint Model::GetIBOId()
+{
+	return iboId;
+}
+
 void Model::Cleanup() {
 	glDeleteBuffers(1, &vboId);
 	glDeleteBuffers(1, &iboId);

@@ -2,6 +2,10 @@
 #include "Shaders.h"
 #include "Vertex.h"
 
+Shaders::Shaders()
+{
+}
+
 int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 {
 	vertexShader = esLoadShader(GL_VERTEX_SHADER, fileVertexShader);
@@ -31,6 +35,31 @@ int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 	wvpUniform = glGetUniformLocation(program, "u_WVP");
 
 	return 0;
+}
+
+GLuint Shaders::GetProgram()
+{
+	return program;
+}
+
+GLuint Shaders::GetPositionAttribute()
+{
+	return positionAttribute;
+}
+
+GLuint Shaders::GetTextureUniform()
+{
+	return textureUniform;
+}
+
+GLuint Shaders::GetWVPUniform()
+{
+	return wvpUniform;
+}
+
+GLuint Shaders::GetUVPosition()
+{
+	return uvPosition;
 }
 
 Shaders::~Shaders()

@@ -24,7 +24,7 @@ int Init(ESContext* esContext)
 	glEnable(GL_DEPTH_TEST);
 
 	//Creation of shaders and program 
-	return object->shaderInit;
+	return object->GetShaderInit();
 
 }
 
@@ -41,7 +41,7 @@ void Draw(ESContext* esContext)
 void Update(ESContext* esContext, float deltaTime)
 {
 	if (KeyPressed != 0) {
-		object->camera->Inputs(deltaTime, KeyPressed);
+		camera.Inputs(deltaTime, KeyPressed);
 	}
 	KeyPressed = 0;
 }

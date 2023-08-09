@@ -3,15 +3,22 @@
 
 class Shaders 
 {
-public:
+private:
 	GLuint program, vertexShader, fragmentShader;
 	char fileVS[260];
 	char fileFS[260];
 	GLint positionAttribute;
-	//GLint colorAttribute;
 	GLint textureUniform;
 	GLint wvpUniform;
 	GLint uvPosition;
+
+public:
+	Shaders();
 	int Init(char * fileVertexShader, char * fileFragmentShader);
+	GLuint GetProgram();
+	GLuint GetPositionAttribute();
+	GLuint GetTextureUniform();
+	GLuint GetWVPUniform();
+	GLuint GetUVPosition();
 	~Shaders();
 };

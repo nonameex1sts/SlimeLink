@@ -6,9 +6,15 @@ Camera::Camera(Vector3 pos, Vector3 target)
 {
 	this->pos = pos;
 	this->target = target;
+	perspective.SetPerspective(1.0f, Globals::screenWidth / Globals::screenHeight, 0.1f, 500.0f);
 }
 
 Matrix Camera::CalculateViewMatrix()
+{
+	return CalculateWorldMatrix().Transpose();
+}	
+
+Matrix Camera::CalculateWorldMatrix()
 {
 	Vector3 zaxis = (pos - target).Normalize();
 	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
@@ -26,23 +32,18 @@ Matrix Camera::CalculateViewMatrix()
 	transalate.m[2][0] = 0;			transalate.m[2][1] = 0;			transalate.m[2][2] = 1;			transalate.m[2][3] = 0;
 	transalate.m[3][0] = -pos.x;	transalate.m[3][1] = -pos.y;	transalate.m[3][2] = -pos.z;	transalate.m[3][3] = 1;
 
-	return (rotation * transalate).Transpose();
-}	
-
-Matrix Camera::CalculateWorldMatrix()
-{
-	return CalculateViewMatrix().Transpose();
+	return rotation * transalate;
 }
 
-Matrix Camera::CalculatePerspectiveMatrix()
+Matrix Camera::GetPerspectiveMatrix()
 {
-	Matrix perspective;
-	return perspective.SetPerspective(1.0f, Globals::screenWidth/Globals::screenHeight, 0.1f, 500.0f);
+	return perspective;
 }
 
 void Camera::Inputs(float deltaTime, unsigned char keyPressed)
 {
-	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime *speed;
+	//Have to normalize somewhere in rotation -> Future debug
+	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
 	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
 	Vector4 localNewTarget, worldNewTarget;
 	Matrix rotationTemp;
@@ -70,28 +71,28 @@ void Camera::Inputs(float deltaTime, unsigned char keyPressed)
 	}
 
 	if (keyPressed & (1 << 4)) {
-		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * speed, yaxis.x, yaxis.y, yaxis.z);
+		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
 		worldNewTarget = localNewTarget * CalculateWorldMatrix();
 		target.x = worldNewTarget.x;
 		target.y = worldNewTarget.y;
 		target.z = worldNewTarget.z;
 	}
 	if (keyPressed & (1 << 5)) {
-		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * speed, xaxis.x, xaxis.y, xaxis.z);
+		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
 		worldNewTarget = localNewTarget * CalculateWorldMatrix();
 		target.x = worldNewTarget.x;
 		target.y = worldNewTarget.y;
 		target.z = worldNewTarget.z;
 	}
 	if (keyPressed & (1 << 6)) {
-		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -speed, yaxis.x, yaxis.y, yaxis.z);
+		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
 		worldNewTarget = localNewTarget * CalculateWorldMatrix();
 		target.x = worldNewTarget.x;
 		target.y = worldNewTarget.y;
 		target.z = worldNewTarget.z;
 	}
 	if (keyPressed & (1 << 7)) {
-		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -speed, xaxis.x, xaxis.y, xaxis.z);
+		localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
 		worldNewTarget = localNewTarget * CalculateWorldMatrix();
 		target.x = worldNewTarget.x;
 		target.y = worldNewTarget.y;
