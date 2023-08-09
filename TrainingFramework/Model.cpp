@@ -22,7 +22,6 @@ Model::Model(char* filePath) {
 	for (int i = 0; i < inumVertex; i++) {
 		fscanf(filePointer, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];",
 			&vertices[i].pos.x, &vertices[i].pos.y, &vertices[i].pos.z, &vertices[i].uv.x, &vertices[i].uv.y);
-		vertices[i].pos.y--;
 	}
 
 	//Read indices from file

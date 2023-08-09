@@ -11,7 +11,7 @@
 #include "Object.h"
 
 unsigned char KeyPressed = 0;
-Camera camera = Camera(Vector3(0.0f, 0.0f, -1.0f), Vector3(0.0f, 0.0f, 0.0f));
+Camera camera = Camera(Vector3(7.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
 Object* object;
 
 int Init(ESContext* esContext)

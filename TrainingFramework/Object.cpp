@@ -13,10 +13,15 @@ Object::Object(char* modelLink, char* textureLink, Camera* camera) {
 	shaderInit = shader.Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
 	//Initialize world matrix
-	Matrix Scale, Rotation, Translation;
-	Scale.SetScale(1.0f, 1.0f, 1.0f);
-	Rotation.SetRotationZ(0.0f);
-	Translation.SetTranslation(0.0f, 0.0f, 0.0f);
+	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
+	Scale.SetScale(2.0f, 2.0f, 2.0f);
+
+	RotationX.SetRotationX(0.0f);
+	RotationY.SetRotationY(3.1416f / 2.0f);
+	RotationZ.SetRotationZ(0.0f);
+	Rotation = RotationZ * RotationX * RotationY;
+
+	Translation.SetTranslation(-3.0f, -2.0f, 0.0f);
 
 	world = Scale * Rotation * Translation;
 

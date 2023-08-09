@@ -43,7 +43,7 @@ Matrix Camera::CalculatePerspectiveMatrix()
 void Camera::Inputs(float deltaTime, unsigned char keyPressed)
 {
 	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime *speed;
-	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 1.0f);
+	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
 	Vector4 localNewTarget, worldNewTarget;
 	Matrix rotationTemp;
 
