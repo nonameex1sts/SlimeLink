@@ -2,7 +2,7 @@
 NEAR 0.1
 FAR 500.0
 FOV 1.0
-SPEED 1.0
+SPEED 10.0
 
 #Objects: 1
 

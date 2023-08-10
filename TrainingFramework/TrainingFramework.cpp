@@ -20,6 +20,7 @@ int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
+	//Initialize ResourceManager and SceneManager
 	resourceManager = new ResourceManager;
 	sceneManager = new SceneManager(resourceManager);
 

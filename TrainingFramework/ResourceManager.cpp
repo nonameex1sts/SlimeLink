@@ -4,11 +4,11 @@
 
 ResourceManager::ResourceManager()
 {
-	int numModels, numTextures, numShaders;
-	int id;
-	char* filePath = new char[50];
-	
 	FILE* filePointer = fopen("../TrainingFramework/RM.txt", "r");
+	int id, numModels, numTextures, numShaders;
+	char* filePath = new char[50];
+
+	//Load data form RM.txt and initialize models
 	fscanf(filePointer, "#Models: %d\n", &numModels);
 	models = new Model* [numModels];
 
@@ -18,7 +18,7 @@ ResourceManager::ResourceManager()
 		models[i] = new Model(filePath);
 	}
 
-
+	//Load data form RM.txt and initialize textures
 	fscanf(filePointer, "#2D Textures: %d\n", &numTextures);
 	textures = new Texture* [numTextures];
 
@@ -28,7 +28,7 @@ ResourceManager::ResourceManager()
 		textures[i] = new Texture(filePath);
 	}
 
-
+	//Load data form RM.txt and initialize shaders
 	char* fileVertexShader = new char[100];
 	char* fileFragmentShader = new char[100];
 	fscanf(filePointer, "#Shaders: %d\n", &numShaders);

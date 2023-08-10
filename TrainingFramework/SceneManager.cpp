@@ -3,8 +3,10 @@
 
 SceneManager::SceneManager(ResourceManager* resourceManager)
 {
-	float fovY, nearPlane, farPlane, speed;
 	FILE* filePointer = fopen("../TrainingFramework/SM.txt", "r");
+
+	//Load data form SM.txt and initialize camera
+	float fovY, nearPlane, farPlane, speed;
 	fscanf(filePointer, "#CAMERA\n");
 	fscanf(filePointer, "NEAR %f\n", &nearPlane);
 	fscanf(filePointer, "FAR %f\n", &farPlane);
@@ -12,6 +14,7 @@ SceneManager::SceneManager(ResourceManager* resourceManager)
 	fscanf(filePointer, "SPEED %f\n", &speed);
 	camera = new Camera(Vector3(7.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), fovY, nearPlane, farPlane, speed);
 
+	//Load data form SM.txt and initialize objects
 	fscanf(filePointer, "#Objects: %d\n", &numObjects);
 	objects = new Object* [numObjects];
 
