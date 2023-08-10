@@ -9,22 +9,24 @@
 #include <conio.h>
 #include "Model.h"
 #include "Object.h"
+#include "ResourceManager.h"
+#include "SceneManager.h"
 
-unsigned char KeyPressed = 0;
-Camera camera = Camera(Vector3(7.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f));
-Object* object;
+unsigned char keyPressed = 0;
+ResourceManager* resourceManager;
+SceneManager* sceneManager;
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	//Initialize object with model, texture and shader
-	object = new Object("../Resources/Models/Woman1.nfg", "../Resources/Textures/Woman1.tga", &camera);
+	resourceManager = new ResourceManager;
+	sceneManager = new SceneManager(resourceManager);
 
 	glEnable(GL_DEPTH_TEST);
 
 	//Creation of shaders and program 
-	return object->GetShaderInit();
+	return resourceManager->GetShaderInitById(0);
 
 }
 
@@ -33,17 +35,15 @@ void Draw(ESContext* esContext)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Draw object
-	object->Draw();
+	sceneManager->Draw();
 
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 void Update(ESContext* esContext, float deltaTime)
 {
-	if (KeyPressed != 0) {
-		camera.Inputs(deltaTime, KeyPressed);
-	}
-	KeyPressed = 0;
+	sceneManager->Update(esContext, deltaTime, keyPressed);
+	keyPressed = 0;
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
@@ -53,28 +53,28 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 		switch (key)
 		{
 		case 37:
-			KeyPressed += 1 << 0;
+			keyPressed += 1 << 0;
 			break;
 		case 38:
-			KeyPressed += 1 << 1;
+			keyPressed += 1 << 1;
 			break;
 		case 39:
-			KeyPressed += 1 << 2;
+			keyPressed += 1 << 2;
 			break;
 		case 40:
-			KeyPressed += 1 << 3;
+			keyPressed += 1 << 3;
 			break;
 		case 65:
-			KeyPressed += 1 << 4;
+			keyPressed += 1 << 4;
 			break;
 		case 87:
-			KeyPressed += 1 << 5;
+			keyPressed += 1 << 5;
 			break;
 		case 68:
-			KeyPressed += 1 << 6;
+			keyPressed += 1 << 6;
 			break;
 		case 83:
-			KeyPressed += 1 << 7;
+			keyPressed += 1 << 7;
 			break;
 		default:
 			break;
@@ -84,8 +84,8 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 
 void CleanUp()
 {
-	object->Cleanup();
-	delete object;
+	delete resourceManager;
+	delete sceneManager;
 }
 
 int _tmain(int argc, _TCHAR* argv[])

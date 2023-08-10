@@ -2,11 +2,13 @@
 #include "Camera.h"
 #include "Math.h"
 
-Camera::Camera(Vector3 pos, Vector3 target)
+Camera::Camera(Vector3 pos, Vector3 target, float fovY, float nearPlane, float farPlane, float speed)
 {
 	this->pos = pos;
 	this->target = target;
-	perspective.SetPerspective(1.0f, Globals::screenWidth / Globals::screenHeight, 0.1f, 500.0f);
+	perspective.SetPerspective(fovY, Globals::screenWidth / Globals::screenHeight, nearPlane, farPlane);
+	moveSpeed = speed;
+	rotateSpeed = speed;
 }
 
 Matrix Camera::CalculateViewMatrix()

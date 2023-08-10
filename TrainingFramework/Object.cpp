@@ -1,7 +1,16 @@
 #include "stdafx.h"
 #include "Object.h"
 
-Object::Object(char* modelLink, char* textureLink, Camera* camera) {
+Object::Object(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale)
+{
+	this->model = model;
+	this->texture = texture;
+	this->camera = camera;
+	this->shader = shader;
+	InitWorldMatrix(position, rotation, scale);
+}
+
+Object::Object(char* modelLink, char* textureLink, Camera* camera, Vector3 position, Vector3 rotation, Vector3 scale) {
 	//Initialize model
 	model = new Model(modelLink);
 	//model->BindBuffer();
@@ -11,28 +20,27 @@ Object::Object(char* modelLink, char* textureLink, Camera* camera) {
 
 	//Initialize shader
 	shader = new Shaders();
-	shaderInit = shader->Init("../Resources/Shaders/TriangleShaderVS.vs", "../Resources/Shaders/TriangleShaderFS.fs");
 
 	//Initialize world matrix
-	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
-	Scale.SetScale(2.0f, 2.0f, 2.0f);
-
-	RotationX.SetRotationX(0.0f);
-	RotationY.SetRotationY(3.1416f / 2.0f);
-	RotationZ.SetRotationZ(0.0f);
-	Rotation = RotationZ * RotationX * RotationY;
-
-	Translation.SetTranslation(-3.0f, -2.0f, 0.0f);
-
-	world = Scale * Rotation * Translation;
+	InitWorldMatrix(position, rotation, scale);
 
 	//Initialize camera
 	this->camera = camera;
 }
 
-int Object::GetShaderInit()
+void Object::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
 {
-	return shaderInit;
+	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
+	Scale.SetScale(scale.x, scale.y, scale.z);
+
+	RotationX.SetRotationX(rotation.x);
+	RotationY.SetRotationY(rotation.y);
+	RotationZ.SetRotationZ(rotation.z);
+	Rotation = RotationZ * RotationX * RotationY;
+
+	Translation.SetTranslation(position.x, position.y, position.z);
+
+	world = Scale * Rotation * Translation;
 }
 
 void Object::Update()
@@ -98,10 +106,6 @@ void Object::Rotate()
 Matrix Object::CalculateWVP()
 {
 	return world * camera->CalculateViewMatrix() * camera->GetPerspectiveMatrix();
-}
-
-void Object::Cleanup() {
-	model->Cleanup();
 }
 
 Object::~Object() {

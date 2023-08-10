@@ -66,10 +66,7 @@ GLuint Model::GetIBOId()
 	return iboId;
 }
 
-void Model::Cleanup() {
+Model::~Model() {
 	glDeleteBuffers(1, &vboId);
 	glDeleteBuffers(1, &iboId);
-}
-
-Model::~Model() {
 };

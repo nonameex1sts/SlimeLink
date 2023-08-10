@@ -15,6 +15,5 @@ public:
 	GLuint GetNumberOfIndicies();
 	GLuint GetVBOId();
 	GLuint GetIBOId();
-	void Cleanup();
 	~Model();
 };
