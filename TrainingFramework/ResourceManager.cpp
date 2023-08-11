@@ -5,7 +5,7 @@
 ResourceManager::ResourceManager()
 {
 	FILE* filePointer = fopen("../TrainingFramework/RM.txt", "r");
-	int id, numModels, numTextures, numShaders;
+	int id;
 	char* filePath = new char[50];
 
 	//Load data form RM.txt and initialize models

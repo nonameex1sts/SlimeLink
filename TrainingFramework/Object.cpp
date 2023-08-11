@@ -108,8 +108,4 @@ Matrix Object::CalculateWVP()
 	return world * camera->CalculateViewMatrix() * camera->GetPerspectiveMatrix();
 }
 
-Object::~Object() {
-	delete model;
-	delete texture;
-	delete shader;
-}
+Object::~Object() {}

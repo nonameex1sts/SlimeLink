@@ -4,7 +4,7 @@ FAR 500.0
 FOV 1.0
 SPEED 10.0
 
-#Objects: 1
+#Objects: 2
 
 ID 0
 MODEL 0
