@@ -2,6 +2,8 @@
 #include "ResourceManager.h"
 #include <string>
 
+ResourceManager* ResourceManager::ms_pInstance = nullptr;
+
 ResourceManager::ResourceManager()
 {
 	FILE* filePointer = fopen("../TrainingFramework/RM.txt", "r");

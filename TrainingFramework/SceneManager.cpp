@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "SceneManager.h"
+#include "ResourceManager.h"
 
-SceneManager::SceneManager(ResourceManager* resourceManager)
+SceneManager* SceneManager::m_pInstance = nullptr;
+
+SceneManager::SceneManager()
 {
 	FILE* filePointer = fopen("../TrainingFramework/SM.txt", "r");
-
+	ResourceManager::CreateInstance();
 	//Load data form SM.txt and initialize camera
 	float fovY, nearPlane, farPlane, speed;
 	fscanf(filePointer, "#CAMERA\n");
@@ -29,7 +32,7 @@ SceneManager::SceneManager(ResourceManager* resourceManager)
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 
-		objects[i] = new Object(resourceManager->GetModelById(modelId), resourceManager->GetTextureById(textureId), camera, resourceManager->GetShaderById(shaderId), position, rotation, scale);
+		objects[i] = new Object(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), camera, ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale);
 	}
 
 	fclose(filePointer);

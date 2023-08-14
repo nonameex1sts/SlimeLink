@@ -13,21 +13,18 @@
 #include "SceneManager.h"
 
 unsigned char keyPressed = 0;
-ResourceManager* resourceManager;
-SceneManager* sceneManager;
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//Initialize ResourceManager and SceneManager
-	resourceManager = new ResourceManager;
-	sceneManager = new SceneManager(resourceManager);
+	SceneManager::CreateInstance();
 
 	glEnable(GL_DEPTH_TEST);
 
 	//Creation of shaders and program 
-	return resourceManager->GetShaderInitById(0);
+	return 0;
 
 }
 
@@ -36,14 +33,14 @@ void Draw(ESContext* esContext)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Draw object
-	sceneManager->Draw();
+	SceneManager::GetInstance()->Draw();
 
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 void Update(ESContext* esContext, float deltaTime)
 {
-	sceneManager->Update(esContext, deltaTime, keyPressed);
+	SceneManager::GetInstance()->Update(esContext, deltaTime, keyPressed);
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
@@ -121,8 +118,8 @@ void Mouse(ESContext* esContext, int x, int y, bool bIsPressed) {
 
 void CleanUp()
 {
-	delete resourceManager;
-	delete sceneManager;
+	ResourceManager::DestroyInstance();
+	SceneManager::DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
