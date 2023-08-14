@@ -172,7 +172,13 @@ void ESUTIL_API esRegisterKeyFunc ( ESContext *esContext,
    esContext->keyFunc = keyFunc;
 }
 
+//  esRegistermouseFunc()
 
+void ESUTIL_API esRegisterMouseFunc(ESContext* esContext,
+    void (ESCALLBACK* mouseFunc) (ESContext*, int, int, bool))
+{
+    esContext->mouseFunc = mouseFunc;
+}
 
 // esLogMessage()
 //    Log an error message to the debug output for the platform

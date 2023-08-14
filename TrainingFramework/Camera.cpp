@@ -112,6 +112,94 @@ void Camera::Inputs(float deltaTime, unsigned char keyPressed)
 	}
 }
 
+void Camera::MoveLeft(float deltaTime) {
+	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
+	pos -= deltaMove.Cross(up);
+	target -= deltaMove.Cross(up);
+}
+
+void Camera::MoveRight(float deltaTime) {
+	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
+	pos += deltaMove.Cross(up);
+	target += deltaMove.Cross(up);
+}
+
+void Camera::MoveForward(float deltaTime) {
+	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
+	pos += deltaMove;
+	target += deltaMove;
+}
+
+void Camera::MoveBackward(float deltaTime) {
+	Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
+	pos -= deltaMove;
+	target -= deltaMove;
+}
+
+void Camera::RotateLeft(float deltaTime) {
+	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
+	Vector4 localNewTarget, worldNewTarget;
+	Matrix rotationTemp;	//For storing rotation matrix
+
+	Vector3 zaxis = (pos - target).Normalize();
+	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
+	Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
+
+	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
+	worldNewTarget = localNewTarget * CalculateWorldMatrix();
+	target.x = worldNewTarget.x;
+	target.y = worldNewTarget.y;
+	target.z = worldNewTarget.z;
+}
+
+void Camera::RotateRight(float deltaTime) {
+	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
+	Vector4 localNewTarget, worldNewTarget;
+	Matrix rotationTemp;	//For storing rotation matrix
+
+	Vector3 zaxis = (pos - target).Normalize();
+	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
+	Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
+
+	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
+	worldNewTarget = localNewTarget * CalculateWorldMatrix();
+	target.x = worldNewTarget.x;
+	target.y = worldNewTarget.y;
+	target.z = worldNewTarget.z;
+}
+
+void Camera::RotateUp(float deltaTime) {
+	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
+	Vector4 localNewTarget, worldNewTarget;
+	Matrix rotationTemp;	//For storing rotation matrix
+
+	Vector3 zaxis = (pos - target).Normalize();
+	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
+	Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
+
+	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
+	worldNewTarget = localNewTarget * CalculateWorldMatrix();
+	target.x = worldNewTarget.x;
+	target.y = worldNewTarget.y;
+	target.z = worldNewTarget.z;
+}
+
+void Camera::RotateDown(float deltaTime) {
+	Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
+	Vector4 localNewTarget, worldNewTarget;
+	Matrix rotationTemp;	//For storing rotation matrix
+
+	Vector3 zaxis = (pos - target).Normalize();
+	Vector3 xaxis = (up.Cross(zaxis)).Normalize();
+	Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
+
+	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
+	worldNewTarget = localNewTarget * CalculateWorldMatrix();
+	target.x = worldNewTarget.x;
+	target.y = worldNewTarget.y;
+	target.z = worldNewTarget.z;
+}
+
 Camera::~Camera()
 {
 }

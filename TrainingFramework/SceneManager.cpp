@@ -36,7 +36,30 @@ SceneManager::SceneManager(ResourceManager* resourceManager)
 }
 
 void SceneManager::Update(ESContext* esContext, float deltaTime, unsigned char keyPressed) {
-	camera->Inputs(deltaTime, keyPressed);
+	if (keyPressed & (1 << 0)) {
+		camera->MoveLeft(deltaTime);
+	}
+	if (keyPressed & (1 << 1)) {
+		camera->MoveForward(deltaTime);
+	}
+	if (keyPressed & (1 << 2)) {
+		camera->MoveRight(deltaTime);
+	}
+	if (keyPressed & (1 << 3)) {
+		camera->MoveBackward(deltaTime);
+	}
+	if (keyPressed & (1 << 4)) {
+		camera->RotateLeft(deltaTime);
+	}
+	if (keyPressed & (1 << 5)) {
+		camera->RotateUp(deltaTime);
+	}
+	if (keyPressed & (1 << 6)) {
+		camera->RotateRight(deltaTime);
+	}
+	if (keyPressed & (1 << 7)) {
+		camera->RotateDown(deltaTime);
+	}
 }
 
 void SceneManager::Draw() {

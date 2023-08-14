@@ -44,7 +44,6 @@ void Draw(ESContext* esContext)
 void Update(ESContext* esContext, float deltaTime)
 {
 	sceneManager->Update(esContext, deltaTime, keyPressed);
-	keyPressed = 0;
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
@@ -53,33 +52,70 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 	if (bIsPressed) {
 		switch (key)
 		{
-		case 37:
-			keyPressed += 1 << 0;
+		case KEY_MOVE_LEFT:
+			keyPressed |= 1 << 0;
 			break;
-		case 38:
-			keyPressed += 1 << 1;
+		case KEY_MOVE_FORWARD:
+			keyPressed |= 1 << 1;
 			break;
-		case 39:
-			keyPressed += 1 << 2;
+		case KEY_MOVE_RIGHT:
+			keyPressed |= 1 << 2;
 			break;
-		case 40:
-			keyPressed += 1 << 3;
+		case KEY_MOVE_BACKWARD:
+			keyPressed |= 1 << 3;
 			break;
-		case 65:
-			keyPressed += 1 << 4;
+		case KEY_LEFT:
+			keyPressed |= 1 << 4;
 			break;
-		case 87:
-			keyPressed += 1 << 5;
+		case KEY_UP:
+			keyPressed |= 1 << 5;
 			break;
-		case 68:
-			keyPressed += 1 << 6;
+		case KEY_RIGHT:
+			keyPressed |= 1 << 6;
 			break;
-		case 83:
-			keyPressed += 1 << 7;
+		case KEY_DOWN:
+			keyPressed |= 1 << 7;
 			break;
 		default:
 			break;
 		}
+	}
+	else {
+		switch (key)
+		{
+		case KEY_MOVE_LEFT:
+			keyPressed ^= 1 << 0;
+			break;
+		case KEY_MOVE_FORWARD:
+			keyPressed ^= 1 << 1;
+			break;
+		case KEY_MOVE_RIGHT:
+			keyPressed ^= 1 << 2;
+			break;
+		case KEY_MOVE_BACKWARD:
+			keyPressed ^= 1 << 3;
+			break;
+		case KEY_LEFT:
+			keyPressed ^= 1 << 4;
+			break;
+		case KEY_UP:
+			keyPressed ^= 1 << 5;
+			break;
+		case KEY_RIGHT:
+			keyPressed ^= 1 << 6;
+			break;
+		case KEY_DOWN:
+			keyPressed ^= 1 << 7;
+			break;
+		default:
+			break;
+		}
+	}
+}
+
+void Mouse(ESContext* esContext, int x, int y, bool bIsPressed) {
+	if (bIsPressed) {
+		printf("%d %d\n", x, y);
 	}
 }
 
@@ -103,6 +139,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	esRegisterDrawFunc(&esContext, Draw);
 	esRegisterUpdateFunc(&esContext, Update);
 	esRegisterKeyFunc(&esContext, Key);
+	esRegisterMouseFunc(&esContext, Mouse);
 
 	esMainLoop(&esContext);
 

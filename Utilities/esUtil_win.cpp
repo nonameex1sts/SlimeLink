@@ -2,7 +2,15 @@
 #include <windows.h>
 #include "esUtil.h"
 
+POINT      WDpoint;
 
+void GetWindowPos(long* x, long* y) {
+    RECT rect = { NULL };
+    if (GetWindowRect(GetActiveWindow(), &rect)) {
+        *x = rect.left;
+        *y = rect.top;
+    }
+}
 
 // Main window procedure
 LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) 
@@ -36,7 +44,8 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 			  if ( esContext && esContext->keyFunc )
 				  esContext->keyFunc ( esContext, (unsigned char) wParam, true );
 		  }
-		  break;
+	  
+      break;
 
 	  case WM_KEYUP:
 		  {
@@ -45,8 +54,30 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
 			  if ( esContext && esContext->keyFunc )
 				  esContext->keyFunc ( esContext, (unsigned char) wParam, false );
 		  }
-		  break;
-         
+	  break;
+
+      case WM_LBUTTONDOWN:
+      {
+          ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+          GetWindowPos(&WDpoint.x, &WDpoint.y);
+          POINT      point;
+          GetCursorPos(&point);
+          if (esContext && esContext->mouseFunc)
+              esContext->mouseFunc(esContext, (int) point.x - WDpoint.x, (int) point.y - WDpoint.y, true);
+      }
+      break;
+
+      case WM_LBUTTONUP:
+      {
+          ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+          GetWindowPos(&WDpoint.x, &WDpoint.y);
+          POINT      point;
+          GetCursorPos(&point);
+          if (esContext && esContext->mouseFunc)
+              esContext->mouseFunc(esContext, (int) point.x - WDpoint.x, (int) point.y - WDpoint.y, false);
+      }
+      break;
+
       default: 
          lRet = DefWindowProc (hWnd, uMsg, wParam, lParam); 
          break; 

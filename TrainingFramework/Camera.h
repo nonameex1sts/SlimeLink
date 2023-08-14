@@ -18,5 +18,13 @@ public:
 	Matrix CalculateWorldMatrix();
 	Matrix GetPerspectiveMatrix();
 	void Inputs(float deltaTime, unsigned char keyPressed);
+	void MoveLeft(float deltaTime);
+	void MoveRight(float deltaTime);
+	void MoveForward(float deltaTime);
+	void MoveBackward(float deltaTime);
+	void RotateLeft(float deltaTime);
+	void RotateRight(float deltaTime);
+	void RotateUp(float deltaTime);
+	void RotateDown(float deltaTime);
 	~Camera();
 };
