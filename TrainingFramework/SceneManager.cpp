@@ -15,7 +15,7 @@ SceneManager::SceneManager()
 	fscanf(filePointer, "FAR %f\n", &farPlane);
 	fscanf(filePointer, "FOV %f\n", &fovY);
 	fscanf(filePointer, "SPEED %f\n", &speed);
-	pCamera = new Camera(Vector3(0.0f, 0.0f, 1.5f), Vector3(0.0f, 0.0f, -0.5f), fovY, nearPlane, farPlane, speed);
+	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
 	//Load data form SM.txt and initialize objects
 	fscanf(filePointer, "#Objects: %d\n", &inumObjects);

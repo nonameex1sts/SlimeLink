@@ -85,7 +85,7 @@ void LoadUncompressedImage( char* pDest, char * pSrc, TGA_HEADER * pHeader )
     int w = pHeader->width;
     int h = pHeader->height;
     int rowSize = w * pHeader->bits / 8;
-    bool bInverted = ( (pHeader->descriptor & (1 << 5)) != 0 );
+    bool bInverted = !( (pHeader->descriptor & (1 << 5)) != 0 );
     for ( int i = 0; i < h; i ++ )
     {
         char * pSrcRow = pSrc + 
