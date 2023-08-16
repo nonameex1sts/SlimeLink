@@ -543,12 +543,11 @@ Matrix & Matrix::SetPerspective(GLfloat fovY, GLfloat aspect, GLfloat nearPlane,
 
 Matrix& Matrix::SetOrthogonal(GLfloat top, GLfloat bottom, GLfloat left, GLfloat right, GLfloat nearPlane, GLfloat farPlane)
 {
-	Matrix res;
-	res.m[0][0] = 2.0f / (right - left);	res.m[0][1] = 0;						res.m[0][2] = 0;								res.m[0][3] = - (right + left) / (right - left);
-	res.m[1][0] = 0;						res.m[1][1] = 2.0f / (top - bottom);	res.m[1][2] = 0;								res.m[1][3] = - (top + bottom) / (top - bottom);
-	res.m[2][0] = 0;						res.m[2][1] = 0;						res.m[2][2] = -2.0f / (farPlane - nearPlane);	res.m[2][3] = - (farPlane + nearPlane) / (farPlane - nearPlane);
-	res.m[3][0] = 0;						res.m[3][1] = 0;						res.m[3][2] = 0;								res.m[3][3] = 1;
-	return res;
+	m[0][0] = 2.0f / (right - left);	m[0][1] = 0;						m[0][2] = 0;								m[0][3] = - (right + left) / (right - left);
+	m[1][0] = 0;						m[1][1] = 2.0f / (top - bottom);	m[1][2] = 0;								m[1][3] = - (top + bottom) / (top - bottom);
+	m[2][0] = 0;						m[2][1] = 0;						m[2][2] = -2.0f / (farPlane - nearPlane);	m[2][3] = - (farPlane + nearPlane) / (farPlane - nearPlane);
+	m[3][0] = 0;						m[3][1] = 0;						m[3][2] = 0;								m[3][3] = 1;
+	return *this;
 }
 
 Matrix Matrix::Transpose()

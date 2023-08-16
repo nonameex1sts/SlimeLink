@@ -9,8 +9,8 @@ Model::Model()
 Model::Model(char* filePath) 
 {
 	GLuint inumVertex;
-	Vertex* vertices;
-	GLuint* ivereticalIndices;
+	Vertex* p_vertices;
+	GLuint* p_ivereticalIndices;
 
 	FILE* filePointer = fopen(filePath, "r");
 	if (filePointer == NULL) 
@@ -21,20 +21,20 @@ Model::Model(char* filePath)
 	//Read vertex from file
 	fscanf(filePointer, "%*s %d", &inumVertex);
 
-	vertices = new Vertex[inumVertex];
+	p_vertices = new Vertex[inumVertex];
 	for (int i = 0; i < inumVertex; i++) 
 	{
 		fscanf(filePointer, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];",
-			&vertices[i].pos.x, &vertices[i].pos.y, &vertices[i].pos.z, &vertices[i].uv.x, &vertices[i].uv.y);
+			&p_vertices[i].pos.x, &p_vertices[i].pos.y, &p_vertices[i].pos.z, &p_vertices[i].uv.x, &p_vertices[i].uv.y);
 	}
 
 	//Read indices from file
 	fscanf(filePointer, "%*s %d", &inumIndices);
 
-	ivereticalIndices = new GLuint[inumIndices];
+	p_ivereticalIndices = new GLuint[inumIndices];
 	for (int i = 0; i < inumIndices; i+=3) 
 	{
-		fscanf(filePointer, "%*d. %d, %d, %d;", &ivereticalIndices[i], &ivereticalIndices[i + 1], &ivereticalIndices[i + 2]);
+		fscanf(filePointer, "%*d. %d, %d, %d;", &p_ivereticalIndices[i], &p_ivereticalIndices[i + 1], &p_ivereticalIndices[i + 2]);
 	}
 
 	fclose(filePointer);
@@ -42,18 +42,18 @@ Model::Model(char* filePath)
 	//Bind VBO buffer
 	glGenBuffers(1, &vboId);
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBufferData(GL_ARRAY_BUFFER, inumVertex * sizeof(vertices[0]), vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, inumVertex * sizeof(p_vertices[0]), p_vertices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
 	//Bind IBO buffer
 	glGenBuffers(1, &iboId);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iboId);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inumIndices * sizeof(ivereticalIndices[0]), ivereticalIndices, GL_STATIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, inumIndices * sizeof(p_ivereticalIndices[0]), p_ivereticalIndices, GL_STATIC_DRAW);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	delete ivereticalIndices;
-	delete vertices;
+	delete p_ivereticalIndices;
+	delete p_vertices;
 }
 
 GLuint Model::GetNumberOfIndicies()
