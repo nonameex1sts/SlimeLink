@@ -4,14 +4,6 @@
 
 POINT      WDpoint;
 
-void GetWindowPos(long* x, long* y) {
-    RECT rect = { NULL };
-    if (GetWindowRect(GetActiveWindow(), &rect)) {
-        *x = rect.left;
-        *y = rect.top;
-    }
-}
-
 // Main window procedure
 LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam ) 
 {
@@ -59,7 +51,6 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
       case WM_LBUTTONDOWN:
       {
           ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
-          GetWindowPos(&WDpoint.x, &WDpoint.y);
           POINT      point;
           GetCursorPos(&point);
           if (esContext && esContext->mouseFunc)
@@ -70,11 +61,28 @@ LRESULT WINAPI ESWindowProc ( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam
       case WM_LBUTTONUP:
       {
           ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
-          GetWindowPos(&WDpoint.x, &WDpoint.y);
           POINT      point;
           GetCursorPos(&point);
           if (esContext && esContext->mouseFunc)
               esContext->mouseFunc(esContext, (int) point.x - WDpoint.x, (int) point.y - WDpoint.y, false);
+      }
+      break;
+
+      case WM_MOUSEMOVE:
+      {
+          ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
+          POINT      point;
+          GetCursorPos(&point);
+          if (esContext && esContext->mouseMoveFunc)
+              esContext->mouseMoveFunc(esContext, (int)point.x - WDpoint.x, (int)point.y - WDpoint.y);
+
+      }
+      break;
+      case WM_MOVE:
+      {
+          WDpoint.x = (int)LOWORD(lParam);   // horizontal position 
+          WDpoint.y = (int)HIWORD(lParam);   // vertical position 
+          // ESContext* esContext = (ESContext*)(LONG_PTR)GetWindowLongPtr(hWnd, GWL_USERDATA);
       }
       break;
 

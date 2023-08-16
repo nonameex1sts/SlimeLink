@@ -32,7 +32,7 @@ Object::Object(char* pModelLink, char* pTextureLink, Camera* camera, Vector3 pos
 void Object::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
 {
 	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
-	Scale.SetScale(scale.x, scale.y, scale.z);
+	Scale.SetScale(scale.x , scale.y, scale.z);
 
 	RotationX.SetRotationX(rotation.x);
 	RotationY.SetRotationY(rotation.y);
@@ -108,7 +108,11 @@ void Object::Rotate()
 
 Matrix Object::CalculateWVP()
 {
-	return mt_world * pCamera->CalculateViewMatrix() * pCamera->GetOrthogonalMatrix();
+	Matrix wvp, view, ortho;
+	view = pCamera->CalculateViewMatrix();
+	ortho = pCamera->GetOrthogonalMatrix();
+	wvp= mt_world * pCamera->CalculateViewMatrix() * pCamera->GetOrthogonalMatrix();
+	return wvp;
 }
 
 Object::~Object() {}

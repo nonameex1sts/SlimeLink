@@ -7,7 +7,7 @@ Camera::Camera(Vector3 pos, Vector3 target, float fovY, float nearPlane, float f
 	this->pos = pos;
 	this->target = target;
 	perspective.SetPerspective(fovY, Globals::screenWidth / Globals::screenHeight, nearPlane, farPlane);
-	orthogonal.SetOrthogonal(0, Globals::screenHeight, 0, Globals::screenWidth, nearPlane, farPlane);
+	orthogonal.SetOrthogonal(0.0f, Globals::screenHeight, 0.0f, Globals::screenWidth, nearPlane, farPlane);
 	moveSpeed = speed;
 	rotateSpeed = speed;
 }

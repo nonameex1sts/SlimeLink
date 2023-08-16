@@ -21,7 +21,7 @@ int Init(ESContext* esContext)
 	//Initialize ResourceManager and SceneManager
 	SceneManager::CreateInstance();
 
-	glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_DEPTH_TEST);
 
 	//Creation of shaders and program 
 	return 0;
@@ -112,12 +112,18 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 	}
 }
 
-void Mouse(ESContext* esContext, int x, int y, bool bIsPressed)
+void MouseClick(ESContext* esContext, int x, int y, bool bIsPressed)
 {
 	if (bIsPressed) 
 	{
-		printf("%d %d\n", x, y);
+		printf("Click: %d %d\n", x, y);
 	}
+}
+
+void MouseMove(ESContext* esContext, int x, int y)
+{
+	printf("Move: %d %d\n", x, y);
+
 }
 
 void CleanUp()
@@ -140,7 +146,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	esRegisterDrawFunc(&esContext, Draw);
 	esRegisterUpdateFunc(&esContext, Update);
 	esRegisterKeyFunc(&esContext, Key);
-	esRegisterMouseFunc(&esContext, Mouse);
+	esRegisterMouseFunc(&esContext, MouseClick);
+	esRegisterMouseMoveFunc(&esContext, MouseMove);
 
 	esMainLoop(&esContext);
 
