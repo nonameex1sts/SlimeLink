@@ -1,10 +1,12 @@
 #include <stdafx.h>
 #include "Texture.h"
 
-Texture::Texture() {
+Texture::Texture() 
+{
 }
 
-Texture::Texture(char* tgaLink) {
+Texture::Texture(char* tgaLink) 
+{
 	//Load data
 	int widthImage;
 	int heightImage;
@@ -14,10 +16,12 @@ Texture::Texture(char* tgaLink) {
 	//Bind buffer
 	glGenTextures(1, &itextureId);
 	glBindTexture(GL_TEXTURE_2D, itextureId);
-	if (bppImage == 24) {
+	if (bppImage == 24) 
+	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthImage, heightImage, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
 	}
-	else {
+	else 
+	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImage, heightImage, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
 	}
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -34,6 +38,6 @@ GLuint Texture::GetTextureId()
 	return itextureId;
 }
 
-Texture::~Texture() {
-	
+Texture::~Texture() 
+{
 }

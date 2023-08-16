@@ -2,7 +2,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 
-SceneManager* SceneManager::m_pInstance = nullptr;
+SceneManager* SceneManager::ms_pInstance = nullptr;
 
 SceneManager::SceneManager()
 {
@@ -15,15 +15,16 @@ SceneManager::SceneManager()
 	fscanf(filePointer, "FAR %f\n", &farPlane);
 	fscanf(filePointer, "FOV %f\n", &fovY);
 	fscanf(filePointer, "SPEED %f\n", &speed);
-	camera = new Camera(Vector3(7.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), fovY, nearPlane, farPlane, speed);
+	pCamera = new Camera(Vector3(7.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), fovY, nearPlane, farPlane, speed);
 
 	//Load data form SM.txt and initialize objects
-	fscanf(filePointer, "#Objects: %d\n", &numObjects);
-	objects = new Object* [numObjects];
+	fscanf(filePointer, "#Objects: %d\n", &inumObjects);
+	pObjects = new Object* [inumObjects];
 
 	int id, modelId, textureId, shaderId;
 	Vector3 position, rotation, scale;
-	for (int i = 0; i < numObjects; i++) {
+	for (int i = 0; i < inumObjects; i++) 
+	{
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "MODEL %d\n", &modelId);
 		fscanf(filePointer, "TEXTURE %d\n", &textureId);
@@ -32,51 +33,64 @@ SceneManager::SceneManager()
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 
-		objects[i] = new Object(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), camera, ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale);
+		pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera, 
+			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale);
 	}
 
 	fclose(filePointer);
 }
 
-void SceneManager::Update(ESContext* esContext, float deltaTime, unsigned char keyPressed) {
-	if (keyPressed & (1 << 0)) {
-		camera->MoveLeft(deltaTime);
+void SceneManager::Update(ESContext* esContext, float deltaTime, unsigned char keyPressed)
+{
+	if (keyPressed & (1 << 0)) 
+	{
+		pCamera->MoveLeft(deltaTime);
 	}
-	if (keyPressed & (1 << 1)) {
-		camera->MoveForward(deltaTime);
+	if (keyPressed & (1 << 1)) 
+	{
+		pCamera->MoveForward(deltaTime);
 	}
-	if (keyPressed & (1 << 2)) {
-		camera->MoveRight(deltaTime);
+	if (keyPressed & (1 << 2)) 
+	{
+		pCamera->MoveRight(deltaTime);
 	}
-	if (keyPressed & (1 << 3)) {
-		camera->MoveBackward(deltaTime);
+	if (keyPressed & (1 << 3)) 
+	{
+		pCamera->MoveBackward(deltaTime);
 	}
-	if (keyPressed & (1 << 4)) {
-		camera->RotateLeft(deltaTime);
+	if (keyPressed & (1 << 4)) 
+	{
+		pCamera->RotateLeft(deltaTime);
 	}
-	if (keyPressed & (1 << 5)) {
-		camera->RotateUp(deltaTime);
+	if (keyPressed & (1 << 5)) 
+	{
+		pCamera->RotateUp(deltaTime);
 	}
-	if (keyPressed & (1 << 6)) {
-		camera->RotateRight(deltaTime);
+	if (keyPressed & (1 << 6))
+	{
+		pCamera->RotateRight(deltaTime);
 	}
-	if (keyPressed & (1 << 7)) {
-		camera->RotateDown(deltaTime);
+	if (keyPressed & (1 << 7)) 
+	{
+		pCamera->RotateDown(deltaTime);
 	}
 }
 
-void SceneManager::Draw() {
-	for (int i = 0; i < numObjects; i++) {
-		objects[i]->Draw();
+void SceneManager::Draw()
+{
+	for (int i = 0; i < inumObjects; i++) 
+	{
+		pObjects[i]->Draw();
 	}
 }
 
 SceneManager::~SceneManager()
 {
-	for (int i = 0; i < numObjects; i++) {
-		delete objects[i];
+	for (int i = 0; i < inumObjects; i++) 
+	{
+		delete pObjects[i];
 	}
-	delete objects;
+	delete pObjects;
 
-	delete camera;
+	delete pCamera;
 }

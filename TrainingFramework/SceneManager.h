@@ -6,31 +6,31 @@
 
 class SceneManager {
 private:
-	static SceneManager* m_pInstance;
-	Camera* camera;
-	Object** objects;
-	int numObjects;
+	static SceneManager* ms_pInstance;
+	Camera* pCamera;
+	Object** pObjects;
+	int inumObjects;
 	SceneManager();
 	~SceneManager();
 
 public:
 	static void CreateInstance()
 	{
-		if (m_pInstance == nullptr)
-			m_pInstance = new SceneManager;
+		if (ms_pInstance == nullptr)
+			ms_pInstance = new SceneManager;
 	};
 
 	static SceneManager* GetInstance()
 	{
-		return m_pInstance;
+		return ms_pInstance;
 	};
 
 	static void DestroyInstance()
 	{
-		if (m_pInstance != nullptr)
+		if (ms_pInstance != nullptr)
 		{
-			delete m_pInstance;
-			m_pInstance = nullptr;
+			delete ms_pInstance;
+			ms_pInstance = nullptr;
 		}
 	};
 

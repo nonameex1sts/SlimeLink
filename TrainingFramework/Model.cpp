@@ -2,16 +2,19 @@
 #include "Model.h"
 #include <cstdio>
 
-Model::Model() {
+Model::Model() 
+{
 }
 
-Model::Model(char* filePath) {
+Model::Model(char* filePath) 
+{
 	GLuint inumVertex;
 	Vertex* vertices;
 	GLuint* ivereticalIndices;
 
 	FILE* filePointer = fopen(filePath, "r");
-	if (filePointer == NULL) {
+	if (filePointer == NULL) 
+	{
 		// Unknown
 	}
 
@@ -19,7 +22,8 @@ Model::Model(char* filePath) {
 	fscanf(filePointer, "%*s %d", &inumVertex);
 
 	vertices = new Vertex[inumVertex];
-	for (int i = 0; i < inumVertex; i++) {
+	for (int i = 0; i < inumVertex; i++) 
+	{
 		fscanf(filePointer, "%*d. pos:[%f, %f, %f]; norm:[%*f, %*f, %*f]; binorm:[%*f, %*f, %*f]; tgt:[%*f, %*f, %*f]; uv:[%f, %f];",
 			&vertices[i].pos.x, &vertices[i].pos.y, &vertices[i].pos.z, &vertices[i].uv.x, &vertices[i].uv.y);
 	}
@@ -28,7 +32,8 @@ Model::Model(char* filePath) {
 	fscanf(filePointer, "%*s %d", &inumIndices);
 
 	ivereticalIndices = new GLuint[inumIndices];
-	for (int i = 0; i < inumIndices; i+=3) {
+	for (int i = 0; i < inumIndices; i+=3) 
+	{
 		fscanf(filePointer, "%*d. %d, %d, %d;", &ivereticalIndices[i], &ivereticalIndices[i + 1], &ivereticalIndices[i + 2]);
 	}
 

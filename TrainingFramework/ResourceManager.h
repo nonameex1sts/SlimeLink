@@ -9,13 +9,13 @@
 class ResourceManager {
 private:
 	static ResourceManager* ms_pInstance;
-	Model** models;
-	Texture** textures;
-	Shaders** shaders;
-	int* shaderInit;
-	int numModels;
-	int numTextures;
-	int numShaders;
+	Model** pModels;
+	Texture** pTextures;
+	Shaders** pShaders;
+	int* p_ishaderInit;
+	int inumModels;
+	int inumTextures;
+	int inumShaders;
 	ResourceManager();
 	~ResourceManager();
 

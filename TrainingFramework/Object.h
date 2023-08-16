@@ -8,11 +8,11 @@
 
 class Object {
 private:
-	Model* model;
-	Texture* texture;
-	Camera* camera;
-	Shaders* shader;
-	Matrix world;
+	Model* pModel;
+	Texture* pTexture;
+	Camera* pCamera;
+	Shaders* pShader;
+	Matrix mt_world;
 
 public:
 	Object(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale);

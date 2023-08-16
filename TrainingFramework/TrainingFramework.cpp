@@ -46,7 +46,8 @@ void Update(ESContext* esContext, float deltaTime)
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
 	//Arrowkeys for movement, ASWD for rotation
-	if (bIsPressed) {
+	if (bIsPressed)
+	{
 		switch (key)
 		{
 		case KEY_MOVE_LEFT:
@@ -77,7 +78,8 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 			break;
 		}
 	}
-	else {
+	else 
+	{
 		switch (key)
 		{
 		case KEY_MOVE_LEFT:
@@ -110,8 +112,10 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 	}
 }
 
-void Mouse(ESContext* esContext, int x, int y, bool bIsPressed) {
-	if (bIsPressed) {
+void Mouse(ESContext* esContext, int x, int y, bool bIsPressed)
+{
+	if (bIsPressed) 
+	{
 		printf("%d %d\n", x, y);
 	}
 }
