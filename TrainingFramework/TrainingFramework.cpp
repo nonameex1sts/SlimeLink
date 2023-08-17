@@ -3,25 +3,19 @@
 
 #include "stdafx.h"
 #include "../Utilities/utilities.h" // if you use STL, please include this line AFTER all other include
-#include "Vertex.h"
-#include "Shaders.h"
 #include "Globals.h"
 #include <conio.h>
-#include "Model.h"
-#include "Object.h"
-#include "ResourceManager.h"
-#include "SceneManager.h"
+#include "GSPlay.h"
 
-unsigned char keyPressed = 0;
+//unsigned char keyPressed = 0;
+GSPlay* gsPlay;
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//Initialize ResourceManager and SceneManager
-	SceneManager::CreateInstance();
-
-	//glEnable(GL_DEPTH_TEST);
+	gsPlay = new GSPlay(1);
 
 	//Creation of shaders and program 
 	return 0;
@@ -33,103 +27,37 @@ void Draw(ESContext* esContext)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// Draw object
-	SceneManager::GetInstance()->Draw();
+	gsPlay->Draw();
 
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 void Update(ESContext* esContext, float deltaTime)
 {
-	SceneManager::GetInstance()->Update(esContext, deltaTime, keyPressed);
+	gsPlay->Update(deltaTime);
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
 	//Arrowkeys for movement, ASWD for rotation
-	if (bIsPressed)
+	if (bIsPressed) 
 	{
-		switch (key)
-		{
-		case KEY_MOVE_LEFT:
-			keyPressed |= 1 << 0;
-			break;
-		case KEY_MOVE_FORWARD:
-			keyPressed |= 1 << 1;
-			break;
-		case KEY_MOVE_RIGHT:
-			keyPressed |= 1 << 2;
-			break;
-		case KEY_MOVE_BACKWARD:
-			keyPressed |= 1 << 3;
-			break;
-		case KEY_LEFT:
-			keyPressed |= 1 << 4;
-			break;
-		case KEY_UP:
-			keyPressed |= 1 << 5;
-			break;
-		case KEY_RIGHT:
-			keyPressed |= 1 << 6;
-			break;
-		case KEY_DOWN:
-			keyPressed |= 1 << 7;
-			break;
-		default:
-			break;
-		}
-	}
-	else 
-	{
-		switch (key)
-		{
-		case KEY_MOVE_LEFT:
-			keyPressed ^= 1 << 0;
-			break;
-		case KEY_MOVE_FORWARD:
-			keyPressed ^= 1 << 1;
-			break;
-		case KEY_MOVE_RIGHT:
-			keyPressed ^= 1 << 2;
-			break;
-		case KEY_MOVE_BACKWARD:
-			keyPressed ^= 1 << 3;
-			break;
-		case KEY_LEFT:
-			keyPressed ^= 1 << 4;
-			break;
-		case KEY_UP:
-			keyPressed ^= 1 << 5;
-			break;
-		case KEY_RIGHT:
-			keyPressed ^= 1 << 6;
-			break;
-		case KEY_DOWN:
-			keyPressed ^= 1 << 7;
-			break;
-		default:
-			break;
-		}
+		gsPlay->Key(key);
 	}
 }
 
 void MouseClick(ESContext* esContext, int x, int y, bool bIsPressed)
 {
-	if (bIsPressed) 
-	{
-		printf("Click: %d %d\n", x, y);
-	}
+	gsPlay->MouseClick(x, y, bIsPressed);
 }
 
 void MouseMove(ESContext* esContext, int x, int y)
 {
-	printf("Move: %d %d\n", x, y);
-
 }
 
 void CleanUp()
 {
-	ResourceManager::DestroyInstance();
-	SceneManager::DestroyInstance();
+	delete gsPlay;
 }
 
 int _tmain(int argc, _TCHAR* argv[])
