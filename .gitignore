@@ -7,6 +7,8 @@
 *.o
 *.obj
 
+
+
 # Precompiled Headers
 *.gch
 *.pch
@@ -31,3 +33,5 @@
 #Ignore folders
 .vs
 Debug/
+BIN/TrainingFramework.exe
+BIN/TrainingFramework.pdb
