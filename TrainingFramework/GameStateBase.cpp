@@ -34,6 +34,18 @@ void GameStateBase::Update(GLfloat deltatime)
 {
 }
 
+void GameStateBase::Key(int iKeyPressed)
+{
+}
+
+void GameStateBase::MouseClick(int x, int y, bool isPressed)
+{
+}
+
+void GameStateBase::MouseMove(int x, int y)
+{
+}
+
 void GameStateBase::Draw()
 {
 }

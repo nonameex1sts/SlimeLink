@@ -40,29 +40,29 @@ SceneManager::SceneManager()
 	fclose(filePointer);
 }
 
-void SceneManager::Update(ESContext* esContext, float deltaTime, unsigned char keyPressed)
+void SceneManager::Update(float deltaTime, unsigned char keyPressed)
 {
-	if (keyPressed & (1 << 0)) 
+	if (keyPressed & (1 << 0))
 	{
 		pCamera->MoveLeft(deltaTime);
 	}
-	if (keyPressed & (1 << 1)) 
+	if (keyPressed & (1 << 1))
 	{
 		pCamera->MoveForward(deltaTime);
 	}
-	if (keyPressed & (1 << 2)) 
+	if (keyPressed & (1 << 2))
 	{
 		pCamera->MoveRight(deltaTime);
 	}
-	if (keyPressed & (1 << 3)) 
+	if (keyPressed & (1 << 3))
 	{
 		pCamera->MoveBackward(deltaTime);
 	}
-	if (keyPressed & (1 << 4)) 
+	if (keyPressed & (1 << 4))
 	{
 		pCamera->RotateLeft(deltaTime);
 	}
-	if (keyPressed & (1 << 5)) 
+	if (keyPressed & (1 << 5))
 	{
 		pCamera->RotateUp(deltaTime);
 	}
@@ -70,7 +70,7 @@ void SceneManager::Update(ESContext* esContext, float deltaTime, unsigned char k
 	{
 		pCamera->RotateRight(deltaTime);
 	}
-	if (keyPressed & (1 << 7)) 
+	if (keyPressed & (1 << 7))
 	{
 		pCamera->RotateDown(deltaTime);
 	}

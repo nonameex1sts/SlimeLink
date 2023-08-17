@@ -66,6 +66,9 @@
     <ClCompile Include="GSIntro.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
+    <ClCompile Include="GSPlay.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Globals.h">
@@ -105,6 +108,9 @@
       <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
     <ClInclude Include="GSIntro.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSPlay.h">
       <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
   </ItemGroup>
