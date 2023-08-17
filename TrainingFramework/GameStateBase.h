@@ -10,7 +10,7 @@ enum class StateType
 	STATE_LEVEL_SELECT = 3,
 	STATE_HELP = 4,
 	STATE_CREDIT = 5,
-	STATE_LEVEL = 6,
+	STATE_PLAY = 6,
 	STATE_PAUSE = 7
 };
 
