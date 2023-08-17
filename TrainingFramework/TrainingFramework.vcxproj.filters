@@ -66,11 +66,23 @@
     <ClCompile Include="GSIntro.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
+    <ClCompile Include="GSMenu.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
+    <ClCompile Include="GSHelp.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
+    <ClCompile Include="GSCredit.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
+    <ClCompile Include="GSLevelSelect.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
+    <ClCompile Include="GSPause.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Globals.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -106,6 +118,24 @@
     </ClInclude>
     <ClInclude Include="GSIntro.h">
       <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSMenu.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSHelp.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSCredit.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSLevelSelect.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="GSPause.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

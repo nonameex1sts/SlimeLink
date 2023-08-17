@@ -28,6 +28,9 @@ public:
 	virtual void Pause();
 	virtual void Resume();
 	virtual void Update(GLfloat deltatime);
+	virtual void Key(int iKeyPressed);
+	virtual void MouseClick(int x, int y, bool isPressed);
+	virtual void MouseMove(int x, int y);
 	virtual void Draw();
 	StateType GetStateType();
 	GameStateBase* CreateState(StateType type);
