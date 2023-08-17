@@ -2,14 +2,23 @@
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 
-class GSIntro : public GameStateBase 
+enum class ButtonType {
+	RESUME				= 0,
+	HELP				= 1,
+	LEVEL_SELECT		= 2,
+	MENU				= 3,
+	SFX					= 4,
+	BGMUSIC				= 5,
+	NUMBER_OF_BUTTONS	= 6
+};
+
+class GSPause : public GameStateBase
 {
 private:
-	// image
-	GLfloat fTime;
+	// Button (resume, help, level select, menu, music, sfx)
 public:
-	GSIntro();
-	~GSIntro();
+	GSPause();
+	~GSPause();
 	void Init();
 	void Exit();
 	void Pause();

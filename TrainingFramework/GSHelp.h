@@ -2,14 +2,16 @@
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 
-class GSIntro : public GameStateBase 
+class GSHelp : public GameStateBase
 {
 private:
-	// image
-	GLfloat fTime;
+	// backgroundImage
+	// helpImage[5]
+	// button(nextImage, lastImage, back)
+	int iCurrentImage;
 public:
-	GSIntro();
-	~GSIntro();
+	GSHelp();
+	~GSHelp();
 	void Init();
 	void Exit();
 	void Pause();

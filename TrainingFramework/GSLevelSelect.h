@@ -1,15 +1,19 @@
 #pragma once
+#pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 
-class GSIntro : public GameStateBase 
+class GSLevelSelect : public GameStateBase
 {
 private:
-	// image
-	GLfloat fTime;
+	// backgroundImage
+	// levelButton**
+	// backButton
+	// nextPageButton, lastPageButton
+	int iLevelSelect = 0;
 public:
-	GSIntro();
-	~GSIntro();
+	GSLevelSelect();
+	~GSLevelSelect();
 	void Init();
 	void Exit();
 	void Pause();
