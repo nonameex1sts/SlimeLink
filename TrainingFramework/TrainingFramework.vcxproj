@@ -95,10 +95,11 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameStateBase.cpp" />
-    <ClCompile Include="GSCredit.cpp" />
-    <ClCompile Include="GSHelp.cpp" />
-    <ClCompile Include="GSIntro.cpp" />
-    <ClCompile Include="GSLevelSelect.cpp" />
+<ClCompile Include="GSCredit.cpp" />
+    <ClCompile Include="GSHelp.cpp" />    
+<ClCompile Include="GSIntro.cpp" />
+    <ClCompile Include="GSPlay.cpp" />
+<ClCompile Include="GSLevelSelect.cpp" />
     <ClCompile Include="GSMenu.cpp" />
     <ClCompile Include="GSPause.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -117,10 +118,11 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameStateBase.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="GSCredit.h" />
-    <ClInclude Include="GSHelp.h" />
-    <ClInclude Include="GSIntro.h" />
-    <ClInclude Include="GSLevelSelect.h" />
+<ClInclude Include="GSCredit.h" />
+    <ClInclude Include="GSHelp.h" />    
+<ClInclude Include="GSIntro.h" />
+    <ClInclude Include="GSPlay.h" />
+<ClInclude Include="GSLevelSelect.h" />
     <ClInclude Include="GSMenu.h" />
     <ClInclude Include="GSPause.h" />
     <ClInclude Include="Model.h" />

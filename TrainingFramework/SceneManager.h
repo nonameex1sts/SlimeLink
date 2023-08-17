@@ -34,7 +34,7 @@ public:
 		}
 	};
 
-	void Update(ESContext* esContext, float deltaTime, unsigned char keyPressed);
+	void Update(float deltaTime, unsigned char keyPressed);
 	void Draw();
 };
 
