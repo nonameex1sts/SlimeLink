@@ -2,7 +2,7 @@
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 
-enum class ButtonType {
+enum class MenuButtonType {
 	PLAY				= 0,
 	HELP				= 1,
 	CREDIT				= 2,

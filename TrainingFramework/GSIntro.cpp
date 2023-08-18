@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GSIntro.h"
+#include "GameStateMachine.h"
 
 GSIntro::GSIntro()
 {
@@ -26,6 +27,7 @@ void GSIntro::Exit()
 
 void GSIntro::Pause()
 {
+	printf("GSIntro pause\n");
 	// NOTE: blank
 }
 
@@ -36,9 +38,13 @@ void GSIntro::Resume()
 
 void GSIntro::Update(GLfloat deltatime)
 {
-	if (deltatime > fTime)
+	if (fTime < DELAY_TIME)
 	{
-		// NOTE: Get menu state
+		fTime += deltatime;
+	}
+	else 
+	{
+		GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU, 0);
 	}
 }
 

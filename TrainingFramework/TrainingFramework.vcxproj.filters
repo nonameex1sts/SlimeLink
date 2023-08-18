@@ -66,10 +66,10 @@
     <ClCompile Include="GSIntro.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
-<ClCompile Include="GSPlay.cpp">
+    <ClCompile Include="GSPlay.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
-<ClCompile Include="GSMenu.cpp">
+    <ClCompile Include="GSMenu.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
     <ClCompile Include="GSHelp.cpp">
@@ -83,8 +83,11 @@
     </ClCompile>
     <ClCompile Include="GSPause.cpp">
       <Filter>Source Files\ProjectState</Filter>
-    </ClCompile> 
- </ItemGroup>
+    </ClCompile>
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
+  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
@@ -122,10 +125,10 @@
     <ClInclude Include="GSIntro.h">
       <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
-<ClInclude Include="GSPlay.h">
+    <ClInclude Include="GSPlay.h">
       <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
-<ClInclude Include="GSMenu.h">
+    <ClInclude Include="GSMenu.h">
       <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
     <ClInclude Include="GSHelp.h">
@@ -142,8 +145,11 @@
     </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
-    </ClInclude>  
-</ItemGroup>
+    </ClInclude>
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
       <Filter>Resources\Shaders</Filter>

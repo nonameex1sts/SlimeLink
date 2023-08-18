@@ -1,6 +1,6 @@
 #pragma once
-#pragma once
 #include "../Utilities/utilities.h"
+#include "Globals.h"
 
 enum class StateType
 {
@@ -34,4 +34,5 @@ public:
 	virtual void Draw();
 	StateType GetStateType();
 	GameStateBase* CreateState(StateType type);
+	GameStateBase* CreateStatePlay(int ilevelNumber);
 };

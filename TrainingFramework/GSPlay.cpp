@@ -2,9 +2,11 @@
 #include "GSPlay.h"
 #include "ResourceManager.h"
 #include "SceneManager.h"
+#include "GameStateMachine.h"
 
 GSPlay::GSPlay(int ilevelNumber)
 {
+	printf("GSPlay init\n");
 	this->ilevelNumber = ilevelNumber;
 	GameStateBase::GameStateBase(StateType::STATE_PLAY);
 
@@ -31,6 +33,7 @@ void GSPlay::Init(int ilevelNumber)
 
 void GSPlay::Exit()
 {
+	printf("GSPlay exit\n");
 	ResourceManager::DestroyInstance();
 	SceneManager::DestroyInstance();
 }
@@ -60,7 +63,7 @@ void GSPlay::Key(int iKeyPressed)
 		switch (iKeyPressed)
 		{
 		case KEY_MOVE_LEFT:
-			keyPressed |= 1 << 0;
+			GameStateMachine::GetInstance()->PopState();
 			break;
 		case KEY_MOVE_FORWARD:
 			keyPressed |= 1 << 1;

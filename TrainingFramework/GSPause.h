@@ -2,7 +2,7 @@
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 
-enum class ButtonType {
+enum class PauseButtonType {
 	RESUME				= 0,
 	HELP				= 1,
 	LEVEL_SELECT		= 2,

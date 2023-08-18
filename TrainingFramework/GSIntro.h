@@ -6,7 +6,8 @@ class GSIntro : public GameStateBase
 {
 private:
 	// image
-	GLfloat fTime;
+	const float DELAY_TIME = 2.0f;
+	float fTime = 0.0f;
 public:
 	GSIntro();
 	~GSIntro();
