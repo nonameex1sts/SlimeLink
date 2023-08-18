@@ -84,6 +84,8 @@
     <ClCompile Include="GSPause.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
+    <ClCompile Include="GameStateMachine.cpp">
+      <Filter>Source Files\ProjectState</Filter>
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -145,6 +147,9 @@
     </ClInclude>
     <ClInclude Include="Globals.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStateMachine.h">
+      <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

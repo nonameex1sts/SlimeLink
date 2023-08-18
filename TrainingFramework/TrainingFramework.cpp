@@ -6,16 +6,14 @@
 #include "Globals.h"
 #include <conio.h>
 #include "GSPlay.h"
-
-//unsigned char keyPressed = 0;
-GSPlay* gsPlay;
+#include "GameStateMachine.h"
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 
-	//Initialize ResourceManager and SceneManager
-	gsPlay = new GSPlay(1);
+	//Initialize GameStateMachine
+	GameStateMachine::CreateInstance();
 
 	//Creation of shaders and program 
 	return 0;
@@ -26,15 +24,19 @@ void Draw(ESContext* esContext)
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Draw object
-	gsPlay->Draw();
+	// Draw object of active state
+	GameStateMachine::GetInstance()->GetActiveState()->Draw();
 
 	eglSwapBuffers(esContext->eglDisplay, esContext->eglSurface);
 }
 
 void Update(ESContext* esContext, float deltaTime)
 {
-	gsPlay->Update(deltaTime);
+	// Check for stage change
+	GameStateMachine::GetInstance()->PerformStateChange();
+
+	// Update active state
+	GameStateMachine::GetInstance()->GetActiveState()->Update(deltaTime);
 }
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
@@ -42,13 +44,13 @@ void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 	//Arrowkeys for movement, ASWD for rotation
 	if (bIsPressed) 
 	{
-		gsPlay->Key(key);
+		GameStateMachine::GetInstance()->GetActiveState()->Key(key);
 	}
 }
 
 void MouseClick(ESContext* esContext, int x, int y, bool bIsPressed)
 {
-	gsPlay->MouseClick(x, y, bIsPressed);
+	GameStateMachine::GetInstance()->GetActiveState()->MouseClick(x, y, bIsPressed);
 }
 
 void MouseMove(ESContext* esContext, int x, int y)
@@ -57,7 +59,7 @@ void MouseMove(ESContext* esContext, int x, int y)
 
 void CleanUp()
 {
-	delete gsPlay;
+	GameStateMachine::DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
