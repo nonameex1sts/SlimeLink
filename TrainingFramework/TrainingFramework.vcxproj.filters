@@ -86,6 +86,8 @@
     </ClCompile>
     <ClCompile Include="GameStateMachine.cpp">
       <Filter>Source Files\ProjectState</Filter>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
