@@ -45,13 +45,6 @@ void GSPause::Key(int iKeyPressed)
 
 void GSPause::MouseClick(int x, int y, bool isPressed)
 {
-	if (isPressed)
-	{
-		for (int i = 0; i < static_cast<int>(PauseButtonType::NUMBER_OF_BUTTONS); i++)
-		{
-			// NOTE:: Check if that button is clicked
-		}
-	}
 }
 
 void GSPause::MouseMove(int x, int y)

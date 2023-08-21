@@ -26,6 +26,8 @@ public:
 	void Draw();
 	void Key(unsigned char keyPressed);
 	void Move(Vector3 deltaPosition);
+	void MouseClick();
+	void MouseMove();
 	void Rotate();
 	Matrix CalculateWVP();
 	~Object();

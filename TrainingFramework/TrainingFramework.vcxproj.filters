@@ -31,6 +31,9 @@
     <Filter Include="Source Files\ProjectState">
       <UniqueIdentifier>{37c96ff4-408c-4017-a840-727b493478a0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ProjectObject\ButtonCollection">
+      <UniqueIdentifier>{f9e25286-36e3-4af7-a9fd-f4787fe73fac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -92,6 +95,12 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementManager.cpp">
+      <Filter>Source Files\ProjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +167,12 @@
     <ClInclude Include="Player.h">
       <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="ElementManager.h">
+      <Filter>Source Files\ProjectManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -176,6 +191,9 @@
       <Filter>Resources\Managers</Filter>
     </Text>
     <Text Include="Text.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
+    <Text Include="GSMenu.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GSIntro.h"
 #include "GameStateMachine.h"
+#include "ElementManager.h"
 
 GSIntro::GSIntro()
 {
@@ -16,6 +17,7 @@ GSIntro::~GSIntro()
 void GSIntro::Init() 
 {
 	// NOTE: Load image
+	ElementManager::CreateInstance();
 	printf("GSIntro init\n");
 }
 
