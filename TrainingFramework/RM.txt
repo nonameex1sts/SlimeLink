@@ -6,7 +6,7 @@ FILE ../Resources/Models/Woman2.nfg
 
 #2D Textures: 1
 ID 0
-FILE ../Resources/Textures/TV.png
+FILE ../Resources/Textures/TV.jpg
 
 #Shaders: 1
 ID 0
