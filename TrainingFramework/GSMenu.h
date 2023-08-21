@@ -1,21 +1,15 @@
 #pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
-
-enum class MenuButtonType {
-	PLAY				= 0,
-	HELP				= 1,
-	CREDIT				= 2,
-	SFX					= 3,
-	BGMUSIC				= 4,
-	EXIT				= 5,
-	NUMBER_OF_BUTTONS	= 6
-};
+#include "Button.h"
+#include <vector>
 
 class GSMenu : public GameStateBase
 {
 private:
-	// Button (Play, Credit, Help. Exit)
+	Camera* pCamera;
+	int inumButtons;
+	Button** pButtons;
 	// Image
 	// Sound setting (SFX, Background music)
 public:

@@ -11,29 +11,26 @@ Texture::Texture(char* tgaLink)
 	//Load data
 	int widthImage;
 	int heightImage;
-	int bppImage;
-	unsigned char* imageData = stbi_load(tgaLink, &widthImage, &heightImage, &bppImage, 0);
-	/*char* imageData = LoadTGA(tgaLink, &widthImage, &heightImage, &bppImage);*/
+	int iColorChannel;
+	unsigned char* imageData = stbi_load(tgaLink, &widthImage, &heightImage, &iColorChannel, 0);
 
 	//Bind buffer
 	glGenTextures(1, &itextureId);
 	glBindTexture(GL_TEXTURE_2D, itextureId);
-	/*if (bppImage == 24) 
+
+	if (iColorChannel == 4)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImage, heightImage, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
+	}
+	else
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, widthImage, heightImage, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
 	}
-	else 
-	{
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImage, heightImage, 0, GL_RGB, GL_UNSIGNED_BYTE, imageData);
-	}*/
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImage, heightImage, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glBindTexture(GL_TEXTURE_2D, 0);	
-
-	/*delete imageData;*/
 }
 
 GLuint Texture::GetTextureId()

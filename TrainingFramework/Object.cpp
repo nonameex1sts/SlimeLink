@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "Object.h"
 
+Object::Object() {}
+
 Object::Object(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShader, Vector3 position, Vector3 rotation, Vector3 scale)
 {
 	this->pModel = pModel;
@@ -103,6 +105,14 @@ void Object::Move()
 }
 
 void Object::Rotate()
+{
+}
+
+void Object::MouseClick()
+{
+}
+
+void Object::MouseMove()
 {
 }
 

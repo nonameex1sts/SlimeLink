@@ -15,12 +15,15 @@ private:
 	Matrix mt_world;
 
 public:
+	Object();
 	Object(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale);
 	Object(char* modelLink, char* textureLink, Camera* camera, Vector3 position, Vector3 rotation, Vector3 scale);
 	void InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale);
 	void Update();
 	void Draw();
 	void Key();
+	void MouseClick();
+	void MouseMove();
 	void Move();
 	void Rotate();
 	Matrix CalculateWVP();
