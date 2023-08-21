@@ -7,7 +7,7 @@
 #include "../Utilities/utilities.h"
 
 class Object {
-private:
+protected:
 	Model* pModel;
 	Texture* pTexture;
 	Camera* pCamera;
@@ -26,7 +26,7 @@ public:
 	void Draw();
 	void Key(unsigned char keyPressed);
 	void Move(Vector3 deltaPosition);
-	void MouseClick();
+	void MouseClick(int x, int y);
 	void MouseMove();
 	void Rotate();
 	Matrix CalculateWVP();

@@ -37,7 +37,7 @@ public:
 	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, int iType);
 	void Update();
 	void Key();
-	void MouseClick();
+	void MouseClick(int x, int y);
 	void MouseMove();
 	void Move();
 	void Rotate();

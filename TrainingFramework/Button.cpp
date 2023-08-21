@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Button.h"
-
+#include "GameStateMachine.h"
 
 Button::Button() {}
 
@@ -27,8 +27,15 @@ void Button::Rotate()
 {
 }
 
-void Button::MouseClick()
+void Button::MouseClick(int x, int y)
 {
+	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2)) 
+	{
+		if (iType == PLAY) 
+		{
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, 1);
+		}
+	}
 }
 
 void Button::MouseMove()

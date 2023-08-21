@@ -43,5 +43,6 @@ void Player::Key(unsigned char keyPressed)
 
 void Player::Move(Vector3 deltaPosition)
 {
-	Object::Move(deltaPosition);
+	position += deltaPosition;
+	InitWorldMatrix();
 }

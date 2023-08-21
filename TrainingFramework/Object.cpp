@@ -108,15 +108,13 @@ void Object::Key(unsigned char keyPressed)
 
 void Object::Move(Vector3 deltaPosition)
 {
-	position += deltaPosition;
-	InitWorldMatrix();
 }
 
 void Object::Rotate()
 {
 }
 
-void Object::MouseClick()
+void Object::MouseClick(int x, int y)
 {
 }
 
