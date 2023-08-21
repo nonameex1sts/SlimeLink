@@ -4,23 +4,12 @@
 #include "Button.h"
 #include <vector>
 
-enum class MenuButtonType {
-	PLAY				= 0,
-	HELP				= 1,
-	CREDIT				= 2,
-	SFX					= 3,
-	BGMUSIC				= 4,
-	EXIT				= 5,
-	NUMBER_OF_BUTTONS	= 6
-};
-
 class GSMenu : public GameStateBase
 {
 private:
-	Button** pButtons;
 	Camera* pCamera;
 	int inumButtons;
-	Button** buttonTest;
+	Button** pButtons;
 	// Image
 	// Sound setting (SFX, Background music)
 public:

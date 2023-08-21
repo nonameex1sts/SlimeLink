@@ -5,26 +5,41 @@
 #include "Texture.h"
 #include "Shaders.h"
 #include "Camera.h"
+#include "Object.h"
 
-class Button {
+#define PLAY			0
+#define EXIT			1
+#define HELP			2
+#define CREDIT			3
+#define SFX				4
+#define BGM				5
+#define BACK			6
+#define PREV_PAGE		7
+#define NEXT_PAGE		8
+#define PAUSE			9
+#define RESUME			10
+#define RESET			11
+#define LEVEL_SELECT	12
+#define MENU			13
+#define IMAGE			14
+
+class Button : public Object {
 private:
-	Model* pModel;
-	Texture* pTexture;
-	Camera* pCamera;
-	Shaders* pShader;
-	Matrix mt_world;
+	//Model* pModel;
+	//Texture* pTexture;
+	//Camera* pCamera;
+	//Shaders* pShader;
+	//Matrix mt_world;
+	int iType;
 
 public:
 	Button();
-	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale);
-	void InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale);
+	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, int iType);
 	void Update();
-	void Draw();
 	void Key();
 	void MouseClick();
 	void MouseMove();
 	void Move();
 	void Rotate();
-	Matrix CalculateWVP();
 	~Button();
 };

@@ -16,10 +16,7 @@ GSMenu::~GSMenu()
 
 void GSMenu::Init()
 {
-	// NOTE: Load image
-	// NOTE: Load button
-	ElementManager::CreateInstance();
-
+	// NOTE: read camera
 	FILE* filePointer = fopen("../TrainingFramework/GSMenu.txt", "r");
 	float fovY, nearPlane, farPlane, speed;
 	fscanf(filePointer, "#CAMERA\n");
@@ -29,20 +26,10 @@ void GSMenu::Init()
 	fscanf(filePointer, "SPEED %f\n", &speed);
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
-
-	/*Vector3 position = Vector3(560.0f, 480.0f, 0.0f);
-	Vector3 position2 = Vector3(620.0f, 480.0f, 0.0f);
-	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
-	Vector3 scale = Vector3(80.0f, 80.0f, 1.0f);
-	buttonTest = new Button * [2];
-	buttonTest[0] = new Button(ElementManager::GetInstance()->GetModelById(0), ElementManager::GetInstance()->GetTextureById(0), pCamera,
-				ElementManager::GetInstance()->GetShaderById(0), position, rotation, scale);
-	buttonTest[1] = new Button(ElementManager::GetInstance()->GetModelById(0), ElementManager::GetInstance()->GetTextureById(0), pCamera,
-		ElementManager::GetInstance()->GetShaderById(0), position2, rotation, scale);*/
-
+	// NOTE: read buttons
 	fscanf(filePointer, "#Buttons: %d\n", &inumButtons);
 	pButtons = new Button*[inumButtons];
-	int id, modelId, textureId, shaderId;
+	int id, modelId, textureId, shaderId, buttonType;
 	Vector3 position, rotation, scale;
 	for (int i = 0; i < inumButtons; i++)
 	{
@@ -53,8 +40,9 @@ void GSMenu::Init()
 		fscanf(filePointer, "POSITION %f, %f, %f\n", &position.x, &position.y, &position.z);
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
+		fscanf(filePointer, "TYPE %d\n", &buttonType);
 		pButtons[i] = new Button(ElementManager::GetInstance()->GetModelById(modelId), ElementManager::GetInstance()->GetTextureById(textureId), pCamera,
-			ElementManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale);
+			ElementManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType);
 	}
 	fclose(filePointer);
 
@@ -64,7 +52,13 @@ void GSMenu::Init()
 
 void GSMenu::Exit()
 {
+	// NOTE: Delete camera
+	delete pCamera;
 	// NOTE: Delete button
+	for (int i = 0; i < inumButtons; i++) {
+		delete pButtons[i];
+	}
+	delete pButtons;
 	printf("GSMenu exit\n");
 }
 
@@ -76,8 +70,8 @@ void GSMenu::Pause()
 
 void GSMenu::Resume()
 {
-	printf("GSMenu resume\n");
 	// NOTE: blank
+	printf("GSMenu resume\n");
 }
 
 void GSMenu::Update(GLfloat deltatime)
@@ -93,13 +87,6 @@ void GSMenu::Key(int iKeyPressed)
 
 void GSMenu::MouseClick(int x, int y, bool isPressed)
 {
-	if (isPressed)
-	{
-		for (int i = 0; i < static_cast<int>(MenuButtonType::NUMBER_OF_BUTTONS); i++) 
-		{
-			// NOTE:: Check if that button is clicked
-		}
-	}
 }
 
 void GSMenu::MouseMove(int x, int y)
@@ -113,9 +100,4 @@ void GSMenu::Draw()
 	{
 		pButtons[i]->Draw();
 	}
-	/*for (int i = 0; i < 2; i++) {
-		buttonTest[i]->Draw();
-	}*/
-	// NOTE: Draw image
-	// NOTE: Draw button
 }

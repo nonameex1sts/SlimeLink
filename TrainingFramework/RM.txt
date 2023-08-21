@@ -1,12 +1,18 @@
 #Models: 2
 ID 0
-FILE ../Resources/Models/Button.nfg
+FILE ../Resources/Models/Square.nfg
 ID 1
 FILE ../Resources/Models/Woman2.nfg
 
-#2D Textures: 1
+#2D Textures: 4
 ID 0
 FILE ../Resources/Textures/TV.jpg
+ID 1
+FILE ../Resources/Textures/menubg.png
+ID 2
+FILE ../Resources/Textures/exiticon.png
+ID 3
+FILE ../Resources/Textures/playbutton.png
 
 #Shaders: 1
 ID 0

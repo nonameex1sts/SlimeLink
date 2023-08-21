@@ -7,10 +7,13 @@
 #include <conio.h>
 #include "GSPlay.h"
 #include "GameStateMachine.h"
+#include "ElementManager.h"
 
 int Init(ESContext* esContext)
 {
 	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Initialize GameStateMachine
 	GameStateMachine::CreateInstance();
@@ -60,6 +63,7 @@ void MouseMove(ESContext* esContext, int x, int y)
 void CleanUp()
 {
 	GameStateMachine::DestroyInstance();
+	ElementManager::DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
