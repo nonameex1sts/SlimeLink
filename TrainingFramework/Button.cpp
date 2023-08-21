@@ -1,9 +1,10 @@
 #include "stdafx.h"
-#include "Object.h"
+#include "Button.h"
 
-Object::Object() {}
 
-Object::Object(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShader, Vector3 position, Vector3 rotation, Vector3 scale)
+Button::Button() {}
+
+Button::Button(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShader, Vector3 position, Vector3 rotation, Vector3 scale)
 {
 	this->pModel = pModel;
 	this->pTexture = pTexture;
@@ -12,29 +13,10 @@ Object::Object(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShad
 	InitWorldMatrix(position, rotation, scale);
 }
 
-Object::Object(char* pModelLink, char* pTextureLink, Camera* camera, Vector3 position, Vector3 rotation, Vector3 scale) 
-{
-	//Initialize pModel
-	pModel = new Model(pModelLink);
-	//pModel->BindBuffer();
-
-	//Initialize pTexture
-	pTexture = new Texture(pTextureLink);
-
-	//Initialize shader
-	pShader = new Shaders();
-
-	//Initialize world matrix
-	InitWorldMatrix(position, rotation, scale);
-
-	//Initialize camera
-	this->pCamera = pCamera;
-}
-
-void Object::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
+void Button::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
 {
 	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
-	Scale.SetScale(scale.x , scale.y, scale.z);
+	Scale.SetScale(scale.x, scale.y, scale.z);
 
 	RotationX.SetRotationX(rotation.x);
 	RotationY.SetRotationY(rotation.y);
@@ -46,17 +28,17 @@ void Object::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
 	mt_world = Scale * Rotation * Translation;
 }
 
-void Object::Update()
+void Button::Update()
 {
 }
 
-void Object::Draw() 
+void Button::Draw()
 {
 	//Bind pModel, texture and shader buffer
 	glBindBuffer(GL_ARRAY_BUFFER, pModel->GetVBOId());
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pModel->GetIBOId());
 	glBindTexture(GL_TEXTURE_2D, pTexture->GetTextureId());
-	
+
 	glUseProgram(pShader->GetProgram());
 
 	// Get position attribute
@@ -96,33 +78,33 @@ void Object::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void Object::Key()
+void Button::Key()
 {
 }
 
-void Object::Move()
+void Button::Move()
 {
 }
 
-void Object::Rotate()
+void Button::Rotate()
 {
 }
 
-void Object::MouseClick()
+void Button::MouseClick()
 {
 }
 
-void Object::MouseMove()
+void Button::MouseMove()
 {
 }
 
-Matrix Object::CalculateWVP()
+Matrix Button::CalculateWVP()
 {
 	Matrix wvp, view, ortho;
 	view = pCamera->CalculateViewMatrix();
 	ortho = pCamera->GetOrthogonalMatrix();
-	wvp= mt_world * pCamera->CalculateViewMatrix() * pCamera->GetOrthogonalMatrix();
+	wvp = mt_world * pCamera->CalculateViewMatrix() * pCamera->GetOrthogonalMatrix();
 	return wvp;
 }
 
-Object::~Object() {}
+Button::~Button() {}

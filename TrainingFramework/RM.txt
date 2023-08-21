@@ -1,6 +1,6 @@
 #Models: 2
 ID 0
-FILE ../Resources/Models/Triangle.nfg
+FILE ../Resources/Models/Button.nfg
 ID 1
 FILE ../Resources/Models/Woman2.nfg
 

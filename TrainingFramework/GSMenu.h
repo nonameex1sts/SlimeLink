@@ -1,6 +1,8 @@
 #pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
+#include "Button.h"
+#include <vector>
 
 enum class MenuButtonType {
 	PLAY				= 0,
@@ -15,7 +17,10 @@ enum class MenuButtonType {
 class GSMenu : public GameStateBase
 {
 private:
-	// Button (Play, Credit, Help. Exit)
+	Button** pButtons;
+	Camera* pCamera;
+	int inumButtons;
+	Button** buttonTest;
 	// Image
 	// Sound setting (SFX, Background music)
 public:

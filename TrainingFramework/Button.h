@@ -1,12 +1,12 @@
 #pragma once
+#include "../Utilities/utilities.h"
 #include "Math.h"
 #include "Model.h"
 #include "Texture.h"
 #include "Shaders.h"
 #include "Camera.h"
-#include "../Utilities/utilities.h"
 
-class Object {
+class Button {
 private:
 	Model* pModel;
 	Texture* pTexture;
@@ -15,9 +15,8 @@ private:
 	Matrix mt_world;
 
 public:
-	Object();
-	Object(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale);
-	Object(char* modelLink, char* textureLink, Camera* camera, Vector3 position, Vector3 rotation, Vector3 scale);
+	Button();
+	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale);
 	void InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale);
 	void Update();
 	void Draw();
@@ -27,5 +26,5 @@ public:
 	void Move();
 	void Rotate();
 	Matrix CalculateWVP();
-	~Object();
+	~Button();
 };
