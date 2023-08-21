@@ -28,14 +28,14 @@ void GSPlay::Init(int ilevelNumber)
 {
 	//Load level<ilevelNumber>
 
-	SceneManager::CreateInstance();
+	SceneManager::CreateInstance(ilevelNumber);
 }
 
 void GSPlay::Exit()
 {
 	printf("GSPlay exit\n");
-	ResourceManager::DestroyInstance();
 	SceneManager::DestroyInstance();
+	ResourceManager::DestroyInstance();
 }
 
 void GSPlay::Pause()

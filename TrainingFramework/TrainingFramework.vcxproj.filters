@@ -93,6 +93,9 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
     </ClCompile>
@@ -160,6 +163,9 @@
     </ClInclude>
     <ClInclude Include="GameStateMachine.h">
       <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>

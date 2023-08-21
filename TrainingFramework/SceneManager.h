@@ -1,23 +1,33 @@
 #pragma once
 #include "Camera.h"
 #include "Object.h"
+#include "Player.h"
 #include "../Utilities/utilities.h"
 #include "Math.h"
 
 class SceneManager {
 private:
 	static SceneManager* ms_pInstance;
+
 	Camera* pCamera;
 	Object** pObjects;
-	int inumObjects;
+	int** p_imapType;;
+	Player* player;
+
+	int iWidth;
+	int iHeight;
+
+	Vector3 star;
+	
 	SceneManager();
+	SceneManager(int ilevelNumber);
 	~SceneManager();
 
 public:
-	static void CreateInstance()
+	static void CreateInstance(int ilevelNumber)
 	{
 		if (ms_pInstance == nullptr)
-			ms_pInstance = new SceneManager;
+			ms_pInstance = new SceneManager(ilevelNumber);
 	};
 
 	static SceneManager* GetInstance()

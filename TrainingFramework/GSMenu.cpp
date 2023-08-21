@@ -81,7 +81,7 @@ void GSMenu::Update(GLfloat deltatime)
 void GSMenu::Key(int iKeyPressed)
 {
 	if (iKeyPressed == KEY_MOVE_RIGHT) {
-		GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, 0);
+		GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, 1);
 	}
 }
 
