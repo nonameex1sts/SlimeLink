@@ -90,6 +90,9 @@
     <ClCompile Include="stb.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="GameStateMachine.h">
       <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

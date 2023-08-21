@@ -7,7 +7,10 @@ Object::Object(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShad
 	this->pTexture = pTexture;
 	this->pCamera = pCamera;
 	this->pShader = pShader;
-	InitWorldMatrix(position, rotation, scale);
+	this->position = position;
+	this->rotation = rotation;
+	this->scale = scale;
+	InitWorldMatrix();
 }
 
 Object::Object(char* pModelLink, char* pTextureLink, Camera* camera, Vector3 position, Vector3 rotation, Vector3 scale) 
@@ -23,13 +26,16 @@ Object::Object(char* pModelLink, char* pTextureLink, Camera* camera, Vector3 pos
 	pShader = new Shaders();
 
 	//Initialize world matrix
-	InitWorldMatrix(position, rotation, scale);
+	this->position = position;
+	this->rotation = rotation;
+	this->scale = scale;
+	InitWorldMatrix();
 
 	//Initialize camera
 	this->pCamera = pCamera;
 }
 
-void Object::InitWorldMatrix(Vector3 position, Vector3 rotation, Vector3 scale)
+void Object::InitWorldMatrix()
 {
 	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
 	Scale.SetScale(scale.x , scale.y, scale.z);
@@ -94,12 +100,14 @@ void Object::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void Object::Key()
+void Object::Key(unsigned char keyPressed)
 {
 }
 
-void Object::Move()
+void Object::Move(Vector3 deltaPosition)
 {
+	position += deltaPosition;
+	InitWorldMatrix();
 }
 
 void Object::Rotate()

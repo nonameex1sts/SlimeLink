@@ -9,6 +9,8 @@
 # define KEY_MOVE_FORWARD		VK_UP
 # define KEY_MOVE_BACKWARD		VK_DOWN
 
+# define SQUARE_SIZE			80.0f
+
 class Globals
 {
 public:
