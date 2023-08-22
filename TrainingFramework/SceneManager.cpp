@@ -25,15 +25,19 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "Width: %d\n", &iWidth);
 	fscanf(filePointer, "Height: %d\n", &iHeight);
 	fscanf(filePointer, "Horizontal wall: %d\n", &iNumHorizontalWall);
+	fscanf(filePointer, "Player: %d\n", &iNumPlayer);
 
-	p_imapType = new int* [iHeight];
-	for (int i = 0; i < iHeight; i++) {
-		p_imapType[i] = new int[iWidth];
+	//O - can move, 1 - cannot move, 2 - target
+	p_imapType = new int* [iWidth];
+	for (int i = 0; i < iWidth; i++) {
+		p_imapType[i] = new int[iHeight];
 	}
 
 	pObjects = new Object * [iWidth * iHeight];
 	pHorizontalWall = new Object * [iNumHorizontalWall];
-	int iHorizontalWallCounter = 0;
+	pPlayer = new Player * [iNumPlayer];
+
+	int iHorizontalWallCounter = 0, iPlayerCounter = 0;
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 
@@ -41,31 +45,46 @@ SceneManager::SceneManager(int ilevelNumber) {
 		int imapType;
 		fscanf(filePointer, "%d ", &imapType);
 
-		p_imapType[i / iWidth][i % iWidth] = imapType;
-
 		Vector3 position = Vector3(SQUARE_SIZE/2, SQUARE_SIZE/2, 0.0f);
 		position.x += SQUARE_SIZE * (i % iWidth);
 		position.y += SQUARE_SIZE * (i / iWidth);
 
-		//0-path, 1-wall, 2-player, 3-friend, 4-hole, 5-target
-		if (imapType <= 1  || (imapType >= 6 && imapType <= 9))
+		if (imapType <= 1  )
 		{
+			//Wall
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			p_imapType[i % iWidth][i / iWidth] = imapType;
+		}
+
+		if ((imapType >= 6 && imapType <= 9) || imapType == 13)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			//Wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 		}
 
 		if (imapType == 2)
 		{
+			p_imapType[i % iWidth][i / iWidth] = 0;
 			//Player
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
-			player = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, true);
+
+			iPlayerCounter++;
 		}
 
 		if (imapType == 10 || imapType == 11)
 		{
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			//Wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -75,13 +94,24 @@ SceneManager::SceneManager(int ilevelNumber) {
 			iHorizontalWallCounter++;
 		}
 
-		if (imapType == 4)
+		if (imapType == 12)
 		{
-			//Hole
+			p_imapType[i % iWidth][i / iWidth] = 0;
+
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			//"Sleep" player
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, false);
+
+			iPlayerCounter++;
 		}
 
 		if (imapType == 5)
 		{
+			p_imapType[i % iWidth][i / iWidth] = 2;
+
 			//Target
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
@@ -93,9 +123,65 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fclose(filePointer);
 }
 
-void SceneManager::Update(float deltaTime, unsigned char keyPressed)
+void SceneManager::Update(float deltaTime)
 {
-	player->Key(keyPressed);
+}
+
+void SceneManager::Key(unsigned char keyPressed)
+{
+	//Player movement
+	for (int i = 0; i < iNumPlayer; i++) {
+		pPlayer[i]->Key(keyPressed, canMoveLeft, canMoveRight, canMoveUp, canMoveDown);
+	}
+
+	//Wake up inactive player
+	for (int i = 0; i < iNumPlayer; i++) 
+	{
+		if (pPlayer[i]->GetActiveStatus()) 
+		{
+			for (int j = 0; j < iNumPlayer; j++) 
+			{
+				if (pPlayer[i]->CheckCloseObject(*pPlayer[j])) 
+				{
+					pPlayer[j]->SetActiveStatus(true);
+					pPlayer[j]->SetTexture(*pPlayer[i]);
+				}
+			}
+		}
+	}
+
+	canMoveRight = true;
+	canMoveLeft = true;
+	canMoveDown = true;
+	canMoveUp = true;
+
+	for (int i = 0; i < iNumPlayer; i++)
+	{
+		if (pPlayer[i]->GetActiveStatus())
+		{
+			Vector3 coordinate = pPlayer[i]->GetCoordinate();
+
+			if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1) 
+			{
+				canMoveRight = false;
+			}
+
+			if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1)
+			{
+				canMoveLeft = false;
+			}
+
+			if (p_imapType[(int)coordinate.x][(int)coordinate.y + 1] == 1)
+			{
+				canMoveDown = false;
+			}
+
+			if (p_imapType[(int)coordinate.x][(int)coordinate.y - 1] == 1)
+			{
+				canMoveUp = false;
+			}
+		}
+	}
 }
 
 void SceneManager::Draw()
@@ -105,7 +191,10 @@ void SceneManager::Draw()
 		pObjects[i]->Draw();
 	}
 
-	player->Draw();
+	for (int i = 0; i < iNumPlayer; i++) 
+	{
+		pPlayer[i]->Draw();
+	}
 
 	for (int i = 0; i < iNumHorizontalWall; i++) 
 	{
@@ -121,7 +210,7 @@ SceneManager::~SceneManager()
 	}
 	delete pObjects;
 
-	for (int i = 0; i < iHeight; i++)
+	for (int i = 0; i < iWidth; i++)
 	{
 		delete p_imapType[i];
 	}
@@ -132,7 +221,12 @@ SceneManager::~SceneManager()
 		delete pHorizontalWall[i];
 	}
 	delete pHorizontalWall;
-
-	delete player;
+	
+	for (int i = 0; i < iNumPlayer; i++) 
+	{
+		delete pPlayer[i];
+	}
+	delete pPlayer;
+	
 	delete pCamera;
 }

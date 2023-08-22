@@ -13,13 +13,19 @@ private:
 	Object** pObjects;
 	Object** pHorizontalWall;
 	int** p_imapType;;
-	Player* player;
+	Player** pPlayer;
 
+	int iNumPlayer;
 	int iNumHorizontalWall;
 	int iWidth;
 	int iHeight;
 
 	Vector3 star;
+
+	bool canMoveLeft = true;
+	bool canMoveRight = true;
+	bool canMoveUp = true;
+	bool canMoveDown = true;
 	
 	SceneManager();
 	SceneManager(int ilevelNumber);
@@ -46,7 +52,8 @@ public:
 		}
 	};
 
-	void Update(float deltaTime, unsigned char keyPressed);
+	void Update(float deltaTime);
+	void Key(unsigned char keyPressed);
 	void Draw();
 };
 

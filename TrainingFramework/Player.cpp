@@ -21,23 +21,31 @@ bool Player::GetActiveStatus()
 	return isActive;
 }
 
-void Player::Key(unsigned char keyPressed)
+void Player::SetActiveStatus(bool status)
 {
-	if (keyPressed & (1 << 4))
-	{
-		Move(Vector3(-SQUARE_SIZE, 0.0f, 0.0f));
-	}
-	if (keyPressed & (1 << 5))
-	{
-		Move(Vector3(0.0f, -SQUARE_SIZE, 0.0f));
-	}
-	if (keyPressed & (1 << 6))
-	{
-		Move(Vector3(SQUARE_SIZE, 0.0f, 0.0f));
-	}
-	if (keyPressed & (1 << 7))
-	{
-		Move(Vector3(0.0f, SQUARE_SIZE, 0.0f));
+	this->isActive = status;
+}
+
+void Player::Key(unsigned char keyPressed, bool canMoveLeft, bool canMoveRight, bool canMoveUp, bool canMoveDown)
+{
+	//AWSD for movement
+	if (isActive) {
+		if ((keyPressed & (1 << 0)) && canMoveLeft)
+		{
+			Move(Vector3(-SQUARE_SIZE, 0.0f, 0.0f));
+		}
+		if ((keyPressed & (1 << 1)) && canMoveUp)
+		{
+			Move(Vector3(0.0f, -SQUARE_SIZE, 0.0f));
+		}
+		if ((keyPressed & (1 << 2)) && canMoveRight)
+		{
+			Move(Vector3(SQUARE_SIZE, 0.0f, 0.0f));
+		}
+		if ((keyPressed & (1 << 3)) && canMoveDown)
+		{
+			Move(Vector3(0.0f, SQUARE_SIZE, 0.0f));
+		}
 	}
 }
 
