@@ -29,6 +29,9 @@ public:
 	void MouseClick(int x, int y);
 	void MouseMove();
 	void Rotate();
+	bool CheckCloseObject(Object object);
+	void SetTexture(Object object);
+	Vector3 GetCoordinate();
 	Matrix CalculateWVP();
 	~Object();
 };

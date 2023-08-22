@@ -114,6 +114,21 @@ void Object::Rotate()
 {
 }
 
+bool Object::CheckCloseObject(Object object)
+{
+	return ((position.x - object.position.x) * (position.x - object.position.x) + (position.y - object.position.y) * (position.y - object.position.y)) <= 2 * SQUARE_SIZE * SQUARE_SIZE + 10.0f;
+}
+
+void Object::SetTexture(Object object)
+{
+	this->pTexture = object.pTexture;
+}
+
+Vector3 Object::GetCoordinate()
+{
+	return Vector3((position.x - 40.0f) / SQUARE_SIZE, (position.y - 40.0f) / SQUARE_SIZE, position.z);
+}
+
 void Object::MouseClick(int x, int y)
 {
 }
