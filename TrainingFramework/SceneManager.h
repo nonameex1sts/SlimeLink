@@ -11,9 +11,11 @@ private:
 
 	Camera* pCamera;
 	Object** pObjects;
+	Object** pHorizontalWall;
 	int** p_imapType;;
 	Player* player;
 
+	int iNumHorizontalWall;
 	int iWidth;
 	int iHeight;
 

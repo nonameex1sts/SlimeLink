@@ -2,19 +2,33 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 6
+#2D Textures: 13
 ID 0
-FILE ../Resources/Textures/Grass.png
+FILE ../Resources/Textures/Floor.png
 ID 1
-FILE ../Resources/Textures/Wall.png
+FILE ../Resources/Textures/Horizontal_wall.png
 ID 2
-FILE ../Resources/Textures/TV.jpg
+FILE ../Resources/Textures/Robot.png
 ID 3
 FILE ../Resources/Textures/menubg.png
 ID 4
 FILE ../Resources/Textures/exiticon.png
 ID 5
 FILE ../Resources/Textures/playbutton.png
+ID 6
+FILE ../Resources/Textures/Up_left_conner.png
+ID 7
+FILE ../Resources/Textures/Up_right_conner.png
+ID 8
+FILE ../Resources/Textures/Down_left_conner.png
+ID 9
+FILE ../Resources/Textures/Down_right_conner.png
+ID 10
+FILE ../Resources/Textures/Left_wall.png
+ID 11
+FILE ../Resources/Textures/Right_wall.png
+ID 12
+FILE ../Resources/Textures/Robot_sleep.png
 
 #Shaders: 1
 ID 0

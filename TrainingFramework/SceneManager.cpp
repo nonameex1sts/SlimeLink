@@ -24,6 +24,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	//Width height of the map
 	fscanf(filePointer, "Width: %d\n", &iWidth);
 	fscanf(filePointer, "Height: %d\n", &iHeight);
+	fscanf(filePointer, "Horizontal wall: %d\n", &iNumHorizontalWall);
 
 	p_imapType = new int* [iHeight];
 	for (int i = 0; i < iHeight; i++) {
@@ -31,6 +32,8 @@ SceneManager::SceneManager(int ilevelNumber) {
 	}
 
 	pObjects = new Object * [iWidth * iHeight];
+	pHorizontalWall = new Object * [iNumHorizontalWall];
+	int iHorizontalWallCounter = 0;
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 
@@ -45,7 +48,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		position.y += SQUARE_SIZE * (i / iWidth);
 
 		//0-path, 1-wall, 2-player, 3-friend, 4-hole, 5-target
-		if (imapType == 0 || imapType == 1)
+		if (imapType <= 1  || (imapType >= 6 && imapType <= 9))
 		{
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
@@ -59,13 +62,17 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 			player = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, true);
-
-			printf("Player\n");
 		}
 
-		if (imapType == 3)
+		if (imapType == 10 || imapType == 11)
 		{
-			//Friend
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
 		}
 
 		if (imapType == 4)
@@ -99,6 +106,11 @@ void SceneManager::Draw()
 	}
 
 	player->Draw();
+
+	for (int i = 0; i < iNumHorizontalWall; i++) 
+	{
+		pHorizontalWall[i]->Draw();
+	}
 }
 
 SceneManager::~SceneManager()
@@ -114,6 +126,12 @@ SceneManager::~SceneManager()
 		delete p_imapType[i];
 	}
 	delete p_imapType;
+
+	for (int i = 0; i < iNumHorizontalWall; i++)
+	{
+		delete pHorizontalWall[i];
+	}
+	delete pHorizontalWall;
 
 	delete player;
 	delete pCamera;
