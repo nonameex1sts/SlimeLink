@@ -2,7 +2,6 @@
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
 #include "Button.h"
-#include <vector>
 
 class GSMenu : public GameStateBase
 {

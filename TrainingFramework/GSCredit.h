@@ -1,13 +1,15 @@
 #pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
+#include "ResourceManager.h"
+#include "Button.h"
 
 class GSCredit : public GameStateBase
 {
 private:
-	// image
-	// backgroundImage
-	// backButton
+	Camera* pCamera;
+	int inumButtons;
+	Button** pButtons;
 public:
 	GSCredit();
 	~GSCredit();

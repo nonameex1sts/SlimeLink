@@ -35,7 +35,6 @@ void GSPlay::Exit()
 {
 	printf("GSPlay exit\n");
 	SceneManager::DestroyInstance();
-	ResourceManager::DestroyInstance();
 }
 
 void GSPlay::Pause()
