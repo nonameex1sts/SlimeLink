@@ -29,7 +29,7 @@ void GSMenu::Init()
 	// NOTE: read buttons
 	fscanf(filePointer, "#Buttons: %d\n", &inumButtons);
 	pButtons = new Button*[inumButtons];
-	int id, modelId, textureId, shaderId, buttonType;
+	int id, modelId, textureId, shaderId, buttonType, isActive;
 	Vector3 position, rotation, scale;
 	for (int i = 0; i < inumButtons; i++)
 	{
@@ -41,8 +41,9 @@ void GSMenu::Init()
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 		fscanf(filePointer, "TYPE %d\n", &buttonType);
+		fscanf(filePointer, "ACTIVE %d\n", &isActive);
 		pButtons[i] = new Button(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
-			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType);
+			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType, isActive);
 	}
 	fclose(filePointer);
 
@@ -105,6 +106,9 @@ void GSMenu::Draw()
 {
 	for (int i = 0; i < inumButtons; i++)
 	{
-		pButtons[i]->Draw();
+		if (pButtons[i]->getActive())
+		{
+			pButtons[i]->Draw();
+		}
 	}
 }
