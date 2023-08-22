@@ -99,9 +99,6 @@
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
     </ClCompile>
-    <ClCompile Include="ElementManager.cpp">
-      <Filter>Source Files\ProjectManager</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -169,9 +166,6 @@
     </ClInclude>
     <ClInclude Include="Button.h">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
-    </ClInclude>
-    <ClInclude Include="ElementManager.h">
-      <Filter>Source Files\ProjectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "GSMenu.h"
 #include "GameStateMachine.h"
-#include "ElementManager.h"
+#include "ResourceManager.h"
 
 GSMenu::GSMenu()
 {
@@ -41,8 +41,8 @@ void GSMenu::Init()
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 		fscanf(filePointer, "TYPE %d\n", &buttonType);
-		pButtons[i] = new Button(ElementManager::GetInstance()->GetModelById(modelId), ElementManager::GetInstance()->GetTextureById(textureId), pCamera,
-			ElementManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType);
+		pButtons[i] = new Button(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
+			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType);
 	}
 	fclose(filePointer);
 

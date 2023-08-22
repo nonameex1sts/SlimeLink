@@ -7,7 +7,7 @@
 #include <conio.h>
 #include "GSPlay.h"
 #include "GameStateMachine.h"
-#include "ElementManager.h"
+#include "ResourceManager.h"
 
 int Init(ESContext* esContext)
 {
@@ -63,7 +63,6 @@ void MouseMove(ESContext* esContext, int x, int y)
 void CleanUp()
 {
 	GameStateMachine::DestroyInstance();
-	ElementManager::DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])

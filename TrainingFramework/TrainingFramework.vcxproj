@@ -95,7 +95,6 @@
   <ItemGroup>
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="ElementManager.cpp" />
     <ClCompile Include="GameStateBase.cpp" />
     <ClCompile Include="GameStateMachine.cpp" />
     <ClCompile Include="GSCredit.cpp" />
@@ -122,7 +121,6 @@
   <ItemGroup>
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="ElementManager.h" />
     <ClInclude Include="GameStateBase.h" />
     <ClInclude Include="GameStateMachine.h" />
     <ClInclude Include="Globals.h" />
