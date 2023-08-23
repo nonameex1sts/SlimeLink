@@ -157,7 +157,6 @@
     <Text Include="GSCredit.txt" />
     <Text Include="GSMenu.txt" />
     <Text Include="RM.txt" />
-    <Text Include="SM.txt" />
     <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
