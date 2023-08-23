@@ -1,14 +1,20 @@
 #pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
+#include "ResourceManager.h"
+#include "Button.h"
+#include "Picture.h"
 
 class GSHelp : public GameStateBase
 {
 private:
-	// backgroundImage
-	// helpImage[5]
-	// button(nextImage, lastImage, back)
-	int iCurrentImage;
+	Camera* pCamera;
+	int inumButtons;
+	int inumPics;
+	Button** pButtons;
+	Picture** pPictures;
+	int iCurrentPic = 0;
+	int iHelpPic = 4;
 public:
 	GSHelp();
 	~GSHelp();

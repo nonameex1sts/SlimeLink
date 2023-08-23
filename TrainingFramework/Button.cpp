@@ -68,6 +68,45 @@ void Button::MouseClick(int x, int y)
 		{
 			isActive = !isActive;
 		}
+		if (iType == BACK)
+		{
+			GameStateMachine::GetInstance()->PopState();
+		}
+	}
+}
+
+void Button::MouseClick(int x, int y, int* index, int sumPicture)
+{
+	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
+	{
+		if (iType == BACK)
+		{
+			GameStateMachine::GetInstance()->PopState();
+		}
+		if (iType == PREV_PAGE)
+		{
+			if ((*index) == 0) 
+			{
+				(*index) = sumPicture - 1;
+			}
+			else
+			{
+				(*index)--;
+			}
+			printf("prev click\n");
+		}
+		if (iType == NEXT_PAGE)
+		{
+			if ((*index) == sumPicture - 1)
+			{
+				(*index) = 0;
+			}
+			else 
+			{
+				(*index)++;
+			}
+			printf("next click\n");
+		}
 	}
 }
 
