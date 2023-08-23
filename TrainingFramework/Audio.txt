@@ -1,4 +1,4 @@
-#Musics: 2
+#Musics: 3
 
 ID 0
 FILE ../Resources/Music/menubg.wav
@@ -6,3 +6,6 @@ LOOP 1
 ID 1
 FILE ../Resources/Music/menubg_demo.wav
 LOOP 1
+ID 3
+FILE ../Resources/Music/button.wav
+LOOP 0

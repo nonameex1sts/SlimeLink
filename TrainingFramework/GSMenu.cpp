@@ -87,7 +87,6 @@ void GSMenu::Exit()
 void GSMenu::Pause()
 {
 	// NOTE: blank
-	AudioManager::GetInstance()->GetAudioById(0)->StopMusic();
 	printf("GSMenu pause\n");
 }
 
