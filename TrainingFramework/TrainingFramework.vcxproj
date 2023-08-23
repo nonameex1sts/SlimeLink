@@ -93,6 +93,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="AudioManager.cpp" />
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="GameStateBase.cpp" />
@@ -120,6 +122,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Audio.h" />
+    <ClInclude Include="AudioManager.h" />
     <ClInclude Include="Button.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="GameStateBase.h" />
@@ -156,11 +160,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Audio.txt" />
     <Text Include="GSCredit.txt" />
     <Text Include="GSHelp.txt" />
     <Text Include="GSMenu.txt" />
     <Text Include="RM.txt" />
-    <Text Include="Text.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Button.h"
 #include "GameStateMachine.h"
+#include "AudioManager.h"
 
 Button::Button() {}
 
@@ -63,10 +64,18 @@ void Button::MouseClick(int x, int y)
 		if (iType == BGM)
 		{
 			isActive = !isActive;
+			if (isActive)
+			{
+				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(30);
+			}
 		}
 		if (iType == NOBGM)
 		{
 			isActive = !isActive;
+			if (isActive)
+			{
+				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(0);
+			}
 		}
 		if (iType == BACK)
 		{

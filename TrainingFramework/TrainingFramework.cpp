@@ -8,9 +8,7 @@
 #include "GSPlay.h"
 #include "GameStateMachine.h"
 #include "ResourceManager.h"
-#include "SFML/Audio.hpp"
-
-sf::Music music;
+#include "AudioManager.h"
 
 int Init(ESContext* esContext)
 {
@@ -19,7 +17,9 @@ int Init(ESContext* esContext)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	//Initialize GameStateMachine
+	AudioManager::CreateInstance();
 	GameStateMachine::CreateInstance();
+
 
 	//Creation of shaders and program 
 	return 0;
@@ -66,21 +66,11 @@ void MouseMove(ESContext* esContext, int x, int y)
 void CleanUp()
 {
 	GameStateMachine::DestroyInstance();
-	music.stop();
+	AudioManager::DestroyInstance();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
-	if (!music.openFromFile("../Resources/Music/test.wav"))
-	{
-		printf("Error\n");
-	}
-	if (!music.openFromFile("../Resources/Music/test2.wav"))
-	{
-		printf("Error\n");
-	}
-	music.setVolume(40);
-	music.play();
 	ESContext esContext;
 
 	esInitContext(&esContext);

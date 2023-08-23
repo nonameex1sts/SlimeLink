@@ -3,6 +3,7 @@
 #include "../Utilities/utilities.h"
 #include "Button.h"
 #include "Picture.h"
+#include "AudioManager.h"
 
 class GSMenu : public GameStateBase
 {
