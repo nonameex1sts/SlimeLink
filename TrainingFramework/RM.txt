@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 19
+#2D Textures: 22
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -41,6 +41,12 @@ ID 17
 FILE ../Resources/Textures/sound-off.png
 ID 18
 FILE ../Resources/Textures/title.png
+ID 19
+FILE ../Resources/Textures/backbutton.png
+ID 20
+FILE ../Resources/Textures/left-arrow.png
+ID 21
+FILE ../Resources/Textures/right-arrow.png
 
 #Shaders: 1
 ID 0

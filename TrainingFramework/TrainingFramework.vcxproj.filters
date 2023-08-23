@@ -34,6 +34,9 @@
     <Filter Include="Source Files\ProjectObject\ButtonCollection">
       <UniqueIdentifier>{f9e25286-36e3-4af7-a9fd-f4787fe73fac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ProjectObject\PictureCollection">
+      <UniqueIdentifier>{811274d5-f7ea-4d04-8a91-3c70b53c5893}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="Button.cpp">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
+    </ClCompile>
+    <ClCompile Include="Picture.cpp">
+      <Filter>Source Files\ProjectObject\PictureCollection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +173,9 @@
     <ClInclude Include="Button.h">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
     </ClInclude>
+    <ClInclude Include="Picture.h">
+      <Filter>Source Files\ProjectObject\PictureCollection</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -191,6 +200,9 @@
       <Filter>Resources\Managers</Filter>
     </Text>
     <Text Include="GSCredit.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
+    <Text Include="GSHelp.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
   </ItemGroup>

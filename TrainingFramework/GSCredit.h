@@ -3,13 +3,17 @@
 #include "../Utilities/utilities.h"
 #include "ResourceManager.h"
 #include "Button.h"
+#include "Picture.h"
+
 
 class GSCredit : public GameStateBase
 {
 private:
 	Camera* pCamera;
 	int inumButtons;
+	int inumPics;
 	Button** pButtons;
+	Picture** pPictures;
 public:
 	GSCredit();
 	~GSCredit();

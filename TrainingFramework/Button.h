@@ -12,7 +12,7 @@
 #define HELP			2
 #define CREDIT			3
 #define BGM				4
-#define NOBGM				5
+#define NOBGM			5
 #define BACK			6
 #define PREV_PAGE		7
 #define NEXT_PAGE		8
@@ -21,15 +21,9 @@
 #define RESET			11
 #define LEVEL_SELECT	12
 #define MENU			13
-#define IMAGE			14
 
 class Button : public Object {
 private:
-	//Model* pModel;
-	//Texture* pTexture;
-	//Camera* pCamera;
-	//Shaders* pShader;
-	//Matrix mt_world;
 	int iType;
 	bool isActive;
 
@@ -39,6 +33,7 @@ public:
 	void Update();
 	void Key();
 	void MouseClick(int x, int y);
+	void MouseClick(int x, int y, int *index, int sumPicture);
 	void MouseMove();
 	void Move();
 	void Rotate();
