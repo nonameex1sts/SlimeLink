@@ -8,7 +8,6 @@ private:
 	// NOTE: if fcheckKeyTime > DELAY_KEY_TIME, the key can be pressed and fcheckKeyTime is set to 0
 	//		 if fcheckKeyTime < DELAY_KEY_TIME, each update fcheckKeyTime += deltaTime
 	float fcheckKeyTime = 3.0f;
-	const float DELAY_KEY_TIME = 0.15f;
 
 public:
 	GSPlay(int ilevelNumber);
