@@ -11,6 +11,8 @@
 
 # define SQUARE_SIZE			80.0f
 
+#define DELAY_KEY_TIME			0.15f
+
 class Globals
 {
 public:
