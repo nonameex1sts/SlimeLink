@@ -1,6 +1,7 @@
 #pragma once
 #include "GameStateBase.h"
 #include "../Utilities/utilities.h"
+#include "AudioManager.h"
 
 class GSIntro : public GameStateBase 
 {

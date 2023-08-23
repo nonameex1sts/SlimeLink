@@ -105,6 +105,12 @@
     <ClCompile Include="Picture.cpp">
       <Filter>Source Files\ProjectObject\PictureCollection</Filter>
     </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioManager.cpp">
+      <Filter>Source Files\ProjectManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -176,6 +182,12 @@
     <ClInclude Include="Picture.h">
       <Filter>Source Files\ProjectObject\PictureCollection</Filter>
     </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioManager.h">
+      <Filter>Source Files\ProjectManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Resources\Shaders\TriangleShaderFS.fs">
@@ -190,9 +202,6 @@
     <Text Include="RM.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
-    <Text Include="Text.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
     <Text Include="GSMenu.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
@@ -200,6 +209,9 @@
       <Filter>Resources\Managers</Filter>
     </Text>
     <Text Include="GSHelp.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
+    <Text Include="Audio.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
   </ItemGroup>
