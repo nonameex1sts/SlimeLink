@@ -27,7 +27,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "Horizontal wall: %d\n", &iNumHorizontalWall);
 	fscanf(filePointer, "Player: %d\n", &iNumPlayer);
 
-	//O - can move, 1 - cannot move, 2 - target
+	//O - can move, 1 - cannot move, 2 - left wall, 3 - right wall, 4 - target
 	p_imapType = new int* [iWidth];
 	for (int i = 0; i < iWidth; i++) {
 		p_imapType[i] = new int[iHeight];
@@ -80,9 +80,23 @@ SceneManager::SceneManager(int ilevelNumber) {
 			iPlayerCounter++;
 		}
 
-		if (imapType == 10 || imapType == 11)
+		if (imapType == 10)
 		{
-			p_imapType[i % iWidth][i / iWidth] = 1;
+			p_imapType[i % iWidth][i / iWidth] = 2;
+
+			//Wall
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+		}
+
+		if (imapType == 11)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 3;
 
 			//Wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
@@ -131,7 +145,7 @@ void SceneManager::Key(unsigned char keyPressed)
 {
 	//Player movement
 	for (int i = 0; i < iNumPlayer; i++) {
-		pPlayer[i]->Key(keyPressed, canMoveLeft, canMoveRight, canMoveUp, canMoveDown);
+		pPlayer[i]->Key(keyPressed);
 	}
 
 	//Wake up inactive player
@@ -150,35 +164,43 @@ void SceneManager::Key(unsigned char keyPressed)
 		}
 	}
 
-	canMoveRight = true;
-	canMoveLeft = true;
-	canMoveDown = true;
-	canMoveUp = true;
-
 	for (int i = 0; i < iNumPlayer; i++)
 	{
+		pPlayer[i]->SetMoveRightStatus(true);
+		pPlayer[i]->SetMoveLeftStatus(true);
+		pPlayer[i]->SetMoveDownStatus(true);
+		pPlayer[i]->SetMoveUpStatus(true);
+
 		if (pPlayer[i]->GetActiveStatus())
 		{
 			Vector3 coordinate = pPlayer[i]->GetCoordinate();
 
-			if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1) 
+			if ((p_imapType[(int)coordinate.x][(int)coordinate.y] == 3))
 			{
-				canMoveRight = false;
+				pPlayer[i]->SetMoveRightStatus(false);
+			}
+			else if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1) 
+			{
+				pPlayer[i]->SetMoveRightStatus(false);
 			}
 
-			if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1)
+			if ((p_imapType[(int)coordinate.x][(int)coordinate.y] == 2))
 			{
-				canMoveLeft = false;
+				pPlayer[i]->SetMoveLeftStatus(false);
+			}
+			else if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1) 
+			{
+				pPlayer[i]->SetMoveLeftStatus(false);
 			}
 
 			if (p_imapType[(int)coordinate.x][(int)coordinate.y + 1] == 1)
 			{
-				canMoveDown = false;
+				pPlayer[i]->SetMoveDownStatus(false);
 			}
 
 			if (p_imapType[(int)coordinate.x][(int)coordinate.y - 1] == 1)
 			{
-				canMoveUp = false;
+				pPlayer[i]->SetMoveUpStatus(false);
 			}
 		}
 	}

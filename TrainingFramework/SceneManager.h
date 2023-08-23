@@ -21,11 +21,6 @@ private:
 	int iHeight;
 
 	Vector3 star;
-
-	bool canMoveLeft = true;
-	bool canMoveRight = true;
-	bool canMoveUp = true;
-	bool canMoveDown = true;
 	
 	SceneManager();
 	SceneManager(int ilevelNumber);

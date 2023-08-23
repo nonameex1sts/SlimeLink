@@ -21,12 +21,32 @@ bool Player::GetActiveStatus()
 	return isActive;
 }
 
+void Player::SetMoveLeftStatus(bool status)
+{
+	this->canMoveLeft = status;
+}
+
+void Player::SetMoveRightStatus(bool status)
+{
+	this->canMoveRight = status;
+}
+
+void Player::SetMoveUpStatus(bool status)
+{
+	this->canMoveUp = status;
+}
+
+void Player::SetMoveDownStatus(bool status)
+{
+	this->canMoveDown = status;
+}
+
 void Player::SetActiveStatus(bool status)
 {
 	this->isActive = status;
 }
 
-void Player::Key(unsigned char keyPressed, bool canMoveLeft, bool canMoveRight, bool canMoveUp, bool canMoveDown)
+void Player::Key(unsigned char keyPressed)
 {
 	//AWSD for movement
 	if (isActive) {

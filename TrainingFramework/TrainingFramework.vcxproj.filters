@@ -181,9 +181,6 @@
     <Text Include="RM.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
-    <Text Include="SM.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
     <Text Include="Text.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
