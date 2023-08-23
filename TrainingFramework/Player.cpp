@@ -7,7 +7,7 @@
 #include "Player.h"
 
 Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, bool isActive) 
-	: Object(model, texture, camera, shader, position, rotation, scale - Vector3(10.0f, 10.0f, 0.0f))
+	: Object(model, texture, camera, shader, position, rotation, scale - Vector3(15.0f, 15.0f, 0.0f))
 {
 	this->isActive = isActive;
 }

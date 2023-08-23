@@ -119,6 +119,16 @@ bool Object::CheckCloseObject(Object object)
 	return ((position.x - object.position.x) * (position.x - object.position.x) + (position.y - object.position.y) * (position.y - object.position.y)) <= 2 * SQUARE_SIZE * SQUARE_SIZE + 10.0f;
 }
 
+bool Object::CheckPosition(Vector3 position)
+{
+	return (this->position.x == position.x) && (this->position.y == position.y);
+}
+
+void Object::SetTexture(Texture* pTexture)
+{
+	this->pTexture = pTexture;
+}
+
 void Object::SetTexture(Object object)
 {
 	this->pTexture = object.pTexture;
