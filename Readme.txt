@@ -1,0 +1,5 @@
+- Thể loại: Game giải đố.
+- Điều khiển: WASD hoặc 4 phím mũi tên.
+- Mô tả: Người chơi điều khiển các khối lập phương trong bản đồ ô lưới. Các khối lập phương có 2 trạng thái: active (người chơi điều khiển được) và inactive (người chơi không điều khiển được). Các khối inactive sẽ được kích hoạt nếu có khối active lại gần. Khi bấm phím tất cả các ô active sẽ cùng di chuyển.
+- Mục tiêu: Di chuyển các khối lập phương đến đích với số lượng nước đi nhỏ nhất, tất cả các khối đều phải ở trong ô đích để chiến thắng.
+- Chướng ngại vật: Tường khiến hạn chế di chuyển, cơ chế tăng giảm số lượng khối lập phương.
