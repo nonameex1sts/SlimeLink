@@ -8,6 +8,9 @@
 #include "GSPlay.h"
 #include "GameStateMachine.h"
 #include "ResourceManager.h"
+#include "SFML/Audio.hpp"
+
+sf::Music music;
 
 int Init(ESContext* esContext)
 {
@@ -63,10 +66,21 @@ void MouseMove(ESContext* esContext, int x, int y)
 void CleanUp()
 {
 	GameStateMachine::DestroyInstance();
+	music.stop();
 }
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	if (!music.openFromFile("../Resources/Music/test.wav"))
+	{
+		printf("Error\n");
+	}
+	if (!music.openFromFile("../Resources/Music/test2.wav"))
+	{
+		printf("Error\n");
+	}
+	music.setVolume(40);
+	music.play();
 	ESContext esContext;
 
 	esInitContext(&esContext);
