@@ -30,6 +30,8 @@ public:
 	void MouseMove();
 	void Rotate();
 	bool CheckCloseObject(Object object);
+	bool CheckPosition(Vector3 position);
+	void SetTexture(Texture* pTexture);
 	void SetTexture(Object object);
 	Vector3 GetCoordinate();
 	Matrix CalculateWVP();

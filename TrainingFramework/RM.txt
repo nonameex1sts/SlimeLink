@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 25
+#2D Textures: 26
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -52,6 +52,8 @@ FILE ../Resources/Textures/Target.png
 ID 23
 FILE ../Resources/Textures/Spawn.png
 ID 24
+FILE ../Resources/Textures/Spawn_deactive.png
+ID 25
 FILE ../Resources/Textures/Intro_logo.png
 
 #Shaders: 1

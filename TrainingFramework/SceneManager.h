@@ -14,13 +14,20 @@ private:
 	Object** pHorizontalWall;
 	int** p_imapType;;
 	Player** pPlayer;
+	Vector3* pTargetPosition;
+	Vector3* pSpawnPosition;
 
 	int iNumPlayer;
+	int iNumTarget;
+	int iNumSpawn;
 	int iNumHorizontalWall;
 	int iWidth;
 	int iHeight;
-
+	
 	Vector3 star;
+
+	bool hasEnded = false;
+	bool isSpawnActive = true;
 	
 	SceneManager();
 	SceneManager(int ilevelNumber);
