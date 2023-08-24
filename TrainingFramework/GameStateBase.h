@@ -11,7 +11,7 @@ enum class StateType
 	STATE_HELP = 4,
 	STATE_CREDIT = 5,
 	STATE_PLAY = 6,
-	STATE_PAUSE = 7
+	STATE_PAUSE = 7,
 };
 
 class GameStateBase

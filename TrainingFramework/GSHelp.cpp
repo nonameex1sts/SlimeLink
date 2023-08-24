@@ -109,6 +109,7 @@ void GSHelp::MouseClick(int x, int y, bool isPressed)
 		{
 			pButtons[i]->MouseClick(x, y, &iCurrentPic, iHelpPic);
 		}
+		printf("%d\n", iCurrentPic);
 	}
 }
 
@@ -119,7 +120,6 @@ void GSHelp::MouseMove(int x, int y)
 
 void GSHelp::Draw()
 {
-	printf("%d\n", iCurrentPic);
 	for (int i = 0; i < inumPics; i++)
 	{
 		if (pPictures[i]->getActive())

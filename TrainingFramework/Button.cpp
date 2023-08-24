@@ -50,6 +50,10 @@ void Button::MouseClick(int x, int y)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, 1);
 		}
+		if (iType == LEVEL_SELECT)
+		{
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_LEVEL_SELECT, 1);
+		}
 		if (iType == HELP)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_HELP, 1);
@@ -57,6 +61,10 @@ void Button::MouseClick(int x, int y)
 		if (iType == CREDIT)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_CREDIT, 1);
+		}
+		if (iType == PAUSE)
+		{
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
 		}
 		if (iType == EXIT)
 		{

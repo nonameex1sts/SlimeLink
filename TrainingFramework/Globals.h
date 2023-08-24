@@ -13,6 +13,8 @@
 
 #define DELAY_KEY_TIME			0.15f
 
+# define NUM_OF_LEVELS			12 
+
 class Globals
 {
 public:
