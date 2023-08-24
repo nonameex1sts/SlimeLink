@@ -116,12 +116,12 @@ void Object::Rotate()
 
 bool Object::CheckCloseObject(Object object)
 {
-	return ((position.x - object.position.x) * (position.x - object.position.x) + (position.y - object.position.y) * (position.y - object.position.y)) <= 2 * SQUARE_SIZE * SQUARE_SIZE + 10.0f;
+	return (position - object.position).Length() < 1.5f * SQUARE_SIZE;
 }
 
 bool Object::CheckPosition(Vector3 position)
 {
-	return (this->position.x == position.x) && (this->position.y == position.y);
+	return (this->position - position).Length() < 5.0f;
 }
 
 void Object::SetTexture(Texture* pTexture)
@@ -136,7 +136,7 @@ void Object::SetTexture(Object object)
 
 Vector3 Object::GetCoordinate()
 {
-	return Vector3((position.x - 40.0f) / SQUARE_SIZE, (position.y - 40.0f) / SQUARE_SIZE, position.z);
+	return Vector3((position.x - SQUARE_SIZE/2) / SQUARE_SIZE, (position.y - SQUARE_SIZE/2) / SQUARE_SIZE, position.z);
 }
 
 void Object::MouseClick(int x, int y)

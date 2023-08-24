@@ -51,7 +51,7 @@ void GSPlay::Update(GLfloat deltaTime)
 {
 	SceneManager::GetInstance()->Update(deltaTime);
 
-	if (fcheckKeyTime <= DELAY_KEY_TIME) {
+	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
 		fcheckKeyTime += deltaTime;
 	}
 }
@@ -59,7 +59,7 @@ void GSPlay::Update(GLfloat deltaTime)
 void GSPlay::Key(int iKeyPressed)
 {
 	unsigned char keyPressed = 0;
-	if (fcheckKeyTime > DELAY_KEY_TIME)
+	if (fcheckKeyTime > (DELAY_KEY_TIME + DELAY_STATE_PLAYER))
 	{
 		switch (iKeyPressed)
 		{

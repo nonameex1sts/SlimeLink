@@ -81,6 +81,8 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, true);
 
+			iMainPlayer = iPlayerCounter;
+
 			iPlayerCounter++;
 		}
 
@@ -158,6 +160,22 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 void SceneManager::Update(float deltaTime)
 {
+	SetPlayerMovement();
+
+	for (int i = 0; i < iNumPlayer; i++) 
+	{
+		pPlayer[i]->Move(deltaTime);
+	}
+
+	pCamera->Move(deltaTime);
+
+	if (isSpawnActive) {
+		SpawnPlayer();
+	}
+
+	ActivatePlayer();
+
+	CheckWinCondition();
 }
 
 void SceneManager::Key(unsigned char keyPressed)
@@ -165,27 +183,36 @@ void SceneManager::Key(unsigned char keyPressed)
 	//Player movement
 	if (!hasEnded) 
 	{
+		cameraFixPosition = pPlayer[iMainPlayer]->GetCoordinate();
+
 		for (int i = 0; i < iNumPlayer; i++) {
 			pPlayer[i]->Key(keyPressed);
 		}
-	}
 
-	//Wake up inactive player
-	for (int i = 0; i < iNumPlayer; i++) 
-	{
-		if (pPlayer[i]->GetActiveStatus()) 
+		cameraFixPosition = pPlayer[iMainPlayer]->GetCoordinate();
+		printf("%f %f\n", cameraFixPosition.x, cameraFixPosition.y);
+
+		if ((keyPressed & (1 << 0)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
 		{
-			for (int j = 0; j < iNumPlayer; j++) 
-			{
-				if (pPlayer[i]->CheckCloseObject(*pPlayer[j])) 
-				{
-					pPlayer[j]->SetActiveStatus(true);
-					pPlayer[j]->SetTexture(*pPlayer[i]);
-				}
-			}
+			pCamera->Inputs(keyPressed);
+		}
+		if ((keyPressed & (1 << 1)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
+		{
+			pCamera->Inputs(keyPressed);
+		}
+		if ((keyPressed & (1 << 2)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
+		{
+			pCamera->Inputs(keyPressed);
+		}
+		if ((keyPressed & (1 << 3)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
+		{
+			pCamera->Inputs(keyPressed);
 		}
 	}
+}
 
+void SceneManager::SetPlayerMovement()
+{
 	for (int i = 0; i < iNumPlayer; i++)
 	{
 		pPlayer[i]->SetMoveRightStatus(true);
@@ -201,7 +228,7 @@ void SceneManager::Key(unsigned char keyPressed)
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
-			else if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1) 
+			else if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1)
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
@@ -210,7 +237,7 @@ void SceneManager::Key(unsigned char keyPressed)
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
-			else if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1) 
+			else if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1)
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
@@ -226,7 +253,10 @@ void SceneManager::Key(unsigned char keyPressed)
 			}
 		}
 	}
+}
 
+void SceneManager::SpawnPlayer()
+{
 	for (int i = 0; i < iNumSpawn && isSpawnActive; i++)
 	{
 		for (int j = 0; j < iNumPlayer && isSpawnActive; j++)
@@ -257,11 +287,32 @@ void SceneManager::Key(unsigned char keyPressed)
 			}
 		}
 	}
+}
 
-	int iNumberTargetReached = 0, iNumberActivePlayerReached = 0, iNumberActivePlayer = 0;;
-	for (int i = 0; i < iNumTarget; i++) 
+void SceneManager::ActivatePlayer()
+{
+	for (int i = 0; i < iNumPlayer; i++)
 	{
-		for (int j = 0; j < iNumPlayer; j++) 
+		if (pPlayer[i]->GetActiveStatus())
+		{
+			for (int j = 0; j < iNumPlayer; j++)
+			{
+				if (pPlayer[i]->CheckCloseObject(*pPlayer[j]))
+				{
+					pPlayer[j]->SetActiveStatus(true);
+					pPlayer[j]->SetTexture(*pPlayer[i]);
+				}
+			}
+		}
+	}
+}
+
+void SceneManager::CheckWinCondition()
+{
+	int iNumberTargetReached = 0, iNumberActivePlayerReached = 0, iNumberActivePlayer = 0;;
+	for (int i = 0; i < iNumTarget; i++)
+	{
+		for (int j = 0; j < iNumPlayer; j++)
 		{
 			if (pPlayer[j]->GetActiveStatus() && pPlayer[j]->CheckPosition(pTargetPosition[i]))
 			{
@@ -272,11 +323,11 @@ void SceneManager::Key(unsigned char keyPressed)
 	}
 
 	for (int i = 0; i < iNumPlayer; i++) {
-		if (pPlayer[i]->GetActiveStatus()) 
+		if (pPlayer[i]->GetActiveStatus())
 		{
 			iNumberActivePlayer++;
 			for (int j = 0; j < iNumTarget; j++) {
-				if (pPlayer[i]->CheckPosition(pTargetPosition[j])) 
+				if (pPlayer[i]->CheckPosition(pTargetPosition[j]))
 				{
 					iNumberActivePlayerReached++;
 				}
@@ -284,7 +335,7 @@ void SceneManager::Key(unsigned char keyPressed)
 		}
 	}
 
-	if(iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
+	if (iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
 	{
 		hasEnded = true;
 		printf("Win\n");

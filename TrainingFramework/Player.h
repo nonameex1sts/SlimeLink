@@ -10,12 +10,16 @@ private:
 	bool canMoveUp = true;
 	bool canMoveDown = true;
 
+	bool isMoving = false;
+	Vector3 deltaPosition;
+	Vector3 nextPosition;
+
 public:
 	Player();
 	Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, bool isActive);
 	~Player();
 	void Key(unsigned char keyPressed);
-	void Move(Vector3 deltaPosition);
+	void Move(float deltaTime);
 	void SetActiveStatus(bool status);
 	bool GetActiveStatus();
 	void SetMoveLeftStatus(bool status);

@@ -52,25 +52,44 @@ void Player::Key(unsigned char keyPressed)
 	if (isActive) {
 		if ((keyPressed & (1 << 0)) && canMoveLeft)
 		{
-			Move(Vector3(-SQUARE_SIZE, 0.0f, 0.0f));
+			deltaPosition = Vector3(-SQUARE_SIZE, 0.0f, 0.0f);
+			isMoving = true;
+			nextPosition = position + deltaPosition;
 		}
 		if ((keyPressed & (1 << 1)) && canMoveUp)
 		{
-			Move(Vector3(0.0f, -SQUARE_SIZE, 0.0f));
+			deltaPosition = Vector3(0.0f, -SQUARE_SIZE, 0.0f);
+			isMoving = true;
+			nextPosition = position + deltaPosition;
 		}
 		if ((keyPressed & (1 << 2)) && canMoveRight)
 		{
-			Move(Vector3(SQUARE_SIZE, 0.0f, 0.0f));
+			deltaPosition = Vector3(SQUARE_SIZE, 0.0f, 0.0f);
+			isMoving = true;
+			nextPosition = position + deltaPosition;
 		}
 		if ((keyPressed & (1 << 3)) && canMoveDown)
 		{
-			Move(Vector3(0.0f, SQUARE_SIZE, 0.0f));
+			deltaPosition = Vector3(0.0f, SQUARE_SIZE, 0.0f);
+			isMoving = true;
+			nextPosition = position + deltaPosition;
 		}
 	}
 }
 
-void Player::Move(Vector3 deltaPosition)
+void Player::Move(float deltaTime)
 {
-	position += deltaPosition;
-	InitWorldMatrix();
+	if (isMoving) 
+	{
+		if ((position - nextPosition).Length() < MOVEMENT_SNAP_DISTANCE)
+		{
+			position = nextPosition;
+			isMoving = false;
+		}
+		else 
+		{
+			position += deltaPosition * deltaTime / (DELAY_KEY_TIME);
+		}
+		InitWorldMatrix();
+	}
 }

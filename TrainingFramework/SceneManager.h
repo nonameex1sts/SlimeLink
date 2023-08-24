@@ -17,6 +17,7 @@ private:
 	Vector3* pTargetPosition;
 	Vector3* pSpawnPosition;
 
+	int iMainPlayer;
 	int iNumPlayer;
 	int iNumTarget;
 	int iNumSpawn;
@@ -24,8 +25,13 @@ private:
 	int iWidth;
 	int iHeight;
 	
+	Vector3 cameraFixPosition;
+	Vector3 deltaCameraPosition;
 	Vector3 star;
 
+	unsigned char keyPressed = 0;
+
+	bool isCameraMove = false;
 	bool hasEnded = false;
 	bool isSpawnActive = true;
 	
@@ -56,6 +62,10 @@ public:
 
 	void Update(float deltaTime);
 	void Key(unsigned char keyPressed);
+	void SetPlayerMovement();
+	void SpawnPlayer();
+	void ActivatePlayer();
+	void CheckWinCondition();
 	void Draw();
 };
 
