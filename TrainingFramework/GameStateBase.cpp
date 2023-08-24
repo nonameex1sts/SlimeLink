@@ -71,6 +71,7 @@ GameStateBase* GameStateBase::CreateState(StateType type)
 		break;
 	case StateType::STATE_LEVEL_SELECT:
 		res = new GSLevelSelect;
+		break;
 	case StateType::STATE_HELP:
 		res = new GSHelp;
 		break;
