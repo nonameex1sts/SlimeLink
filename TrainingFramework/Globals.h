@@ -9,9 +9,12 @@
 # define KEY_MOVE_FORWARD		VK_UP
 # define KEY_MOVE_BACKWARD		VK_DOWN
 
-# define SQUARE_SIZE			80.0f
+# define SQUARE_SIZE			40.0f
 
-#define DELAY_KEY_TIME			0.15f
+#define DELAY_KEY_TIME			0.1f
+#define DELAY_STATE_PLAYER		0.03f
+
+#define MOVEMENT_SNAP_DISTANCE	20.0f
 
 # define NUM_OF_LEVELS			12 
 
