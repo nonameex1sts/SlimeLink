@@ -10,10 +10,10 @@ GSPlay::GSPlay(int ilevelNumber)
 	AudioManager::GetInstance()->GetAudioById(0)->StopMusic();
 	printf("GSPlay init\n");
 	this->ilevelNumber = ilevelNumber;
+	Init(ilevelNumber);
 	GameStateBase::GameStateBase(StateType::STATE_PLAY);
 
 	// Load level with the coresponding number
-	Init(ilevelNumber);
 }
 
 GSPlay::~GSPlay()

@@ -11,11 +11,6 @@
 class GSLevelSelect : public GameStateBase
 {
 private:
-	Camera* pCamera;
-	int inumButtons;
-	int inumPics;
-	Button** pButtons;
-	Picture** pPictures;
 	SelectLevelButton** pSelectLevel;
 	int iLevelPerPage = 6;
 	int iRowPerPage = 2;
@@ -25,7 +20,6 @@ private:
 public:
 	GSLevelSelect();
 	~GSLevelSelect();
-	void Init();
 	void Exit();
 	void Pause();
 	void Resume();
