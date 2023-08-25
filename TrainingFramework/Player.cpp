@@ -7,7 +7,7 @@
 #include "Player.h"
 
 Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, bool isActive) 
-	: Object(model, texture, camera, shader, position, rotation, scale - Vector3(15.0f, 15.0f, 0.0f))
+	: Object(model, texture, camera, shader, position, rotation, scale - Vector3(10.0f, 10.0f, 0.0f))
 {
 	this->isActive = isActive;
 }
@@ -48,8 +48,10 @@ void Player::SetActiveStatus(bool status)
 
 void Player::Key(unsigned char keyPressed)
 {
-	//AWSD for movement
+	//AWSD and arrowkeys for movement
 	if (isActive) {
+		//Check if player is active, the key is pressed and the player corresponding movement ability
+		//If true, active the player moving ability, calculate next position and the direction to move (deltaPosition)
 		if ((keyPressed & (1 << 0)) && canMoveLeft)
 		{
 			deltaPosition = Vector3(-SQUARE_SIZE, 0.0f, 0.0f);
@@ -81,14 +83,16 @@ void Player::Move(float deltaTime)
 {
 	if (isMoving) 
 	{
+		//If player's position is close to its target, the player jump to the target and disable is moving ability
 		if ((position - nextPosition).Length() < MOVEMENT_SNAP_DISTANCE)
 		{
 			position = nextPosition;
 			isMoving = false;
 		}
+		//If not, the player jump a small step towards the target direction in each frame
 		else 
 		{
-			position += deltaPosition * deltaTime / (DELAY_KEY_TIME);
+			position += deltaPosition * FRAME_TIME / (DELAY_KEY_TIME);
 		}
 		InitWorldMatrix();
 	}

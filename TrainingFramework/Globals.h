@@ -11,10 +11,11 @@
 
 # define SQUARE_SIZE			40.0f
 
-#define DELAY_KEY_TIME			0.1f
-#define DELAY_STATE_PLAYER		0.03f
+#define DELAY_KEY_TIME			0.6f
+#define DELAY_STATE_PLAYER		0.01f
+#define FRAME_TIME				0.2f
 
-#define MOVEMENT_SNAP_DISTANCE	20.0f
+#define MOVEMENT_SNAP_DISTANCE	1.0f
 
 # define NUM_OF_LEVELS			12 
 

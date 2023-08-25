@@ -35,13 +35,17 @@ SceneManager::SceneManager(int ilevelNumber) {
 		p_imapType[i] = new int[iHeight];
 	}
 
+	//Initialize objects, walls and players
 	pObjects = new Object * [iWidth * iHeight];
 	pHorizontalWall = new Object * [iNumHorizontalWall];
 	pPlayer = new Player * [iNumPlayer + iNumSpawn];
 	pTargetPosition = new Vector3[iNumTarget];
 	pSpawnPosition = new Vector3[iNumSpawn];
 
+	//Index counter
 	int iHorizontalWallCounter = 0, iPlayerCounter = 0, iTargetCounter = 0, iSpawnCounter = 0;
+
+	//Rotation and scale of objects and players
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 
@@ -49,24 +53,26 @@ SceneManager::SceneManager(int ilevelNumber) {
 		int imapType;
 		fscanf(filePointer, "%d ", &imapType);
 
+		//Calculate position of the current object
 		Vector3 position = Vector3(SQUARE_SIZE/2, SQUARE_SIZE/2, 0.0f);
 		position.x += SQUARE_SIZE * (i % iWidth);
 		position.y += SQUARE_SIZE * (i / iWidth);
 
+		//Transalate 1D[i] array into 2D array[width][height]: width = i % iWidth, height = i / iWidth
 		if (imapType <= 1  )
 		{
-			//Wall
+			p_imapType[i % iWidth][i / iWidth] = imapType;
+
+			//Path
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
-
-			p_imapType[i % iWidth][i / iWidth] = imapType;
 		}
 
 		if ((imapType >= 6 && imapType <= 9) || imapType == 13)
 		{
 			p_imapType[i % iWidth][i / iWidth] = 1;
 
-			//Wall
+			//Corner and horizontal wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 		}
@@ -74,10 +80,11 @@ SceneManager::SceneManager(int ilevelNumber) {
 		if (imapType == 2)
 		{
 			p_imapType[i % iWidth][i / iWidth] = 0;
-			//Player
+
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
+			//Player
 			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, true);
 
@@ -90,7 +97,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		{
 			p_imapType[i % iWidth][i / iWidth] = 2;
 
-			//Wall
+			//Left wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -104,7 +111,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		{
 			p_imapType[i % iWidth][i / iWidth] = 3;
 
-			//Wall
+			//Right wall
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -147,12 +154,13 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pSpawnPosition[iSpawnCounter] = position;
 			iSpawnCounter++;
 
-			//Target
+			//Spawn
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 		}
 	}
 
+	//Each move limit for each star
 	fscanf(filePointer, "Star: %f %f %f\n", &star.x, &star.y, &star.y);
 
 	fclose(filePointer);
@@ -160,21 +168,27 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 void SceneManager::Update(float deltaTime)
 {
+	//Set players movement abitity
 	SetPlayerMovement();
 
+	//Active players move
 	for (int i = 0; i < iNumPlayer; i++) 
 	{
 		pPlayer[i]->Move(deltaTime);
 	}
 
+	//Move camera according to player if needed
 	pCamera->Move(deltaTime);
 
+	//Spawn player if step into spawn square
 	if (isSpawnActive) {
 		SpawnPlayer();
 	}
 
+	//Active nearby players
 	ActivatePlayer();
 
+	//Check if the game has ended
 	CheckWinCondition();
 }
 
@@ -183,34 +197,36 @@ void SceneManager::Key(unsigned char keyPressed)
 	//Player movement
 	if (!hasEnded) 
 	{
-		cameraFixPosition = pPlayer[iMainPlayer]->GetCoordinate();
-
+		//Call Key function of each player
 		for (int i = 0; i < iNumPlayer; i++) {
 			pPlayer[i]->Key(keyPressed);
 		}
 
+		//Camera input -> movement
+		//Number of square in a row on screen: row = Globals::screenWidth / SQUARE_SIZE, number of square in a column on screen: column = Globals::screenWidth / SQUARE_SIZE
 		cameraFixPosition = pPlayer[iMainPlayer]->GetCoordinate();
-		printf("%f %f\n", cameraFixPosition.x, cameraFixPosition.y);
 
-		if ((keyPressed & (1 << 0)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
+		//Fix main player in the middle of the screen with row / 2 and column / 2
+		if ((keyPressed & (1 << 0)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f))
 		{
 			pCamera->Inputs(keyPressed);
 		}
-		if ((keyPressed & (1 << 1)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
+		if ((keyPressed & (1 << 1)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f))
 		{
 			pCamera->Inputs(keyPressed);
 		}
-		if ((keyPressed & (1 << 2)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
+		if ((keyPressed & (1 << 2)) && (cameraFixPosition.x >= (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
 		{
 			pCamera->Inputs(keyPressed);
 		}
-		if ((keyPressed & (1 << 3)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
+		if ((keyPressed & (1 << 3)) && (cameraFixPosition.y >= (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
 		{
 			pCamera->Inputs(keyPressed);
 		}
 	}
 }
 
+//Set player movement ability(left, right, up, down)
 void SceneManager::SetPlayerMovement()
 {
 	for (int i = 0; i < iNumPlayer; i++)
@@ -224,6 +240,7 @@ void SceneManager::SetPlayerMovement()
 		{
 			Vector3 coordinate = pPlayer[i]->GetCoordinate();
 
+			//Check surrounding map after each move
 			if ((p_imapType[(int)coordinate.x][(int)coordinate.y] == 3))
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
@@ -255,6 +272,7 @@ void SceneManager::SetPlayerMovement()
 	}
 }
 
+//Spawn new players in all spawn square
 void SceneManager::SpawnPlayer()
 {
 	for (int i = 0; i < iNumSpawn && isSpawnActive; i++)
@@ -263,6 +281,7 @@ void SceneManager::SpawnPlayer()
 		{
 			if (pPlayer[j]->GetActiveStatus() && pPlayer[j]->CheckPosition(pSpawnPosition[i]))
 			{
+				//Check if any active player step into spawn square
 				Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 				Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 				for (int k = 0; k < iNumSpawn; k++)
@@ -272,6 +291,7 @@ void SceneManager::SpawnPlayer()
 				}
 				iNumPlayer += iNumSpawn;
 
+				//Disable spawn square
 				for (int k = 0; k < iWidth * iHeight; k++)
 				{
 					for (int l = 0; l < iNumSpawn; l++)
@@ -289,6 +309,7 @@ void SceneManager::SpawnPlayer()
 	}
 }
 
+//Check nearby inactive player, activate them
 void SceneManager::ActivatePlayer()
 {
 	for (int i = 0; i < iNumPlayer; i++)
@@ -307,9 +328,12 @@ void SceneManager::ActivatePlayer()
 	}
 }
 
+//If all active players are in target square and all target square has at least one active player, end the game
 void SceneManager::CheckWinCondition()
 {
-	int iNumberTargetReached = 0, iNumberActivePlayerReached = 0, iNumberActivePlayer = 0;;
+	int iNumberTargetReached = 0, iNumberActivePlayerReached = 0, iNumberActivePlayer = 0;
+
+	//Check if all target square has at least one active player
 	for (int i = 0; i < iNumTarget; i++)
 	{
 		for (int j = 0; j < iNumPlayer; j++)
@@ -322,6 +346,7 @@ void SceneManager::CheckWinCondition()
 		}
 	}
 
+	// Check if all active players are in target square
 	for (int i = 0; i < iNumPlayer; i++) {
 		if (pPlayer[i]->GetActiveStatus())
 		{
@@ -342,6 +367,7 @@ void SceneManager::CheckWinCondition()
 	}
 }
 
+//Draw floor -> players -> vertical walls
 void SceneManager::Draw()
 {
 	for (int i = 0; i < iWidth * iHeight; i++)
