@@ -33,15 +33,17 @@ void GSLevelSelect::Exit()
 {
 	// NOTE: Delete camera
 	delete pCamera;
-	// NOTE: Delete button
+	// NOTE: Delete picture
 	for (int i = 0; i < inumPics; i++) {
 		delete pPictures[i];
 	}
 	delete pPictures;
+	// NOTE: Delete select level square
 	for (int i = 0; i < iLevelPerPage; i++) {
 		delete pSelectLevel[i];
 	}
 	delete pSelectLevel;
+	// NOTE: Delete button
 	for (int i = 0; i < inumButtons; i++) {
 		delete pButtons[i];
 	}
@@ -71,6 +73,7 @@ void GSLevelSelect::Key(int iKeyPressed)
 	// NOTE: blank
 }
 
+// Update what level the button will go to base on which page is it
 void GSLevelSelect::UpdateLevel()
 {
 	for (int i = 0; i < iLevelPerPage; i++)
@@ -81,7 +84,7 @@ void GSLevelSelect::UpdateLevel()
 
 void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 {
-	// NOTE: check back button if it got click or not
+	// NOTE: check all button if it got click or not
 	if (isPressed)
 	{
 		for (int i = 0; i < iLevelPerPage; i++)

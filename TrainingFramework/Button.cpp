@@ -41,6 +41,7 @@ bool Button::getActive()
 	return isActive;
 }
 
+// If that button is click, check what type is it to do the right job
 void Button::MouseClick(int x, int y)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2)) 
@@ -93,8 +94,11 @@ void Button::MouseClick(int x, int y)
 	}
 }
 
-void Button::MouseClick(int x, int y, int* index, int sumPicture)
+// This is for the prev page and next page button
+// index is for what page is it, and sum is for how many pages there is on that state
+void Button::MouseClick(int x, int y, int* index, int sum)
 {
+	// Check if the x, y area that mouse click in is in the area of the button
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
@@ -106,7 +110,7 @@ void Button::MouseClick(int x, int y, int* index, int sumPicture)
 		{
 			if ((*index) == 0) 
 			{
-				(*index) = sumPicture - 1;
+				(*index) = sum - 1;
 			}
 			else
 			{
@@ -116,7 +120,7 @@ void Button::MouseClick(int x, int y, int* index, int sumPicture)
 		}
 		if (iType == NEXT_PAGE)
 		{
-			if ((*index) == sumPicture - 1)
+			if ((*index) == sum - 1)
 			{
 				(*index) = 0;
 			}

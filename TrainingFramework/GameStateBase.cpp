@@ -22,8 +22,8 @@ GameStateBase::~GameStateBase()
 
 void GameStateBase::Init(char* file, char* name)
 {
-	// NOTE: read camera
 	FILE* filePointer = fopen(file, "r");
+	// NOTE: read camera
 	float fovY, nearPlane, farPlane, speed;
 	fscanf(filePointer, "#CAMERA\n");
 	fscanf(filePointer, "NEAR %f\n", &nearPlane);
@@ -82,6 +82,7 @@ void GameStateBase::Exit(char* name)
 		delete pButtons[i];
 	}
 	delete pButtons;
+	// NOTE: Delete picture
 	for (int i = 0; i < inumPics; i++) {
 		delete pPictures[i];
 	}
