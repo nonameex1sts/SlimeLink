@@ -52,13 +52,15 @@ void GSPlay::Update(GLfloat deltaTime)
 	SceneManager::GetInstance()->Update(deltaTime);
 
 	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
-		fcheckKeyTime += deltaTime;
+		fcheckKeyTime += FRAME_TIME;
 	}
 }
 
 void GSPlay::Key(int iKeyPressed)
 {
 	unsigned char keyPressed = 0;
+
+	//0123 in bit mask is for left, up, right, down movement
 	if (fcheckKeyTime > (DELAY_KEY_TIME + DELAY_STATE_PLAYER))
 	{
 		switch (iKeyPressed)

@@ -60,6 +60,7 @@ Matrix Camera::GetPerspectiveMatrix()
 
 void Camera::Inputs(unsigned char keyPressed)
 {
+	//If key is pressed, active the camera moving ability, calculate next position and the direction to move (deltaPosition)
 	if (keyPressed & (1 << 0))
 	{
 		deltaPosition = Vector3(-SQUARE_SIZE, 0.0f, 0.0f);
@@ -84,85 +85,23 @@ void Camera::Inputs(unsigned char keyPressed)
 		isMoving = true;
 		nextPosition = pos + deltaPosition;
 	}
-
-	//Vector3 deltaMove = -(pos - target).Normalize() * deltaTime * moveSpeed;
-	//Vector4 localTarget = Vector4(0, 0, -(pos - target).Length(), 0.0f);
-	//Vector4 localNewTarget, worldNewTarget;
-	//Matrix rotationTemp;	//For storing rotation matrix
-
-	//Vector3 zaxis = (pos - target).Normalize();
-	//Vector3 xaxis = (up.Cross(zaxis)).Normalize();
-	//Vector3 yaxis = (zaxis.Cross(xaxis)).Normalize();
-
-	//// 0 1 2 3 for arrowkey movement
-	//if (keyPressed & (1 << 0)) 
-	//{
-	//	pos -= deltaMove.Cross(up);
-	//	target -= deltaMove.Cross(up);
-	//}
-	//if (keyPressed & (1 << 1)) 
-	//{
-	//	pos += deltaMove;
-	//	target += deltaMove;
-	//}
-	//if (keyPressed & (1 << 2)) 
-	//{
-	//	pos += deltaMove.Cross(up);
-	//	target += deltaMove.Cross(up);
-	//}
-	//if (keyPressed & (1 << 3)) 
-	//{
-	//	pos -= deltaMove;
-	//	target -= deltaMove;
-	//}
-
-	//// 4 5 6 7 for a w d s rotation
-	//if (keyPressed & (1 << 4)) 
-	//{
-	//	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
-	//	worldNewTarget = localNewTarget * CalculateWorldMatrix();
-	//	target.x = worldNewTarget.x;
-	//	target.y = worldNewTarget.y;
-	//	target.z = worldNewTarget.z;
-	//}
-	//if (keyPressed & (1 << 5)) 
-	//{
-	//	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
-	//	worldNewTarget = localNewTarget * CalculateWorldMatrix();
-	//	target.x = worldNewTarget.x;
-	//	target.y = worldNewTarget.y;
-	//	target.z = worldNewTarget.z;
-	//}
-	//if (keyPressed & (1 << 6)) 
-	//{
-	//	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * -rotateSpeed, yaxis.x, yaxis.y, yaxis.z);
-	//	worldNewTarget = localNewTarget * CalculateWorldMatrix();
-	//	target.x = worldNewTarget.x;
-	//	target.y = worldNewTarget.y;
-	//	target.z = worldNewTarget.z;
-	//}
-	//if (keyPressed & (1 << 7)) 
-	//{
-	//	localNewTarget = localTarget * rotationTemp.SetRotationAngleAxis(deltaTime * rotateSpeed, xaxis.x, xaxis.y, xaxis.z);
-	//	worldNewTarget = localNewTarget * CalculateWorldMatrix();
-	//	target.x = worldNewTarget.x;
-	//	target.y = worldNewTarget.y;
-	//	target.z = worldNewTarget.z;
-	//}
 }
+
 void Camera::Move(float deltaTime) {
 	if (isMoving)
 	{
+		//If camera's position is close to its next postion, the camera (position and target) jump to its next postion and disable is moving ability
 		if ((pos - nextPosition).Length() < MOVEMENT_SNAP_DISTANCE)
 		{
 			pos = nextPosition;
 			target = nextPosition - Vector3(0.0f, 0.0f, 1.0f);
 			isMoving = false;
 		}
+		//If not, the camera jump a small step towards its next postion direction in each frame
 		else
 		{
-			pos += deltaPosition * deltaTime / (DELAY_KEY_TIME);
-			target += deltaPosition * deltaTime / (DELAY_KEY_TIME);
+			pos += deltaPosition * FRAME_TIME / (DELAY_KEY_TIME);
+			target += deltaPosition * FRAME_TIME / (DELAY_KEY_TIME);
 		}
 	}
 }
