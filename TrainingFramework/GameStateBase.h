@@ -1,6 +1,9 @@
 #pragma once
 #include "../Utilities/utilities.h"
 #include "Globals.h"
+#include "ResourceManager.h"
+#include "Button.h"
+#include "Picture.h"
 
 enum class StateType
 {
@@ -16,15 +19,20 @@ enum class StateType
 
 class GameStateBase
 {
-private:
+protected:
 	StateType e_type;
+	Camera* pCamera;
+	int inumButtons;
+	int inumPics;
+	Button** pButtons;
+	Picture** pPictures;
 
 public:
 	GameStateBase();
 	GameStateBase(StateType e_type);
 	virtual ~GameStateBase();
-	virtual void Init();
-	virtual void Exit();
+	virtual void Init(char* file, char* name);
+	virtual void Exit(char* name);
 	virtual void Pause();
 	virtual void Resume();
 	virtual void Update(GLfloat deltatime);
