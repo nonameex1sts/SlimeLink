@@ -21,6 +21,7 @@
 #define RESET			11
 #define LEVEL_SELECT	12
 #define MENU			13
+#define PAUSE_TO_SELECT 14
 
 class Button : public Object {
 private:
@@ -34,6 +35,7 @@ public:
 	void Key();
 	void MouseClick(int x, int y);
 	void MouseClick(int x, int y, int *index, int sumPicture);
+	void MouseClickReset(int x, int y, int iLevel);
 	void MouseMove();
 	void Move();
 	void Rotate();

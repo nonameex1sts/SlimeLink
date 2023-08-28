@@ -223,5 +223,11 @@
     <Text Include="GSLevelSelect.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
+    <Text Include="GSPlay.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
+    <Text Include="GSPause.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
   </ItemGroup>
 </Project>

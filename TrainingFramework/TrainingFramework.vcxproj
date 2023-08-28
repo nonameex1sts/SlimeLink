@@ -167,6 +167,8 @@
     <Text Include="GSHelp.txt" />
     <Text Include="GSLevelSelect.txt" />
     <Text Include="GSMenu.txt" />
+    <Text Include="GSPause.txt" />
+    <Text Include="GSPlay.txt" />
     <Text Include="RM.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

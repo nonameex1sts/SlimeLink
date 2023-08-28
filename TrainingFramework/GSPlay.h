@@ -14,6 +14,7 @@ public:
 	~GSPlay();
 	int GetLevelNumber();
 	void Init(int ilevelNumber);
+	void ReadButton();
 	void Exit();
 	void Pause();
 	void Resume();
