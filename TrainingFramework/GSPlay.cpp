@@ -39,6 +39,9 @@ void GSPlay::ReadButton()
 	fscanf(filePointer, "SPEED %f\n", &speed);
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
+	test = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera, ResourceManager::GetInstance()->GetShaderById(1), Vector3(100, 100, 0),
+		Vector3(0, 0, 0), Vector3(100, 100, 100), 7, 7, 3, 0.1);
+
 	int id, modelId, textureId, shaderId, buttonType, isActive;
 	Vector3 position, rotation, scale;
 	// NOTE: read buttons
@@ -94,6 +97,8 @@ void GSPlay::Update(GLfloat deltaTime)
 {
 	SceneManager::GetInstance()->Update(deltaTime);
 
+	test.Update(deltaTime);
+
 	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
 		fcheckKeyTime += FRAME_TIME;
 	}
@@ -140,14 +145,21 @@ void GSPlay::Key(int iKeyPressed)
 
 		fcheckKeyTime = 0.0f;
 	}
+	// NOTE: this is just for testing the animation
+	if (check == 0)
+	{
+		test.SetCurrentAction(0);
+		check = 1;
+	}
+	else
+	{
+		test.SetCurrentAction(1);
+		check = 0;
+	}
 }
 
 void GSPlay::MouseClick(int x, int y, bool isPressed)
 {
-	/*if (isPressed)
-	{
-		GameStateMachine::GetInstance()->PopState();
-	}*/
 	if (isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
@@ -171,4 +183,5 @@ void GSPlay::Draw()
 			pButtons[i]->Draw();
 		}
 	}
+	test.Draw();
 }
