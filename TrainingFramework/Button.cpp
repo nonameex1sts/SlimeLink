@@ -67,6 +67,21 @@ void Button::MouseClick(int x, int y)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
 		}
+		if (iType == RESUME)
+		{
+			GameStateMachine::GetInstance()->PopState();
+		}
+		if (iType == MENU)
+		{
+			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PopState();
+		}
+		if (iType == PAUSE_TO_SELECT)
+		{
+			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PopState();
+		}
 		if (iType == EXIT)
 		{
 			exit(1);
@@ -90,6 +105,23 @@ void Button::MouseClick(int x, int y)
 		if (iType == BACK)
 		{
 			GameStateMachine::GetInstance()->PopState();
+		}
+	}
+}
+
+void Button::MouseClickReset(int x, int y, int iLevel)
+{
+	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
+	{
+		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
+		if (iType == RESET)
+		{
+			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel);
+		}
+		if (iType == PAUSE)
+		{
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
 		}
 	}
 }

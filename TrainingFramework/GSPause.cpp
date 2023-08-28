@@ -3,25 +3,13 @@
 
 GSPause::GSPause()
 {
+	Init("../TrainingFramework/GSPause.txt", "GSPause");
 	GameStateBase::GameStateBase(StateType::STATE_PAUSE);
-	Init();
 }
 
 GSPause::~GSPause()
 {
-	Exit();
-}
-
-void GSPause::Init()
-{
-	// NOTE: Load button
-	printf("GSPause init\n");
-}
-
-void GSPause::Exit()
-{
-	// NOTE: Delete button
-	printf("GSPause exit\n");
+	Exit("GSPause");
 }
 
 void GSPause::Pause()
@@ -45,14 +33,16 @@ void GSPause::Key(int iKeyPressed)
 
 void GSPause::MouseClick(int x, int y, bool isPressed)
 {
+	if (isPressed)
+	{
+		for (int i = 0; i < inumButtons; i++)
+		{
+			pButtons[i]->MouseClick(x, y);
+		}
+	}
 }
 
 void GSPause::MouseMove(int x, int y)
 {
 	// NOTE: blank
-}
-
-void GSPause::Draw()
-{
-	// NOTE: Draw button
 }
