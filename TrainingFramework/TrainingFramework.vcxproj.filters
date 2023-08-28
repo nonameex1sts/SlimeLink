@@ -114,6 +114,9 @@
     <ClCompile Include="SelectLevelButton.cpp">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
     </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="SelectLevelButton.h">
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

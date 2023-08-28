@@ -20,5 +20,6 @@ public:
 	GLuint GetTextureUniform();
 	GLuint GetWVPUniform();
 	GLuint GetUVPosition();
+	GLuint GetUniformLocation(char* name);
 	~Shaders();
 };

@@ -37,6 +37,11 @@ int Shaders::Init(char * fileVertexShader, char * fileFragmentShader)
 	return 0;
 }
 
+GLuint Shaders::GetUniformLocation(char* name)
+{
+	return glGetUniformLocation(program, name);
+}
+
 GLuint Shaders::GetProgram()
 {
 	return program;

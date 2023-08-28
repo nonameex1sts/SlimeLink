@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 31
+#2D Textures: 32
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -65,8 +65,14 @@ ID 29
 FILE ../Resources/Textures/menubutton.png
 ID 30
 FILE ../Resources/Textures/resumebutton.png
+ID 31
+FILE ../Resources/Textures/animation.png
 
-#Shaders: 1
+#Shaders: 2
 ID 0
 VS ../Resources/Shaders/TriangleShaderVS.vs
+FS ../Resources/Shaders/TriangleShaderFS.fs
+
+ID 1
+VS ../Resources/Shaders/AnimationShaderVS.vs
 FS ../Resources/Shaders/TriangleShaderFS.fs

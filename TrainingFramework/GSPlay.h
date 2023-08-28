@@ -1,5 +1,6 @@
 #pragma once
 #include "GameStateBase.h"
+#include "Animation.h"
 
 class GSPlay : public GameStateBase
 {
@@ -8,6 +9,8 @@ private:
 	// NOTE: if fcheckKeyTime > DELAY_KEY_TIME, the key can be pressed and fcheckKeyTime is set to 0
 	//		 if fcheckKeyTime < DELAY_KEY_TIME, each update fcheckKeyTime += deltaTime
 	float fcheckKeyTime = DELAY_KEY_TIME + DELAY_STATE_PLAYER + 0.1f;
+	Animation test;
+	int check = 0;
 
 public:
 	GSPlay(int ilevelNumber);
