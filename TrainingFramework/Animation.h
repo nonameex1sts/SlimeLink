@@ -12,7 +12,7 @@ private:
 	GLint iTempShaderVariableGLID;
 public:
 	Animation();
-	Animation(Model *pModel, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, GLint numFrames, GLint numActions, GLint currentAction, GLfloat framtime);
+	Animation(Model *pModel, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime);
 	~Animation();
 	void Update(GLfloat deltatime);
 	void Draw();

@@ -85,8 +85,8 @@ SceneManager::SceneManager(int ilevelNumber) {
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			//Player
-			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
-				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, true);
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 7, 7, 3, 0.1, true);
 
 			iMainPlayer = iPlayerCounter;
 
@@ -129,8 +129,8 @@ SceneManager::SceneManager(int ilevelNumber) {
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			//"Sleep" player
-			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
-				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale, false);
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 7, 7, 3, 0.1, false);
 
 			iPlayerCounter++;
 		}
@@ -175,6 +175,7 @@ void SceneManager::Update(float deltaTime)
 	for (int i = 0; i < iNumPlayer; i++) 
 	{
 		pPlayer[i]->Move(deltaTime);
+		pPlayer[i]->Update(deltaTime);
 	}
 
 	//Move camera according to player if needed
@@ -286,8 +287,8 @@ void SceneManager::SpawnPlayer()
 				Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 				for (int k = 0; k < iNumSpawn; k++)
 				{
-					pPlayer[iNumPlayer + k] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(2), pCamera,
-						ResourceManager::GetInstance()->GetShaderById(0), pSpawnPosition[k], rotation, scale, true);
+					pPlayer[iNumPlayer + k] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera,
+						ResourceManager::GetInstance()->GetShaderById(1), pSpawnPosition[k], rotation, scale, 7, 7, 3, 0.1, true);
 				}
 				iNumPlayer += iNumSpawn;
 

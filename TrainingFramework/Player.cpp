@@ -6,8 +6,9 @@
 #include "Camera.h"
 #include "Player.h"
 
-Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, bool isActive) 
-	: Object(model, texture, camera, shader, position, rotation, scale - Vector3(10.0f, 10.0f, 0.0f))
+Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, 
+	GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime, bool isActive)
+	: Animation(model, texture, camera, shader, position, rotation, scale + Vector3(60.0f, 60.0f, 0.0f), numFrames, numActions, currentAction, frametime)
 {
 	this->isActive = isActive;
 }

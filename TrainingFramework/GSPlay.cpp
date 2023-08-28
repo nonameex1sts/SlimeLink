@@ -40,7 +40,7 @@ void GSPlay::ReadButton()
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
 	test = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera, ResourceManager::GetInstance()->GetShaderById(1), Vector3(100, 100, 0),
-		Vector3(0, 0, 0), Vector3(100, 100, 100), 7, 7, 3, 0.1);
+		Vector3(0, 0, 0), Vector3(500, 500, 500), 7, 7, 3, 0.1);
 
 	int id, modelId, textureId, shaderId, buttonType, isActive;
 	Vector3 position, rotation, scale;
