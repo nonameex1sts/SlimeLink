@@ -5,7 +5,7 @@ Animation::Animation() {}
 
 Animation::~Animation() {}
 
-Animation::Animation(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShader, Vector3 position, Vector3 rotation, Vector3 scale, GLint numFrames, GLint numActions, GLint currentAction, GLfloat framtime)
+Animation::Animation(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShader, Vector3 position, Vector3 rotation, Vector3 scale, GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime)
 	:Object(pModel, pTexture, pCamera, pShader, position, rotation, scale)
 {
 	this->numFrames = numFrames;
