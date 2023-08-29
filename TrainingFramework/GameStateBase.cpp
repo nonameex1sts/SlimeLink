@@ -77,16 +77,16 @@ void GameStateBase::Exit(char* name)
 {
 	// NOTE: Delete camera
 	delete pCamera;
+	for (int i = 0; i < inumPics; i++) {
+		delete pPictures[i];
+	}
+	delete pPictures;
 	// NOTE: Delete button
 	for (int i = 0; i < inumButtons; i++) {
 		delete pButtons[i];
 	}
 	delete pButtons;
 	// NOTE: Delete picture
-	for (int i = 0; i < inumPics; i++) {
-		delete pPictures[i];
-	}
-	delete pPictures;
 	printf("%s Exit\n", name);
 }
 
@@ -125,6 +125,16 @@ void GameStateBase::Draw()
 	}
 	for (int i = 0; i < inumButtons; i++)
 	{
+		if (AudioManager::GetInstance()->getAudioStatus())
+		{
+			if (pButtons[i]->getType() == 4) pButtons[i]->setActive(true);
+			if (pButtons[i]->getType() == 5) pButtons[i]->setActive(false);
+		}
+		else
+		{
+			if (pButtons[i]->getType() == 5) pButtons[i]->setActive(true);
+			if (pButtons[i]->getType() == 4) pButtons[i]->setActive(false);
+		}
 		if (pButtons[i]->getActive())
 		{
 			pButtons[i]->Draw();

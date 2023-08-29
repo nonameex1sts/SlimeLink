@@ -94,7 +94,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	//identifying memory leaks
 	MemoryDump();
 	printf("Press any key...\n");
-	_getch();
+	/*_getch();*/
 
 	return 0;
 }

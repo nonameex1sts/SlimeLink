@@ -40,5 +40,7 @@ public:
 	void Move();
 	void Rotate();
 	bool getActive();
+	void setActive(bool isActive);
+	int getType();
 	~Button();
 };

@@ -9,6 +9,7 @@ private:
 	int iNumOfMusic;
 	AudioManager();
 	~AudioManager();
+	bool isMusicOn;
 public:
 	static void CreateInstance()
 	{
@@ -30,4 +31,6 @@ public:
 		}
 	};
 	Audio* GetAudioById(int id);
+	void setAudioOn(bool isMusicOn);
+	bool getAudioStatus();
 };

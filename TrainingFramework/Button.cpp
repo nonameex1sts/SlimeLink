@@ -41,6 +41,16 @@ bool Button::getActive()
 	return isActive;
 }
 
+void Button::setActive(bool isActive)
+{
+	this->isActive = isActive;
+}
+
+int Button::getType()
+{
+	return iType;
+}
+
 // If that button is click, check what type is it to do the right job
 void Button::MouseClick(int x, int y)
 {
@@ -90,6 +100,7 @@ void Button::MouseClick(int x, int y)
 			if (isActive)
 			{
 				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(30);
+				AudioManager::GetInstance()->setAudioOn(true);
 			}
 		}
 		if (iType == NOBGM)
@@ -98,6 +109,7 @@ void Button::MouseClick(int x, int y)
 			if (isActive)
 			{
 				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(0);
+				AudioManager::GetInstance()->setAudioOn(false);
 			}
 		}
 		if (iType == BACK)

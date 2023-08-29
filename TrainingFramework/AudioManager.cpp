@@ -5,6 +5,7 @@ AudioManager* AudioManager::ms_pInstance = nullptr;
 
 AudioManager::AudioManager()
 {
+	isMusicOn = true;
 	FILE* filePointer = fopen("../TrainingFramework/Audio.txt", "r");
 	char* filePath = new char[50];
 	int id;
@@ -32,4 +33,14 @@ AudioManager::~AudioManager()
 Audio* AudioManager::GetAudioById(int id)
 {
 	return music[id];
+}
+
+void AudioManager::setAudioOn(bool isMusicOn)
+{
+	this->isMusicOn = isMusicOn;
+}
+
+bool AudioManager::getAudioStatus()
+{
+	return isMusicOn;
 }

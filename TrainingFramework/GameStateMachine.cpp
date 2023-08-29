@@ -56,8 +56,8 @@ void GameStateMachine::PushState(StateType type, int ilevelNumber)
 
 void GameStateMachine::PopState()
 {
-	delete p_activeState;
 	m_stateStack.pop();
+	delete p_activeState;
 	p_activeState = m_stateStack.top();
 	p_activeState->Resume();
 }
