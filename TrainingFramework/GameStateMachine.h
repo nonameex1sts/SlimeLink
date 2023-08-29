@@ -38,6 +38,7 @@ public:
 	GameStateBase* ChangeStatePlay(int ilevelNumber);
 	void PushState(StateType type, int ilevelNumber);
 	void PopState();
+	void PopState(StateType type);
 	void PerformStateChange();
 	GameStateBase* GetActiveState();
 };

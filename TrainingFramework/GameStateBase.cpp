@@ -11,16 +11,11 @@ GameStateBase::GameStateBase()
 {
 }
 
-GameStateBase::GameStateBase(StateType e_type)
-{
-	this->e_type = e_type;
-}
-
 GameStateBase::~GameStateBase()
 {
 }
 
-void GameStateBase::Init(char* file, char* name)
+void GameStateBase::Init(char* file, char* name, StateType e_type)
 {
 	FILE* filePointer = fopen(file, "r");
 	// NOTE: read camera
@@ -69,6 +64,8 @@ void GameStateBase::Init(char* file, char* name)
 	}
 
 	fclose(filePointer);
+
+	this->e_type = e_type;
 
 	printf("%s Init\n", name);
 }

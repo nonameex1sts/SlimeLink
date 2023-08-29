@@ -6,8 +6,7 @@
 
 GSMenu::GSMenu()
 {
-	Init("../TrainingFramework/GSMenu.txt", "GSMenu");
-	GameStateBase::GameStateBase(StateType::STATE_MENU);
+	Init("../TrainingFramework/GSMenu.txt", "GSMenu", StateType::STATE_MENU);
 }
 
 GSMenu::~GSMenu()

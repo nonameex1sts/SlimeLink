@@ -29,9 +29,8 @@ protected:
 
 public:
 	GameStateBase();
-	GameStateBase(StateType e_type);
 	virtual ~GameStateBase();
-	virtual void Init(char* file, char* name);
+	virtual void Init(char* file, char* name, StateType e_type);
 	virtual void Exit(char* name);
 	virtual void Pause();
 	virtual void Resume();

@@ -20,7 +20,7 @@ public:
 	Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, 
 		GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime, bool isActive);
 	~Player();
-	void Key(unsigned char keyPressed);
+	void Key(unsigned char keyPressed, bool* hasMoved);
 	void Move(float deltaTime);
 	void SetActiveStatus(bool status);
 	bool GetActiveStatus();
