@@ -54,9 +54,6 @@
     <ClCompile Include="Model.cpp">
       <Filter>Source Files\ProjectObject</Filter>
     </ClCompile>
-    <ClCompile Include="Shaders.cpp">
-      <Filter>Source Files\ProjectObject</Filter>
-    </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>Source Files\ProjectObject</Filter>
     </ClCompile>
@@ -117,6 +114,9 @@
     <ClCompile Include="Animation.cpp">
       <Filter>Source Files\ProjectObject</Filter>
     </ClCompile>
+    <ClCompile Include="Shaders.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,9 +132,6 @@
       <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
     <ClInclude Include="Model.h">
-      <Filter>Source Files\ProjectObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Shaders.h">
       <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
@@ -198,6 +195,9 @@
       <Filter>Source Files\ProjectObject\ButtonCollection</Filter>
     </ClInclude>
     <ClInclude Include="Animation.h">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders.h">
       <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
   </ItemGroup>

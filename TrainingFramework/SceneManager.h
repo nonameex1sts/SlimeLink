@@ -24,10 +24,12 @@ private:
 	int iNumHorizontalWall;
 	int iWidth;
 	int iHeight;
+
+	int iNumOfMoves;
 	
 	Vector3 cameraFixPosition;
 	Vector3 deltaCameraPosition;
-	Vector3 star;
+	int* iStar;
 
 	unsigned char keyPressed = 0;
 
@@ -66,6 +68,8 @@ public:
 	void SpawnPlayer();
 	void ActivatePlayer();
 	void CheckWinCondition();
+	int GetNumberOfMoves();
+	int* GetStarIndex();
 	void Draw();
 };
 

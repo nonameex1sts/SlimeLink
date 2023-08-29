@@ -1,7 +1,7 @@
 #pragma once
 #include "../Utilities/utilities.h"
 
-class Shaders 
+class Shaders
 {
 private:
 	GLuint program, vertexShader, fragmentShader;
@@ -14,7 +14,7 @@ private:
 
 public:
 	Shaders();
-	int Init(char * fileVertexShader, char * fileFragmentShader);
+	int Init(char* fileVertexShader, char* fileFragmentShader);
 	GLuint GetProgram();
 	GLuint GetPositionAttribute();
 	GLuint GetTextureUniform();
