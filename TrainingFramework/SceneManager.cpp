@@ -431,5 +431,6 @@ SceneManager::~SceneManager()
 	
 	delete pTargetPosition;
 	delete pSpawnPosition;
+	delete iStar;
 	delete pCamera;
 }
