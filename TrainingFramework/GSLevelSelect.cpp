@@ -4,7 +4,7 @@
 
 GSLevelSelect::GSLevelSelect()
 {
-	Init("../TrainingFramework/GSLevelSelect.txt", "GSLevelSelect");
+	Init("../TrainingFramework/GSLevelSelect.txt", "GSLevelSelect", StateType::STATE_LEVEL_SELECT);
 	Vector3 levelPos = Vector3(200.0f, 180.0f, 0.0f);
 	Vector3 levelRotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 levelScale = Vector3(150.0f, 150.0f, 1.0f);
@@ -21,7 +21,6 @@ GSLevelSelect::GSLevelSelect()
 			pSelectLevel[i * 3 + j]->SetCurrentLevel(i * 3 + j + 1);
 		}
 	}
-	GameStateBase::GameStateBase(StateType::STATE_LEVEL_SELECT);
 }
 
 GSLevelSelect::~GSLevelSelect()

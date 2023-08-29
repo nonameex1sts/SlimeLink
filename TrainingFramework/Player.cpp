@@ -47,7 +47,7 @@ void Player::SetActiveStatus(bool status)
 	this->isActive = status;
 }
 
-void Player::Key(unsigned char keyPressed)
+void Player::Key(unsigned char keyPressed, bool* hasMoved)
 {
 	//AWSD and arrowkeys for movement
 	if (isActive) {
@@ -58,24 +58,28 @@ void Player::Key(unsigned char keyPressed)
 			deltaPosition = Vector3(-SQUARE_SIZE, 0.0f, 0.0f);
 			isMoving = true;
 			nextPosition = position + deltaPosition;
+			*hasMoved = true;
 		}
 		if ((keyPressed & (1 << 1)) && canMoveUp)
 		{
 			deltaPosition = Vector3(0.0f, -SQUARE_SIZE, 0.0f);
 			isMoving = true;
 			nextPosition = position + deltaPosition;
+			*hasMoved = true;
 		}
 		if ((keyPressed & (1 << 2)) && canMoveRight)
 		{
 			deltaPosition = Vector3(SQUARE_SIZE, 0.0f, 0.0f);
 			isMoving = true;
 			nextPosition = position + deltaPosition;
+			*hasMoved = true;
 		}
 		if ((keyPressed & (1 << 3)) && canMoveDown)
 		{
 			deltaPosition = Vector3(0.0f, SQUARE_SIZE, 0.0f);
 			isMoving = true;
 			nextPosition = position + deltaPosition;
+			*hasMoved = true;
 		}
 	}
 }

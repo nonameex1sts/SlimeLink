@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include <string>
+#include <cmath>
 
 SceneManager* SceneManager::ms_pInstance = nullptr;
 
@@ -202,8 +203,11 @@ void SceneManager::Key(unsigned char keyPressed)
 	if (!hasEnded) 
 	{
 		//Call Key function of each player
+		bool* hasMoved = new bool;
+		*hasMoved = false;
+
 		for (int i = 0; i < iNumPlayer; i++) {
-			pPlayer[i]->Key(keyPressed);
+			pPlayer[i]->Key(keyPressed, hasMoved);
 		}
 
 		//Camera input -> movement
@@ -228,8 +232,13 @@ void SceneManager::Key(unsigned char keyPressed)
 			pCamera->Inputs(keyPressed);
 		}
 
-		iNumOfMoves++;
-		iNumOfMoves = iNumOfMoves < 99 ? iNumOfMoves : 99;
+		if (*hasMoved) 
+		{
+			iNumOfMoves++;
+			iNumOfMoves = iNumOfMoves < 999 ? iNumOfMoves : 999;
+		}
+
+		delete hasMoved;
 	}
 }
 
@@ -248,30 +257,30 @@ void SceneManager::SetPlayerMovement()
 			Vector3 coordinate = pPlayer[i]->GetCoordinate();
 
 			//Check surrounding map after each move
-			if ((p_imapType[(int)coordinate.x][(int)coordinate.y] == 3))
+			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 3))
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
-			else if (p_imapType[(int)coordinate.x + 1][(int)coordinate.y] == 1)
+			else if (p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 1)
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
 
-			if ((p_imapType[(int)coordinate.x][(int)coordinate.y] == 2))
+			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 2))
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
-			else if (p_imapType[(int)coordinate.x - 1][(int)coordinate.y] == 1)
+			else if (p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 1)
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
 
-			if (p_imapType[(int)coordinate.x][(int)coordinate.y + 1] == 1)
+			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) + 1] == 1)
 			{
 				pPlayer[i]->SetMoveDownStatus(false);
 			}
 
-			if (p_imapType[(int)coordinate.x][(int)coordinate.y - 1] == 1)
+			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) - 1] == 1)
 			{
 				pPlayer[i]->SetMoveUpStatus(false);
 			}

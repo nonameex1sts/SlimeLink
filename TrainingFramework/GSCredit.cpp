@@ -3,8 +3,7 @@
 
 GSCredit::GSCredit()
 {
-	Init("../TrainingFramework/GSCredit.txt", "GSCredit");
-	GameStateBase::GameStateBase(StateType::STATE_CREDIT);
+	Init("../TrainingFramework/GSCredit.txt", "GSCredit", StateType::STATE_CREDIT);
 }
 
 GSCredit::~GSCredit()

@@ -10,7 +10,7 @@ FILE ../Resources/Textures/Horizontal_wall.png
 ID 2
 FILE ../Resources/Textures/Robot.png
 ID 3
-FILE ../Resources/Textures/testbg123.jpg
+FILE ../Resources/Textures/menubg.png
 ID 4
 FILE ../Resources/Textures/exit.png
 ID 5
@@ -30,7 +30,7 @@ FILE ../Resources/Textures/Right_wall.png
 ID 12
 FILE ../Resources/Textures/Robot_sleep.png
 ID 13
-FILE ../Resources/Textures/Obstacle.png
+FILE ../Resources/Textures/Spike.png
 ID 14
 FILE ../Resources/Textures/helpbutton.png
 ID 15

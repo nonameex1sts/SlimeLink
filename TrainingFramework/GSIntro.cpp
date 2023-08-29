@@ -6,7 +6,6 @@
 GSIntro::GSIntro()
 {
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
-	GameStateBase::GameStateBase(StateType::STATE_INTRO);
 	Init();
 }
 

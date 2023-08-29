@@ -23,8 +23,6 @@ GSPlay::GSPlay(int ilevelNumber)
 
 	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] / 10 + 33));
 	pPictures[8]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] % 10 + 33));
-
-	GameStateBase::GameStateBase(StateType::STATE_PLAY);
 }
 
 GSPlay::~GSPlay()
@@ -48,9 +46,6 @@ void GSPlay::ReadButton()
 	fscanf(filePointer, "FOV %f\n", &fovY);
 	fscanf(filePointer, "SPEED %f\n", &speed);
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
-
-	test = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(31), pCamera, ResourceManager::GetInstance()->GetShaderById(1), Vector3(100, 100, 0),
-		Vector3(0, 0, 0), Vector3(500, 500, 500), 7, 7, 3, 0.1);
 
 	int id, modelId, textureId, shaderId, buttonType, isActive;
 	Vector3 position, rotation, scale;
@@ -128,8 +123,6 @@ void GSPlay::Update(GLfloat deltaTime)
 {
 	SceneManager::GetInstance()->Update(deltaTime);
 
-	test.Update(deltaTime);
-
 	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
 		fcheckKeyTime += FRAME_TIME;
 	}
@@ -177,20 +170,9 @@ void GSPlay::Key(int iKeyPressed)
 		fcheckKeyTime = 0.0f;
 	}
 
-	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 10 + 33));
-	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 10 + 33));
-
-	// NOTE: this is just for testing the animation
-	if (check == 0)
-	{
-		test.SetCurrentAction(0);
-		check = 1;
-	}
-	else
-	{
-		test.SetCurrentAction(1);
-		check = 0;
-	}
+	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 33));
+	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 33));
+	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 33));
 }
 
 void GSPlay::MouseClick(int x, int y, bool isPressed)
@@ -218,7 +200,7 @@ void GSPlay::Draw()
 			pButtons[i]->Draw();
 		}
 	}
-	test.Draw();
+
 
 	for (int i = 0; i < inumPics; i++) 
 	{

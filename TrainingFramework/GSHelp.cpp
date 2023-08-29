@@ -3,8 +3,7 @@
 
 GSHelp::GSHelp()
 {
-	Init("../TrainingFramework/GSHelp.txt", "GSHelp");
-	GameStateBase::GameStateBase(StateType::STATE_HELP);
+	Init("../TrainingFramework/GSHelp.txt", "GSHelp", StateType::STATE_HELP);
 }
 
 GSHelp::~GSHelp()

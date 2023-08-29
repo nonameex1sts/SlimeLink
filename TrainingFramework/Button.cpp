@@ -79,16 +79,13 @@ void Button::MouseClick(int x, int y)
 		}
 		if (iType == MENU)
 		{
-			// BUGFIX: Stop when its menu state
-			GameStateMachine::GetInstance()->PopState();
-			GameStateMachine::GetInstance()->PopState();
-			GameStateMachine::GetInstance()->PopState();
+			// BUGFIX: Stop when its menu 
+			GameStateMachine::GetInstance()->PopState(StateType::STATE_MENU);
 		}
 		if (iType == PAUSE_TO_SELECT)
 		{
 			// BUGFIX: Stop when its pause to select state
-			GameStateMachine::GetInstance()->PopState();
-			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PopState(StateType::STATE_LEVEL_SELECT);
 		}
 		if (iType == EXIT)
 		{

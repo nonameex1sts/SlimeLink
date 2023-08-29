@@ -3,8 +3,7 @@
 
 GSPause::GSPause()
 {
-	Init("../TrainingFramework/GSPause.txt", "GSPause");
-	GameStateBase::GameStateBase(StateType::STATE_PAUSE);
+	Init("../TrainingFramework/GSPause.txt", "GSPause", StateType::STATE_PAUSE);
 }
 
 GSPause::~GSPause()
