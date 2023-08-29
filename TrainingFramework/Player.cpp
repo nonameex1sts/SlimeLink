@@ -8,7 +8,7 @@
 
 Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, 
 	GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime, bool isActive)
-	: Animation(model, texture, camera, shader, position, rotation, scale + Vector3(60.0f, 60.0f, 0.0f), numFrames, numActions, currentAction, frametime)
+	: Animation(model, texture, camera, shader, position, rotation, scale + Vector3(-4.0f, -4.0f, 0.0f), numFrames, numActions, currentAction, frametime)
 {
 	this->isActive = isActive;
 }

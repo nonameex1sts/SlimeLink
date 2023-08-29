@@ -12,7 +12,7 @@
 # define SQUARE_SIZE			40.0f
 
 #define DELAY_KEY_TIME			0.6f
-#define DELAY_STATE_PLAYER		0.01f
+#define DELAY_STATE_PLAYER		0.05f
 #define FRAME_TIME				0.2f
 
 #define MOVEMENT_SNAP_DISTANCE	1.0f

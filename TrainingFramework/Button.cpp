@@ -63,22 +63,20 @@ void Button::MouseClick(int x, int y)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_CREDIT, 1);
 		}
-		if (iType == PAUSE)
-		{
-			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
-		}
 		if (iType == RESUME)
 		{
 			GameStateMachine::GetInstance()->PopState();
 		}
 		if (iType == MENU)
 		{
+			// BUGFIX: Stop when its menu state
 			GameStateMachine::GetInstance()->PopState();
 			GameStateMachine::GetInstance()->PopState();
 			GameStateMachine::GetInstance()->PopState();
 		}
 		if (iType == PAUSE_TO_SELECT)
 		{
+			// BUGFIX: Stop when its pause to select state
 			GameStateMachine::GetInstance()->PopState();
 			GameStateMachine::GetInstance()->PopState();
 		}
@@ -119,7 +117,7 @@ void Button::MouseClickReset(int x, int y, int iLevel)
 			GameStateMachine::GetInstance()->PopState();
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel);
 		}
-		if (iType == PAUSE)
+		else if (iType == PAUSE)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
 		}
