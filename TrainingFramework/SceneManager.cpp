@@ -160,8 +160,11 @@ SceneManager::SceneManager(int ilevelNumber) {
 		}
 	}
 
+	iNumOfMoves = 0;
+
 	//Each move limit for each star
-	fscanf(filePointer, "Star: %f %f %f\n", &star.x, &star.y, &star.y);
+	iStar = new int[3];
+	fscanf(filePointer, "Star: %d %d %d\n", &iStar[0], &iStar[1], &iStar[2]);
 
 	fclose(filePointer);
 }
@@ -224,6 +227,9 @@ void SceneManager::Key(unsigned char keyPressed)
 		{
 			pCamera->Inputs(keyPressed);
 		}
+
+		iNumOfMoves++;
+		iNumOfMoves = iNumOfMoves < 99 ? iNumOfMoves : 99;
 	}
 }
 
@@ -366,6 +372,16 @@ void SceneManager::CheckWinCondition()
 		hasEnded = true;
 		printf("Win\n");
 	}
+}
+
+int SceneManager::GetNumberOfMoves()
+{
+	return iNumOfMoves;
+}
+
+int* SceneManager::GetStarIndex()
+{
+	return iStar;
 }
 
 //Draw floor -> players -> vertical walls

@@ -13,8 +13,18 @@ GSPlay::GSPlay(int ilevelNumber)
 	ReadButton();
 	// Load level with the coresponding number
 	Init(ilevelNumber);
-	GameStateBase::GameStateBase(StateType::STATE_PLAY);
 
+	int* iStar = SceneManager::GetInstance()->GetStarIndex();
+	pPictures[1]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] / 10 + 33));
+	pPictures[2]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] % 10 + 33));
+
+	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] / 10 + 33));
+	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] % 10 + 33));
+
+	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] / 10 + 33));
+	pPictures[8]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] % 10 + 33));
+
+	GameStateBase::GameStateBase(StateType::STATE_PLAY);
 }
 
 GSPlay::~GSPlay()
@@ -62,6 +72,22 @@ void GSPlay::ReadButton()
 			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType, isActive);
 	}
 
+	fscanf(filePointer, "#Pictures: %d\n", &inumPics);
+	pPictures = new Picture * [inumPics];
+	for (int i = 0; i < inumPics; i++)
+	{
+		fscanf(filePointer, "ID %d\n", &id);
+		fscanf(filePointer, "MODEL %d\n", &modelId);
+		fscanf(filePointer, "TEXTURE %d\n", &textureId);
+		fscanf(filePointer, "SHADER %d\n", &shaderId);
+		fscanf(filePointer, "POSITION %f, %f, %f\n", &position.x, &position.y, &position.z);
+		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
+		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
+		fscanf(filePointer, "ACTIVE %d\n", &isActive);
+		pPictures[i] = new Picture(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
+			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, isActive);
+	}
+
 	fclose(filePointer);
 }
 
@@ -80,6 +106,11 @@ void GSPlay::Exit()
 		delete pButtons[i];
 	}
 	delete pButtons;
+
+	for (int i = 0; i < inumPics; i++) {
+		delete pPictures[i];
+	}
+	delete pPictures;
 	printf("GSPlay exit\n");
 	SceneManager::DestroyInstance();
 }
@@ -145,6 +176,10 @@ void GSPlay::Key(int iKeyPressed)
 
 		fcheckKeyTime = 0.0f;
 	}
+
+	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 10 + 33));
+	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 10 + 33));
+
 	// NOTE: this is just for testing the animation
 	if (check == 0)
 	{
@@ -184,4 +219,12 @@ void GSPlay::Draw()
 		}
 	}
 	test.Draw();
+
+	for (int i = 0; i < inumPics; i++) 
+	{
+		if (pPictures[i]->getActive()) 
+		{
+			pPictures[i]->Draw();
+		}
+	}
 }

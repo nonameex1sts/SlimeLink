@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 32
+#2D Textures: 44
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -67,6 +67,30 @@ ID 30
 FILE ../Resources/Textures/resumebutton.png
 ID 31
 FILE ../Resources/Textures/animation.png
+ID 32
+FILE ../Resources/Textures/Text/Moves.png
+ID 33
+FILE ../Resources/Textures/Text/0.png
+ID 34
+FILE ../Resources/Textures/Text/1.png
+ID 35
+FILE ../Resources/Textures/Text/2.png
+ID 36
+FILE ../Resources/Textures/Text/3.png
+ID 37
+FILE ../Resources/Textures/Text/4.png
+ID 38
+FILE ../Resources/Textures/Text/5.png
+ID 39
+FILE ../Resources/Textures/Text/6.png
+ID 40
+FILE ../Resources/Textures/Text/7.png
+ID 41
+FILE ../Resources/Textures/Text/8.png
+ID 42
+FILE ../Resources/Textures/Text/9.png
+ID 43
+FILE ../Resources/Textures/Star.png
 
 #Shaders: 2
 ID 0
