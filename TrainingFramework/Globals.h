@@ -17,7 +17,7 @@
 
 #define MOVEMENT_SNAP_DISTANCE	1.0f
 
-# define NUM_OF_LEVELS			12 
+# define NUM_OF_LEVELS			18 
 
 class Globals
 {

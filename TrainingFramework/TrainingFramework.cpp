@@ -61,6 +61,7 @@ void MouseClick(ESContext* esContext, int x, int y, bool bIsPressed)
 
 void MouseMove(ESContext* esContext, int x, int y)
 {
+	GameStateMachine::GetInstance()->GetActiveState()->MouseMove(x, y);
 }
 
 void CleanUp()

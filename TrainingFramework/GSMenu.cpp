@@ -44,12 +44,15 @@ void GSMenu::MouseClick(int x, int y, bool isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
-			pButtons[i]->MouseClick(x, y);
+			pButtons[i]->MouseClick(x, y, isPressed);
 		}
 	}
 }
 
 void GSMenu::MouseMove(int x, int y)
 {
-	// NOTE: blank
+	for (int i = 0; i < inumButtons; i++)
+	{
+		pButtons[i]->MouseMove(x, y);
+	}
 }

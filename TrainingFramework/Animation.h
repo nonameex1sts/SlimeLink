@@ -17,4 +17,6 @@ public:
 	void Update(GLfloat deltatime);
 	void Draw();
 	void SetCurrentAction(GLint currentAction);
+	void SetCurrentFrame(GLint currentFrame);
+	GLint GetCurrentFrame();
 };

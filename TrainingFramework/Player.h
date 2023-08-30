@@ -5,6 +5,7 @@
 
 class Player : public Animation {
 private:
+	bool isDrawn = true;
 	bool isActive;
 	bool canMoveLeft = true;
 	bool canMoveRight = true;
@@ -24,6 +25,8 @@ public:
 	void Move(float deltaTime);
 	void SetActiveStatus(bool status);
 	bool GetActiveStatus();
+	void SetDrawnStatus(bool status);
+	bool GetDrawnStatus();
 	void SetMoveLeftStatus(bool status);
 	void SetMoveRightStatus(bool status);
 	void SetMoveUpStatus(bool status);

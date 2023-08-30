@@ -27,7 +27,7 @@ public:
 	void Key(unsigned char keyPressed);
 	void Move(Vector3 deltaPosition);
 	void MouseClick(int x, int y);
-	void MouseMove();
+	void MouseMove(int x, int y);
 	void Rotate();
 	bool CheckCloseObject(Object object);
 	bool CheckPosition(Vector3 position);

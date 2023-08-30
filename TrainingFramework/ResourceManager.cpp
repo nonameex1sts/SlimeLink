@@ -8,7 +8,7 @@ ResourceManager::ResourceManager()
 {
 	FILE* filePointer = fopen("../TrainingFramework/RM.txt", "r");
 	int id;
-	char* filePath = new char[50];
+	char* filePath = new char[100];
 
 	//Load data form RM.txt and initialize models
 	fscanf(filePointer, "#Models: %d\n", &inumModels);

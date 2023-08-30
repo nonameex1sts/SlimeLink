@@ -143,7 +143,7 @@ void Object::MouseClick(int x, int y)
 {
 }
 
-void Object::MouseMove()
+void Object::MouseMove(int x, int y)
 {
 }
 

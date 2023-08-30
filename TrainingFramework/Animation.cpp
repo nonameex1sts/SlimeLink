@@ -108,3 +108,13 @@ void Animation::SetCurrentAction(GLint currentAction)
 {
 	this->currentAction = currentAction;
 }
+
+void Animation::SetCurrentFrame(GLint currentFrame)
+{
+	this->currentFrame = currentFrame;
+}
+
+GLint Animation::GetCurrentFrame()
+{
+	return currentFrame;
+}
