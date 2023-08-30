@@ -8,7 +8,7 @@ FILE ../Resources/Textures/Floor.png
 ID 1
 FILE ../Resources/Textures/Horizontal_wall.png
 ID 2
-FILE ../Resources/Textures/Robot.png
+FILE ../Resources/Textures/black.png
 ID 3
 FILE ../Resources/Textures/menubg.png
 ID 4
