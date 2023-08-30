@@ -78,7 +78,15 @@ SceneManager::SceneManager(int ilevelNumber) {
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 		}
 
-		if (imapType == 2)
+		if (imapType == 2) {
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			//Out of bound texture
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+		}
+
+		if (imapType == 44)
 		{
 			p_imapType[i % iWidth][i / iWidth] = 0;
 
@@ -86,7 +94,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			//Player
-			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(44), pCamera,
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 6, 1, 0, 0.1, true);
 
 			iMainPlayer = iPlayerCounter;
@@ -122,7 +130,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 			iHorizontalWallCounter++;
 		}
 
-		if (imapType == 12)
+		if (imapType == 12) // sleep player
 		{
 			p_imapType[i % iWidth][i / iWidth] = 0;
 
@@ -379,7 +387,6 @@ void SceneManager::CheckWinCondition()
 	if (iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
 	{
 		hasEnded = true;
-		printf("Win\n");
 	}
 }
 
