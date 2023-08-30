@@ -52,15 +52,11 @@ int Button::getType()
 }
 
 // If that button is click, check what type is it to do the right job
-void Button::MouseClick(int x, int y)
+void Button::MouseClick(int x, int y, bool isPressed)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2)) 
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
-		if (iType == PLAY) 
-		{
-			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, 1);
-		}
 		if (iType == LEVEL_SELECT)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_LEVEL_SELECT, 1);
@@ -172,9 +168,130 @@ void Button::MouseClick(int x, int y, int* index, int sum)
 	}
 }
 
-void Button::MouseMove()
+void Button::MouseMove(int x, int y)
 {
+	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
+	{
+		if (iType == LEVEL_SELECT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(45));
+		}
+		if (iType == HELP)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(48));
+		}
+		if (iType == CREDIT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(49));
+		}
+		if (iType == RESUME)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(58));
+		}
+		if (iType == MENU)
+		{
+			// BUGFIX: Stop when its menu 
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(57));
+		}
+		if (iType == PAUSE_TO_SELECT)
+		{
+			// BUGFIX: Stop when its pause to select state
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(47));
+		}
+		if (iType == EXIT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(46));
+		}
+		if (iType == BGM)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(50));
+		}
+		if (iType == NOBGM)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
+		}
+		if (iType == BACK)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(52));
+		}
+		if (iType == PREV_PAGE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(53));
+		}
+		if (iType == NEXT_PAGE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(54));
+		}
+		if (iType == PAUSE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(55));
+		}
+		if (iType == RESET)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(56));
+		}
+	}
+	else
+	{
+		if (iType == LEVEL_SELECT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(5));
+		}
+		if (iType == HELP)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(14));
+		}
+		if (iType == CREDIT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(15));
+		}
+		if (iType == RESUME)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(30));
+		}
+		if (iType == MENU)
+		{
+			// BUGFIX: Stop when its menu 
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(29));
+		}
+		if (iType == PAUSE_TO_SELECT)
+		{
+			// BUGFIX: Stop when its pause to select state
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(12));
+		}
+		if (iType == EXIT)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(4));
+		}
+		if (iType == BGM)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+		}
+		if (iType == NOBGM)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+		}
+		if (iType == BACK)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(19));
+		}
+		if (iType == PREV_PAGE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(20));
+		}
+		if (iType == NEXT_PAGE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(21));
+		}
+		if (iType == PAUSE)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(26));
+		}
+		if (iType == RESET)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(27));
+		}
+	}
 }
-
 
 Button::~Button() {}

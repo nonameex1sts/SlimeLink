@@ -188,6 +188,10 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 
 void GSPlay::MouseMove(int x, int y)
 {
+	for (int i = 0; i < inumButtons; i++)
+	{
+		pButtons[i]->MouseMove(x, y);
+	}
 }
 
 void GSPlay::Draw()

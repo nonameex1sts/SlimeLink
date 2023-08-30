@@ -33,10 +33,10 @@ public:
 	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, int iType, int isActive);
 	void Update();
 	void Key();
-	void MouseClick(int x, int y);
+	void MouseClick(int x, int y, bool isPressed);
 	void MouseClick(int x, int y, int *index, int sumPicture);
 	void MouseClickReset(int x, int y, int iLevel);
-	void MouseMove();
+	void MouseMove(int x, int y);
 	void Move();
 	void Rotate();
 	bool getActive();

@@ -16,7 +16,7 @@ GSLevelSelect::GSLevelSelect()
 	{
 		for (int j = 0; j < (iLevelPerPage / iRowPerPage); j++)
 		{
-			pSelectLevel[i * 3 + j] = new SelectLevelButton(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+			pSelectLevel[i * 3 + j] = new SelectLevelButton(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(59 + i * 3 + j), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), levelPos + levelHeightEach * i + levelWidthEach * j, levelRotation, levelScale, 0, 1);
 			pSelectLevel[i * 3 + j]->SetCurrentLevel(i * 3 + j + 1);
 		}
@@ -78,6 +78,7 @@ void GSLevelSelect::UpdateLevel()
 	for (int i = 0; i < iLevelPerPage; i++)
 	{
 		pSelectLevel[i]->SetCurrentLevel(iCurrentPage * iLevelPerPage + i + 1);
+		pSelectLevel[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(58 + iCurrentPage * iLevelPerPage + i + 1));
 	}
 }
 
@@ -101,7 +102,10 @@ void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 
 void GSLevelSelect::MouseMove(int x, int y)
 {
-	// NOTE: blank
+	for (int i = 0; i < inumButtons; i++)
+	{
+		pButtons[i]->MouseMove(x, y);
+	}
 }
 
 void GSLevelSelect::Draw()

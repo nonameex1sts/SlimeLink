@@ -22,6 +22,16 @@ bool Player::GetActiveStatus()
 	return isActive;
 }
 
+void Player::SetDrawnStatus(bool status)
+{
+	this->isDrawn = status;
+}
+
+bool Player::GetDrawnStatus()
+{
+	return isDrawn;
+}
+
 void Player::SetMoveLeftStatus(bool status)
 {
 	this->canMoveLeft = status;

@@ -307,6 +307,8 @@ void SceneManager::SpawnPlayer()
 				}
 				iNumPlayer += iNumSpawn;
 
+				pPlayer[j]->SetDrawnStatus(false);
+
 				//Disable spawn square
 				for (int k = 0; k < iWidth * iHeight; k++)
 				{
@@ -403,7 +405,10 @@ void SceneManager::Draw()
 
 	for (int i = 0; i < iNumPlayer; i++) 
 	{
-		pPlayer[i]->Draw();
+		if (pPlayer[i]->GetDrawnStatus()) 
+		{
+			pPlayer[i]->Draw();
+		}
 	}
 
 	for (int i = 0; i < iNumHorizontalWall; i++) 

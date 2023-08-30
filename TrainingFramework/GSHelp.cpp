@@ -46,5 +46,8 @@ void GSHelp::MouseClick(int x, int y, bool isPressed)
 
 void GSHelp::MouseMove(int x, int y)
 {
-	// NOTE: blank
+	for (int i = 0; i < inumButtons; i++)
+	{
+		pButtons[i]->MouseMove(x, y);
+	}
 }
