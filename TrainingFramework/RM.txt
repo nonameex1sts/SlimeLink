@@ -90,7 +90,7 @@ FILE ../Resources/Textures/Text/8.png
 ID 42
 FILE ../Resources/Textures/Text/9.png
 ID 43
-FILE ../Resources/Textures/Star.png
+FILE ../Resources/Textures/Trophy.png
 ID 44
 FILE ../Resources/Textures/slimemove.png
 
