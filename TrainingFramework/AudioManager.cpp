@@ -7,6 +7,7 @@ AudioManager::AudioManager()
 {
 	isSFXOn = true;
 	isBGMOn = true;
+	// Read audio and create them
 	FILE* filePointer = fopen("../TrainingFramework/Audio.txt", "r");
 	char* filePath = new char[50];
 	int id;
@@ -58,6 +59,7 @@ bool AudioManager::getBGMStatus()
 	return isBGMOn;
 }
 
+// Set BGM is on or not
 void AudioManager::setBGM(bool isOn)
 {
 	for (int i = 0; i < iNumOfMusic; i++)
@@ -75,6 +77,7 @@ void AudioManager::setBGM(bool isOn)
 	}
 }
 
+// Set SFX is on or not
 void AudioManager::setSFX(bool isOn)
 {
 	for (int i = 0; i < iNumOfMusic; i++)
@@ -85,7 +88,8 @@ void AudioManager::setSFX(bool isOn)
 			{
 				music[i]->SetVolume(30);
 			}
-			else {
+			else 
+			{
 				music[i]->SetVolume(0);
 			}
 		}

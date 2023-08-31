@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 85
+#2D Textures: 86
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -173,6 +173,8 @@ ID 83
 FILE ../Resources/Textures/Button/NoSFX_button.png
 ID 84
 FILE ../Resources/Textures/Button/NoSFX_button_pressed.png
+ID 85
+FILE ../Resources/Textures/Candle.png
 
 #Shaders: 2
 ID 0

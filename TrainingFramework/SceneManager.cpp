@@ -30,6 +30,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "Player: %d\n", &iNumPlayer);
 	fscanf(filePointer, "Target: %d\n", &iNumTarget);
 	fscanf(filePointer, "Spawn: %d\n", &iNumSpawn);
+	fscanf(filePointer, "Obstacle: %d\n", &iNumObstacle);
 
 	//O - can move, 1 - cannot move, 2 - left wall, 3 - right wall
 	p_imapType = new int* [iWidth];
@@ -38,6 +39,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	}
 
 	//Initialize objects, walls and players
+	pObstacles = new Animation * [iNumObstacle];
 	pObjects = new Object * [iWidth * iHeight];
 	pHorizontalWall = new Object * [iNumHorizontalWall];
 	pPlayer = new Player * [iNumPlayer + iNumSpawn];
@@ -45,7 +47,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	pSpawnPosition = new Vector3[iNumSpawn];
 
 	//Index counter
-	int iHorizontalWallCounter = 0, iPlayerCounter = 0, iTargetCounter = 0, iSpawnCounter = 0;
+	int iHorizontalWallCounter = 0, iPlayerCounter = 0, iTargetCounter = 0, iSpawnCounter = 0, iObstacleCounter = 0;
 
 	//Rotation and scale of objects and players
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
@@ -103,6 +105,19 @@ SceneManager::SceneManager(int ilevelNumber) {
 			iPlayerCounter++;
 		}
 
+		if (imapType == 85)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pObstacles[iObstacleCounter] = new Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 4, 1, 0, 0.1);
+
+			iObstacleCounter++;
+		}
+
 		if (imapType == 10)
 		{
 			p_imapType[i % iWidth][i / iWidth] = 2;
@@ -145,6 +160,34 @@ SceneManager::SceneManager(int ilevelNumber) {
 			iPlayerCounter++;
 		}
 
+		if (imapType == 20)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(13), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(10), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+
+		}
+
+		if (imapType == 21)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 1;
+
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(13), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(11), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+
+		}
+
 		if (imapType == 22)
 		{
 			p_imapType[i % iWidth][i / iWidth] = 0;
@@ -168,6 +211,23 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(imapType), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 		}
+
+		if (imapType == 24)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 0;
+			pTargetPosition[iTargetCounter] = position;
+			iTargetCounter++;
+
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(22), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(44), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 6, 1, 0, 0.1, true);
+
+			iMainPlayer = iPlayerCounter;
+
+			iPlayerCounter++;
+		}
 	}
 
 	iNumOfMoves = 0;
@@ -189,6 +249,11 @@ void SceneManager::Update(float deltaTime)
 	{
 		pPlayer[i]->Move(deltaTime);
 		pPlayer[i]->Update(deltaTime);
+	}
+
+	for (int i = 0; i < iNumObstacle; i++)
+	{
+		pObstacles[i]->Update(deltaTime);
 	}
 
 	//Move camera according to player if needed
@@ -448,6 +513,11 @@ void SceneManager::Draw()
 		}
 	}
 
+	for (int i = 0; i < iNumObstacle; i++)
+	{
+		pObstacles[i]->Draw();
+	}
+
 	for (int i = 0; i < iNumHorizontalWall; i++) 
 	{
 		pHorizontalWall[i]->Draw();
@@ -479,6 +549,12 @@ SceneManager::~SceneManager()
 		delete pPlayer[i];
 	}
 	delete pPlayer;
+
+	for (int i = 0; i < iNumObstacle; i++)
+	{
+		delete pObstacles[i];
+	}
+	delete pObstacles;
 	
 	delete pTargetPosition;
 	delete pSpawnPosition;
