@@ -80,11 +80,6 @@ void GameStateMachine::PopState(StateType type)
 void GameStateMachine::PerformStateChange()
 {
 	if (p_nextState != nullptr) {
-		if (p_activeState->GetStateType() == StateType::STATE_INTRO) {
-			delete p_activeState;
-			
-		}
-
 		p_activeState->Pause();
 		p_activeState = m_stateStack.top();
 		p_nextState = nullptr;

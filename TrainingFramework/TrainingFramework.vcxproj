@@ -167,6 +167,7 @@
     <Text Include="Audio.txt" />
     <Text Include="GSCredit.txt" />
     <Text Include="GSHelp.txt" />
+    <Text Include="GSIntro.txt" />
     <Text Include="GSLevelSelect.txt" />
     <Text Include="GSMenu.txt" />
     <Text Include="GSPause.txt" />

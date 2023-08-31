@@ -12,7 +12,6 @@ private:
 public:
 	GSIntro();
 	~GSIntro();
-	void Init();
 	void Exit();
 	void Pause();
 	void Resume();
@@ -20,5 +19,4 @@ public:
 	void Key(int keyPressed);
 	void MouseClick(int x, int y, bool isPressed);
 	void MouseMove(int x, int y);
-	void Draw();
 };

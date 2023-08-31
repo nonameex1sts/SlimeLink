@@ -235,5 +235,8 @@
     <Text Include="GSPause.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
+    <Text Include="GSIntro.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
   </ItemGroup>
 </Project>
