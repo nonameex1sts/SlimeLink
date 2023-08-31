@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "../Utilities/utilities.h"
 #include "Math.h"
+#include "Animation.h"
 
 class SceneManager {
 private:
@@ -17,6 +18,9 @@ private:
 	Vector3* pTargetPosition;
 	Vector3* pSpawnPosition;
 
+	Animation** pObstacles;
+
+	int iNumObstacle;
 	int iMainPlayer;
 	int iNumPlayer;
 	int iNumTarget;

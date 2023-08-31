@@ -76,6 +76,7 @@ void Button::MouseClick(int x, int y, bool isPressed)
 		if (iType == MENU)
 		{
 			// BUGFIX: Stop when its menu 
+			AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
 			GameStateMachine::GetInstance()->PopState(StateType::STATE_MENU);
 		}
 		if (iType == PAUSE_TO_SELECT)

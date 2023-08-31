@@ -21,8 +21,7 @@ void GSMenu::Pause()
 
 void GSMenu::Resume()
 {
-	// NOTE: blank
-	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
+	
 }
 
 void GSMenu::Update(GLfloat deltatime)
