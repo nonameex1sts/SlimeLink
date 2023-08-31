@@ -34,7 +34,7 @@ void GSCredit::Key(int iKeyPressed)
 void GSCredit::MouseClick(int x, int y, bool isPressed)
 {
 	// NOTE: check all button if it got click or not
-	if (isPressed)
+	if (isPressed && pButtons != nullptr)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
