@@ -209,16 +209,27 @@ void GSPlay::Key(int iKeyPressed)
 
 void GSPlay::MouseClick(int x, int y, bool isPressed)
 {
-	if (isPressed)
+	bool* isReset = new bool;
+	*isReset = false;
+
+	if (isPressed && pButtons != nullptr)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
-			if (pButtons[i]->getActive()) 
+			if (pButtons[i]->getActive())
 			{
-				pButtons[i]->MouseClickReset(x, y, ilevelNumber);
+				pButtons[i]->MouseClickReset(x, y, ilevelNumber, isReset);
 			}
 		}
 	}
+
+	if (*isReset) {
+		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+	}
+
+	delete isReset;
 }
 
 void GSPlay::MouseMove(int x, int y)

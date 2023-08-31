@@ -82,7 +82,7 @@ void GSLevelSelect::UpdateLevel()
 void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 {
 	// NOTE: check all button if it got click or not
-	if (isPressed)
+	if (isPressed && pButtons != nullptr && pSelectLevel != nullptr)
 	{
 		for (int i = 0; i < iLevelPerPage; i++)
 		{

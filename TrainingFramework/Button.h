@@ -38,7 +38,7 @@ public:
 	void Key();
 	void MouseClick(int x, int y, bool isPressed);
 	void MouseClick(int x, int y, int *index, int sumPicture);
-	void MouseClickReset(int x, int y, int iLevel);
+	void MouseClickReset(int x, int y, int iLevel, bool *isReset);
 	void MouseMove(int x, int y);
 	void Move();
 	void Rotate();

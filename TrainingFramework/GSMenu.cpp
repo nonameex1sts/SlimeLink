@@ -38,8 +38,9 @@ void GSMenu::Key(int iKeyPressed)
 
 void GSMenu::MouseClick(int x, int y, bool isPressed)
 {
-	if (isPressed)
+	if (isPressed && pButtons != nullptr)
 	{
+
 		for (int i = 0; i < inumButtons; i++)
 		{
 			pButtons[i]->MouseClick(x, y, isPressed);
