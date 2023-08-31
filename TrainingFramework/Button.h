@@ -22,6 +22,7 @@
 #define LEVEL_SELECT	12
 #define MENU			13
 #define PAUSE_TO_SELECT 14
+#define NEXT_LEVEL		15
 
 class Button : public Object {
 private:

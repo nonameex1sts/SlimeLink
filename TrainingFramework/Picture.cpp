@@ -39,6 +39,11 @@ bool Picture::getActive()
 	return isActive;
 }
 
+void Picture::setActive(bool status)
+{
+	this->isActive = status;
+}
+
 void Picture::MouseClick(int x, int y)
 {
 }

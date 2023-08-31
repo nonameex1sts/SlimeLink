@@ -123,6 +123,30 @@ void GSPlay::Update(GLfloat deltaTime)
 	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
 		fcheckKeyTime += FRAME_TIME;
 	}
+
+	if (SceneManager::GetInstance()->GetEndedStatus()) {
+
+		int iNumOfStarNotActive = 3 - SceneManager::GetInstance()->GetNumberOfStar();
+
+		//Disable Pause and activate other buttons
+		for (int i = 0; i < inumButtons; i++)
+		{
+			if (pButtons[i]->getType() == PAUSE) 
+			{
+				pButtons[i]->setActive(false);
+			}
+			else
+			{
+				pButtons[i]->setActive(true);
+			}
+		}
+
+		//Active all picture
+		for (int i = 0; i < inumPics - iNumOfStarNotActive; i++)
+		{
+			pPictures[i]->setActive(true);
+		}
+	}
 }
 
 void GSPlay::Key(int iKeyPressed)
@@ -194,7 +218,9 @@ void GSPlay::MouseMove(int x, int y)
 void GSPlay::Draw()
 {
 	SceneManager::GetInstance()->Draw();
-	for (int i = 0; i < inumButtons; i++)
+
+	//Draw under opacity
+	for (int i = 0; i < inumButtons - 3; i++)
 	{
 		if (pButtons[i]->getActive())
 		{
@@ -208,6 +234,15 @@ void GSPlay::Draw()
 		if (pPictures[i]->getActive()) 
 		{
 			pPictures[i]->Draw();
+		}
+	}
+
+	//Draw above opacity
+	for (int i = inumButtons - 3; i < inumButtons; i++)
+	{
+		if (pButtons[i]->getActive())
+		{
+			pButtons[i]->Draw();
 		}
 	}
 }

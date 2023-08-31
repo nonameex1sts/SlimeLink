@@ -70,6 +70,8 @@ public:
 	void CheckWinCondition();
 	int GetNumberOfMoves();
 	int* GetStarIndex();
+	bool GetEndedStatus();
+	int GetNumberOfStar();
 	void Draw();
 };
 

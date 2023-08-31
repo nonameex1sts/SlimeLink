@@ -402,6 +402,31 @@ int* SceneManager::GetStarIndex()
 	return iStar;
 }
 
+bool SceneManager::GetEndedStatus()
+{
+	return hasEnded;
+}
+
+int SceneManager::GetNumberOfStar()
+{
+	if (hasEnded) 
+	{
+		for (int i = 0; i < 3; i++) 
+		{
+			if (iNumOfMoves > iStar[i]) 
+			{
+				return i;
+			}
+		}
+
+		return 3;
+	}
+	else
+	{
+		return -1;
+	}
+}
+
 //Draw floor -> players -> vertical walls
 void SceneManager::Draw()
 {
