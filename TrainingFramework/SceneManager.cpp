@@ -479,22 +479,15 @@ bool SceneManager::GetEndedStatus()
 
 int SceneManager::GetNumberOfStar()
 {
-	if (hasEnded) 
+	for (int i = 0; i < 3; i++) 
 	{
-		for (int i = 0; i < 3; i++) 
+		if (iNumOfMoves > iStar[i]) 
 		{
-			if (iNumOfMoves > iStar[i]) 
-			{
-				return i;
-			}
+			return i;
 		}
+	}
 
-		return 3;
-	}
-	else
-	{
-		return -1;
-	}
+	return 3;
 }
 
 //Draw floor -> players -> vertical walls

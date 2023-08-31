@@ -78,4 +78,3 @@ public:
 	int GetNumberOfStar();
 	void Draw();
 };
-

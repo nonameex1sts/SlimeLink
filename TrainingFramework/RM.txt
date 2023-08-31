@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 86
+#2D Textures: 87
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -175,6 +175,8 @@ ID 84
 FILE ../Resources/Textures/Button/NoSFX_button_pressed.png
 ID 85
 FILE ../Resources/Textures/Candle.png
+ID 86
+FILE ../Resources/Textures/Trophy_gray.png
 
 #Shaders: 2
 ID 0

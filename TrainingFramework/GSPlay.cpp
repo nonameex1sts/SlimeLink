@@ -205,6 +205,12 @@ void GSPlay::Key(int iKeyPressed)
 	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 33));
 	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 33));
 	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 33));
+
+	int iNumOfStarLost = 3 - SceneManager::GetInstance()->GetNumberOfStar();
+	for (int i = 6; i > 6 - 3 * iNumOfStarLost; i -= 3) 
+	{
+		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(86));
+	}
 }
 
 void GSPlay::MouseClick(int x, int y, bool isPressed)
@@ -227,6 +233,11 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+
+		for (int i = 6; i >= 0; i -= 3)
+		{
+			pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
+		}
 	}
 
 	delete isReset;
