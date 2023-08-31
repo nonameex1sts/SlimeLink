@@ -237,11 +237,11 @@ void Button::MouseMove(int x, int y)
 		}
 		if (iType == SFX)
 		{
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(50));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(81));
 		}
 		if (iType == NOSFX)
 		{
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(84));
 		}
 		if (iType == BACK)
 		{
@@ -310,11 +310,11 @@ void Button::MouseMove(int x, int y)
 		}
 		if (iType == SFX)
 		{
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(80));
 		}
 		if (iType == NOSFX)
 		{
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(83));
 		}
 		if (iType == BACK)
 		{
