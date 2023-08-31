@@ -5,18 +5,21 @@ AudioManager* AudioManager::ms_pInstance = nullptr;
 
 AudioManager::AudioManager()
 {
-	isMusicOn = true;
+	isSFXOn = true;
+	isBGMOn = true;
 	FILE* filePointer = fopen("../TrainingFramework/Audio.txt", "r");
 	char* filePath = new char[50];
 	int id;
 	int isLoop;
+	int isSfx;
 	fscanf(filePointer, "#Musics: %d\n", &iNumOfMusic);
 	music = new Audio * [iNumOfMusic];
 	for (int i = 0; i < iNumOfMusic; i++) {
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "FILE %s\n", filePath);
 		fscanf(filePointer, "LOOP %d\n", &isLoop);
-		music[i] = new Audio(filePath, isLoop);
+		fscanf(filePointer, "SFX %d\n", &isSfx);
+		music[i] = new Audio(filePath, isLoop, isSfx);
 	}
 	delete filePath;
 	fclose(filePointer);
@@ -35,12 +38,56 @@ Audio* AudioManager::GetAudioById(int id)
 	return music[id];
 }
 
-void AudioManager::setAudioOn(bool isMusicOn)
+void AudioManager::setSFXOn(bool isSFXOn)
 {
-	this->isMusicOn = isMusicOn;
+	this->isSFXOn = isSFXOn;
 }
 
-bool AudioManager::getAudioStatus()
+bool AudioManager::getSFXStatus()
 {
-	return isMusicOn;
+	return isSFXOn;
+}
+
+void AudioManager::setBGMOn(bool isBGMOn)
+{
+	this->isBGMOn = isBGMOn;
+}
+
+bool AudioManager::getBGMStatus()
+{
+	return isBGMOn;
+}
+
+void AudioManager::setBGM(bool isOn)
+{
+	for (int i = 0; i < iNumOfMusic; i++)
+	{
+		if (!music[i]->GetIsSfx())
+		{
+			if (isOn)
+			{
+				music[i]->SetVolume(30);
+			}
+			else {
+				music[i]->SetVolume(0);
+			}
+		}
+	}
+}
+
+void AudioManager::setSFX(bool isOn)
+{
+	for (int i = 0; i < iNumOfMusic; i++)
+	{
+		if (music[i]->GetIsSfx())
+		{
+			if (isOn)
+			{
+				music[i]->SetVolume(30);
+			}
+			else {
+				music[i]->SetVolume(0);
+			}
+		}
+	}
 }

@@ -203,7 +203,9 @@ void SceneManager::Update(float deltaTime)
 	ActivatePlayer();
 
 	//Check if the game has ended
-	CheckWinCondition();
+	if (!hasEnded) {
+		CheckWinCondition();
+	}
 }
 
 void SceneManager::Key(unsigned char keyPressed)
@@ -391,6 +393,7 @@ void SceneManager::CheckWinCondition()
 	if (iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
 	{
 		hasEnded = true;
+		AudioManager::GetInstance()->GetAudioById(5)->PlayMusic();
 	}
 }
 

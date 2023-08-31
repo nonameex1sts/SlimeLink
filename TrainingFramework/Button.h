@@ -23,6 +23,8 @@
 #define MENU			13
 #define PAUSE_TO_SELECT 14
 #define NEXT_LEVEL		15
+#define SFX				16
+#define NOSFX			17
 
 class Button : public Object {
 private:

@@ -119,7 +119,7 @@ void GameStateBase::Draw()
 	}
 	for (int i = 0; i < inumButtons; i++)
 	{
-		if (AudioManager::GetInstance()->getAudioStatus())
+		if (AudioManager::GetInstance()->getBGMStatus())
 		{
 			if (pButtons[i]->getType() == 4) pButtons[i]->setActive(true);
 			if (pButtons[i]->getType() == 5) pButtons[i]->setActive(false);
@@ -128,6 +128,16 @@ void GameStateBase::Draw()
 		{
 			if (pButtons[i]->getType() == 5) pButtons[i]->setActive(true);
 			if (pButtons[i]->getType() == 4) pButtons[i]->setActive(false);
+		}
+		if (AudioManager::GetInstance()->getSFXStatus())
+		{
+			if (pButtons[i]->getType() == 16) pButtons[i]->setActive(true);
+			if (pButtons[i]->getType() == 17) pButtons[i]->setActive(false);
+		}
+		else
+		{
+			if (pButtons[i]->getType() == 17) pButtons[i]->setActive(true);
+			if (pButtons[i]->getType() == 16) pButtons[i]->setActive(false);
 		}
 		if (pButtons[i]->getActive())
 		{

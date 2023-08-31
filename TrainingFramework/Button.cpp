@@ -92,8 +92,8 @@ void Button::MouseClick(int x, int y, bool isPressed)
 			isActive = !isActive;
 			if (isActive)
 			{
-				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(30);
-				AudioManager::GetInstance()->setAudioOn(true);
+				AudioManager::GetInstance()->setBGM(true);
+				AudioManager::GetInstance()->setBGMOn(true);
 			}
 		}
 		if (iType == NOBGM)
@@ -101,8 +101,26 @@ void Button::MouseClick(int x, int y, bool isPressed)
 			isActive = !isActive;
 			if (isActive)
 			{
-				AudioManager::GetInstance()->GetAudioById(0)->SetVolume(0);
-				AudioManager::GetInstance()->setAudioOn(false);
+				AudioManager::GetInstance()->setBGM(false);
+				AudioManager::GetInstance()->setBGMOn(false);
+			}
+		}
+		if (iType == SFX)
+		{
+			isActive = !isActive;
+			if (isActive)
+			{
+				AudioManager::GetInstance()->setSFX(true);
+				AudioManager::GetInstance()->setSFXOn(true);
+			}
+		}
+		if (iType == NOSFX)
+		{
+			isActive = !isActive;
+			if (isActive)
+			{
+				AudioManager::GetInstance()->setSFX(false);
+				AudioManager::GetInstance()->setSFXOn(false);
 			}
 		}
 		if (iType == BACK)
@@ -217,6 +235,14 @@ void Button::MouseMove(int x, int y)
 		{
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
 		}
+		if (iType == SFX)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(50));
+		}
+		if (iType == NOSFX)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
+		}
 		if (iType == BACK)
 		{
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(52));
@@ -279,6 +305,14 @@ void Button::MouseMove(int x, int y)
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
 		}
 		if (iType == NOBGM)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+		}
+		if (iType == SFX)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+		}
+		if (iType == NOSFX)
 		{
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 		}

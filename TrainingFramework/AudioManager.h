@@ -9,7 +9,8 @@ private:
 	int iNumOfMusic;
 	AudioManager();
 	~AudioManager();
-	bool isMusicOn;
+	bool isSFXOn;
+	bool isBGMOn;
 public:
 	static void CreateInstance()
 	{
@@ -31,6 +32,10 @@ public:
 		}
 	};
 	Audio* GetAudioById(int id);
-	void setAudioOn(bool isMusicOn);
-	bool getAudioStatus();
+	void setSFXOn(bool isSFXOn);
+	bool getSFXStatus();
+	void setBGMOn(bool isBGMOn);
+	bool getBGMStatus();
+	void setBGM(bool isOn);
+	void setSFX(bool isOn);
 };

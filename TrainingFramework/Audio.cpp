@@ -1,12 +1,21 @@
 #include "stdafx.h"
 #include "Audio.h"
 
-Audio::Audio(char* file, int isLoop)
+Audio::Audio(char* file, int isLoop, int sfxNoti)
 {
+	volume = 30;
 	music.openFromFile(file);
 	if (isLoop == 1)
 	{
 		music.setLoop(true);
+	}
+	if (sfxNoti == 1)
+	{
+		isSfx = true;
+	}
+	else
+	{
+		isSfx = false;
 	}
 }
 
@@ -14,7 +23,7 @@ Audio::~Audio() {}
 
 void Audio::PlayMusic()
 {
-	music.setVolume(30);
+	music.setVolume(volume);
 	music.play();
 }
 
@@ -26,4 +35,10 @@ void Audio::StopMusic()
 void Audio::SetVolume(float volume)
 {
 	music.setVolume(volume);
+	this->volume = volume;
+}
+
+bool Audio::GetIsSfx()
+{
+	return isSfx;
 }
