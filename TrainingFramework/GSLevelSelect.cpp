@@ -4,7 +4,7 @@
 
 GSLevelSelect::GSLevelSelect()
 {
-	Init("../TrainingFramework/GSLevelSelect.txt", "GSLevelSelect", StateType::STATE_LEVEL_SELECT);
+	Init("../TrainingFramework/GSLevelSelect.txt", StateType::STATE_LEVEL_SELECT);
 	Vector3 levelPos = Vector3(200.0f, 180.0f, 0.0f);
 	Vector3 levelRotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 levelScale = Vector3(150.0f, 150.0f, 1.0f);
@@ -47,19 +47,16 @@ void GSLevelSelect::Exit()
 		delete pButtons[i];
 	}
 	delete pButtons;
-	printf("GSLevelSelect exit\n");
 }
 
 void GSLevelSelect::Pause()
 {
-	printf("GSLevelSelect pause\n");
 	// NOTE: blank
 }
 
 void GSLevelSelect::Resume()
 {
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
-	printf("GSLevelSelect resume\n");
 	// NOTE: blank
 }
 
@@ -96,7 +93,6 @@ void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 			pButtons[i]->MouseClick(x, y, &iCurrentPage, iSumPage);
 		}
 		UpdateLevel();
-		printf("%d\n", iCurrentPage);
 	}
 }
 

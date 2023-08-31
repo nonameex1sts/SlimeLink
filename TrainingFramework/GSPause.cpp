@@ -3,12 +3,12 @@
 
 GSPause::GSPause()
 {
-	Init("../TrainingFramework/GSPause.txt", "GSPause", StateType::STATE_PAUSE);
+	Init("../TrainingFramework/GSPause.txt", StateType::STATE_PAUSE);
 }
 
 GSPause::~GSPause()
 {
-	Exit("GSPause");
+	Exit();
 }
 
 void GSPause::Pause()

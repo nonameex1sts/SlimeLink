@@ -30,8 +30,8 @@ protected:
 public:
 	GameStateBase();
 	virtual ~GameStateBase();
-	virtual void Init(char* file, char* name, StateType e_type);
-	virtual void Exit(char* name);
+	virtual void Init(char* file, StateType e_type);
+	virtual void Exit();
 	virtual void Pause();
 	virtual void Resume();
 	virtual void Update(GLfloat deltatime);

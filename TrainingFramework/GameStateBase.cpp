@@ -15,7 +15,7 @@ GameStateBase::~GameStateBase()
 {
 }
 
-void GameStateBase::Init(char* file, char* name, StateType e_type)
+void GameStateBase::Init(char* file, StateType e_type)
 {
 	FILE* filePointer = fopen(file, "r");
 	// NOTE: read camera
@@ -66,11 +66,9 @@ void GameStateBase::Init(char* file, char* name, StateType e_type)
 	fclose(filePointer);
 
 	this->e_type = e_type;
-
-	printf("%s Init\n", name);
 }
 
-void GameStateBase::Exit(char* name)
+void GameStateBase::Exit()
 {
 	// NOTE: Delete camera
 	delete pCamera;
@@ -84,7 +82,6 @@ void GameStateBase::Exit(char* name)
 	}
 	delete pButtons;
 	// NOTE: Delete picture
-	printf("%s Exit\n", name);
 }
 
 void GameStateBase::Pause()

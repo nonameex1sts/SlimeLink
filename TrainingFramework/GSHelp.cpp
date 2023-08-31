@@ -3,12 +3,12 @@
 
 GSHelp::GSHelp()
 {
-	Init("../TrainingFramework/GSHelp.txt", "GSHelp", StateType::STATE_HELP);
+	Init("../TrainingFramework/GSHelp.txt", StateType::STATE_HELP);
 }
 
 GSHelp::~GSHelp()
 {
-	Exit("GSHelp");
+	Exit();
 }
 
 void GSHelp::Pause()
@@ -40,7 +40,6 @@ void GSHelp::MouseClick(int x, int y, bool isPressed)
 		{
 			pButtons[i]->MouseClick(x, y, &iCurrentPic, iHelpPic);
 		}
-		printf("%d\n", iCurrentPic);
 	}
 }
 

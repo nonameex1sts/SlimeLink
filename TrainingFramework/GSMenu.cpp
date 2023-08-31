@@ -6,25 +6,23 @@
 
 GSMenu::GSMenu()
 {
-	Init("../TrainingFramework/GSMenu.txt", "GSMenu", StateType::STATE_MENU);
+	Init("../TrainingFramework/GSMenu.txt", StateType::STATE_MENU);
 }
 
 GSMenu::~GSMenu()
 {
-	Exit("GSMenu");
+	Exit();
 }
 
 void GSMenu::Pause()
 {
 	// NOTE: blank
-	printf("GSMenu pause\n");
 }
 
 void GSMenu::Resume()
 {
 	// NOTE: blank
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
-	printf("GSMenu resume\n");
 }
 
 void GSMenu::Update(GLfloat deltatime)

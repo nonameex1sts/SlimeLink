@@ -3,12 +3,12 @@
 
 GSCredit::GSCredit()
 {
-	Init("../TrainingFramework/GSCredit.txt", "GSCredit", StateType::STATE_CREDIT);
+	Init("../TrainingFramework/GSCredit.txt", StateType::STATE_CREDIT);
 }
 
 GSCredit::~GSCredit()
 {
-	Exit("GSCredit");
+	Exit();
 }
 
 void GSCredit::Pause()

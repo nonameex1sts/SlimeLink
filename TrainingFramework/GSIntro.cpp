@@ -18,7 +18,6 @@ void GSIntro::Init()
 {
 	// NOTE: Load image
 	ResourceManager::CreateInstance();
-	printf("GSIntro init\n");
 }
 
 void GSIntro::Exit()
@@ -26,12 +25,10 @@ void GSIntro::Exit()
 	// NOTE: Delete image
 
 	ResourceManager::DestroyInstance();
-	printf("GSIntro exit\n");
 }
 
 void GSIntro::Pause()
 {
-	printf("GSIntro pause\n");
 	// NOTE: blank
 }
 

@@ -8,7 +8,6 @@
 GSPlay::GSPlay(int ilevelNumber)
 {
 	AudioManager::GetInstance()->GetAudioById(0)->StopMusic();
-	printf("GSPlay init\n");
 	this->ilevelNumber = ilevelNumber;
 	ReadButton();
 	// Load level with the coresponding number
@@ -106,7 +105,6 @@ void GSPlay::Exit()
 		delete pPictures[i];
 	}
 	delete pPictures;
-	printf("GSPlay exit\n");
 	SceneManager::DestroyInstance();
 }
 
@@ -116,7 +114,6 @@ void GSPlay::Pause()
 
 void GSPlay::Resume()
 {
-	printf("GSPlay Resume\n");
 }
 
 void GSPlay::Update(GLfloat deltaTime)
