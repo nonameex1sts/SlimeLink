@@ -5,6 +5,7 @@
 #include "Shaders.h"
 #include "Camera.h"
 #include "Player.h"
+#include "AudioManager.h"
 
 Player::Player(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, 
 	GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime, bool isActive)
@@ -69,6 +70,7 @@ void Player::Key(unsigned char keyPressed, bool* hasMoved)
 			isMoving = true;
 			nextPosition = position + deltaPosition;
 			*hasMoved = true;
+			AudioManager::GetInstance()->GetAudioById(3)->PlayMusic();
 		}
 		if ((keyPressed & (1 << 1)) && canMoveUp)
 		{
@@ -76,6 +78,7 @@ void Player::Key(unsigned char keyPressed, bool* hasMoved)
 			isMoving = true;
 			nextPosition = position + deltaPosition;
 			*hasMoved = true;
+			AudioManager::GetInstance()->GetAudioById(3)->PlayMusic();
 		}
 		if ((keyPressed & (1 << 2)) && canMoveRight)
 		{
@@ -83,6 +86,7 @@ void Player::Key(unsigned char keyPressed, bool* hasMoved)
 			isMoving = true;
 			nextPosition = position + deltaPosition;
 			*hasMoved = true;
+			AudioManager::GetInstance()->GetAudioById(3)->PlayMusic();
 		}
 		if ((keyPressed & (1 << 3)) && canMoveDown)
 		{
@@ -90,6 +94,7 @@ void Player::Key(unsigned char keyPressed, bool* hasMoved)
 			isMoving = true;
 			nextPosition = position + deltaPosition;
 			*hasMoved = true;
+			AudioManager::GetInstance()->GetAudioById(3)->PlayMusic();
 		}
 	}
 }

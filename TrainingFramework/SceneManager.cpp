@@ -3,6 +3,7 @@
 #include "ResourceManager.h"
 #include <string>
 #include <cmath>
+#include "AudioManager.h"
 
 SceneManager* SceneManager::ms_pInstance = nullptr;
 
@@ -316,7 +317,8 @@ void SceneManager::SpawnPlayer()
 				iNumPlayer += iNumSpawn;
 
 				pPlayer[j]->SetDrawnStatus(false);
-
+				//Spawn audio
+				AudioManager::GetInstance()->GetAudioById(4)->PlayMusic();
 				//Disable spawn square
 				for (int k = 0; k < iWidth * iHeight; k++)
 				{
