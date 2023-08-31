@@ -270,7 +270,7 @@ void SceneManager::SetPlayerMovement()
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
-			else if (p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 1)
+			else if (p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 1 || p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 2)
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
@@ -279,7 +279,7 @@ void SceneManager::SetPlayerMovement()
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
-			else if (p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 1)
+			else if (p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 1 || p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 3)
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}

@@ -6,7 +6,8 @@
 GSIntro::GSIntro()
 {
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
-	Init();
+	ResourceManager::CreateInstance();
+	Init("../TrainingFramework/GSIntro.txt", StateType::STATE_INTRO);
 }
 
 GSIntro::~GSIntro()
@@ -14,15 +15,10 @@ GSIntro::~GSIntro()
 	Exit();
 }
 
-void GSIntro::Init() 
-{
-	// NOTE: Load image
-	ResourceManager::CreateInstance();
-}
-
 void GSIntro::Exit()
 {
 	// NOTE: Delete image
+	GameStateBase::Exit();
 
 	ResourceManager::DestroyInstance();
 }
@@ -62,9 +58,4 @@ void GSIntro::MouseClick(int x, int y, bool isPressed)
 void GSIntro::MouseMove(int x, int y)
 {
 	// NOTE: blank
-}
-
-void GSIntro::Draw()
-{
-	// NOTE: Draw intro
 }

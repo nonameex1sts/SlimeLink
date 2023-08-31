@@ -141,6 +141,17 @@ void GSPlay::Update(GLfloat deltaTime)
 			}
 		}
 
+		if(ilevelNumber == NUM_OF_LEVELS)
+		{
+			for (int i = 0; i < inumButtons; i++)
+			{
+				if (pButtons[i]->getType() == NEXT_LEVEL)
+				{
+					pButtons[i]->setActive(false);
+				}
+			}
+		}
+
 		//Active all picture
 		for (int i = 0; i < inumPics - iNumOfStarNotActive; i++)
 		{
@@ -202,7 +213,10 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
-			pButtons[i]->MouseClickReset(x, y, ilevelNumber);
+			if (pButtons[i]->getActive()) 
+			{
+				pButtons[i]->MouseClickReset(x, y, ilevelNumber);
+			}
 		}
 	}
 }
