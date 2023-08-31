@@ -21,5 +21,6 @@ public:
 	void Move();
 	void Rotate();
 	bool getActive();
+	void setActive(bool status);
 	~Picture();
 };

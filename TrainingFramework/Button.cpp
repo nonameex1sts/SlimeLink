@@ -124,6 +124,15 @@ void Button::MouseClickReset(int x, int y, int iLevel)
 		else if (iType == PAUSE) {
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
 		}
+		else if (iType == PAUSE_TO_SELECT)
+		{	
+			GameStateMachine::GetInstance()->PopState(StateType::STATE_LEVEL_SELECT);
+		}
+		else if (iType == NEXT_LEVEL)
+		{
+			GameStateMachine::GetInstance()->PopState();
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel + 1);
+		}
 	}
 }
 
@@ -228,6 +237,10 @@ void Button::MouseMove(int x, int y)
 		{
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(56));
 		}
+		if (iType == NEXT_LEVEL)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(78));
+		}
 	}
 	else
 	{
@@ -288,6 +301,10 @@ void Button::MouseMove(int x, int y)
 		if (iType == RESET)
 		{
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(27));
+		}
+		if (iType == NEXT_LEVEL)
+		{
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(77));
 		}
 	}
 }
