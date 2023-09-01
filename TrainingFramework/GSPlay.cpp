@@ -13,6 +13,7 @@ GSPlay::GSPlay(int ilevelNumber)
 	// Load level with the coresponding number
 	Init(ilevelNumber);
 
+	//Generate star number on trophy based on star of the level
 	int* iStar = SceneManager::GetInstance()->GetStarIndex();
 	pPictures[1]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] / 10 + 33));
 	pPictures[2]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] % 10 + 33));
@@ -66,6 +67,7 @@ void GSPlay::ReadButton()
 			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType, isActive);
 	}
 
+	// NOTE: read picture
 	fscanf(filePointer, "#Pictures: %d\n", &inumPics);
 	pPictures = new Picture * [inumPics];
 	for (int i = 0; i < inumPics; i++)
@@ -101,6 +103,7 @@ void GSPlay::Exit()
 	}
 	delete pButtons;
 
+	// NOTE: Delete picture
 	for (int i = 0; i < inumPics; i++) {
 		delete pPictures[i];
 	}
@@ -124,6 +127,7 @@ void GSPlay::Update(GLfloat deltaTime)
 		fcheckKeyTime += FRAME_TIME;
 	}
 
+	//If the game has ended
 	if (SceneManager::GetInstance()->GetEndedStatus()) {
 
 		int iNumOfStarNotActive = 3 - SceneManager::GetInstance()->GetNumberOfStar();
@@ -141,6 +145,7 @@ void GSPlay::Update(GLfloat deltaTime)
 			}
 		}
 
+		//Deactivate Next Level button if this is the last level
 		if(ilevelNumber == NUM_OF_LEVELS)
 		{
 			for (int i = 0; i < inumButtons; i++)
@@ -152,7 +157,7 @@ void GSPlay::Update(GLfloat deltaTime)
 			}
 		}
 
-		//Active all picture
+		//Activate all picture
 		for (int i = 0; i < inumPics - iNumOfStarNotActive; i++)
 		{
 			pPictures[i]->setActive(true);
@@ -202,10 +207,12 @@ void GSPlay::Key(int iKeyPressed)
 		fcheckKeyTime = 0.0f;
 	}
 
+	//Set the picture of number of moves based on number of moves in SceneManager
 	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 33));
 	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 33));
 	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 33));
 
+	//When a star is lost, convert that picture to gray
 	int iNumOfStarLost = 3 - SceneManager::GetInstance()->GetNumberOfStar();
 	for (int i = 6; i > 6 - 3 * iNumOfStarLost; i -= 3) 
 	{
@@ -229,7 +236,9 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 		}
 	}
 
+	//If the reset button is pressed after the game has ended
 	if (*isReset) {
+		//Reset set all number picture
 		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
@@ -237,6 +246,25 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 		for (int i = 6; i >= 0; i -= 3)
 		{
 			pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
+		}
+
+		//Activate Pause, Reset and deactivate other buttons
+		for (int i = 0; i < inumButtons; i++)
+		{
+			if (pButtons[i]->getType() == PAUSE || pButtons[i]->getType() == RESET)
+			{
+				pButtons[i]->setActive(true);
+			}
+			else
+			{
+				pButtons[i]->setActive(false);
+			}
+		}
+
+		//Deactivate game ending picture
+		for (int i = 13; i < inumPics; i++)
+		{
+			pPictures[i]->setActive(false);
 		}
 	}
 
