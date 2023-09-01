@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 87
+#2D Textures: 92
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -177,6 +177,16 @@ ID 85
 FILE ../Resources/Textures/Candle.png
 ID 86
 FILE ../Resources/Textures/Trophy_gray.png
+ID 87
+FILE ../Resources/Textures/sleepslime.png
+ID 88
+FILE ../Resources/Textures/Down_left_edge.png
+ID 89
+FILE ../Resources/Textures/Down_right_edge.png
+ID 90
+FILE ../Resources/Textures/Up_left_edge.png
+ID 91
+FILE ../Resources/Textures/Up_right_edge.png
 
 #Shaders: 2
 ID 0

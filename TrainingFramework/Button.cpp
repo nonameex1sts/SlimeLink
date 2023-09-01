@@ -10,6 +10,7 @@ Button::Button(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShad
 	: Object(pModel, pTexture, pCamera, pShader, position, rotation, scale)
 {
 	this->iType = iType;
+	//Active to know when we init it, it show the button or not
 	if (isActive == 1)
 	{
 		this->isActive = true;
@@ -58,103 +59,90 @@ void Button::MouseClick(int x, int y, bool isPressed)
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2)) 
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
-		if (iType == LEVEL_SELECT)
+		switch (iType)
 		{
+		case LEVEL_SELECT:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_LEVEL_SELECT, 1);
-		}
-		if (iType == HELP)
-		{
+			break;
+		case HELP:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_HELP, 1);
-		}
-		if (iType == CREDIT)
-		{
+			break;
+		case CREDIT:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_CREDIT, 1);
-		}
-		if (iType == RESUME)
-		{
+			break;
+		case RESUME:
 			GameStateMachine::GetInstance()->PopState();
-		}
-		if (iType == MENU)
-		{
-			// BUGFIX: Stop when its menu 
+			break;
+		case MENU:
 			AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
 			GameStateMachine::GetInstance()->PopState(StateType::STATE_MENU);
-		}
-		if (iType == PAUSE_TO_SELECT)
-		{
-			// BUGFIX: Stop when its pause to select state
+			break;
+		case PAUSE_TO_SELECT:
 			GameStateMachine::GetInstance()->PopState(StateType::STATE_LEVEL_SELECT);
-		}
-		if (iType == EXIT)
-		{
+			break;
+		case EXIT:
 			exit(1);
-		}
-		if (iType == BGM)
-		{
+			break;
+		case BACK:
+			GameStateMachine::GetInstance()->PopState();
+			break;
+		case BGM:
 			isActive = !isActive;
 			if (isActive)
 			{
 				AudioManager::GetInstance()->setBGM(true);
 				AudioManager::GetInstance()->setBGMOn(true);
 			}
-		}
-		if (iType == NOBGM)
-		{
+		case NOBGM:
 			isActive = !isActive;
 			if (isActive)
 			{
 				AudioManager::GetInstance()->setBGM(false);
 				AudioManager::GetInstance()->setBGMOn(false);
 			}
-		}
-		if (iType == SFX)
-		{
+			break;
+		case SFX:
 			isActive = !isActive;
 			if (isActive)
 			{
 				AudioManager::GetInstance()->setSFX(true);
 				AudioManager::GetInstance()->setSFXOn(true);
 			}
-		}
-		if (iType == NOSFX)
-		{
+		case NOSFX:
 			isActive = !isActive;
 			if (isActive)
 			{
 				AudioManager::GetInstance()->setSFX(false);
 				AudioManager::GetInstance()->setSFXOn(false);
 			}
-		}
-		if (iType == BACK)
-		{
-			GameStateMachine::GetInstance()->PopState();
+			break;
 		}
 	}
 }
 
+// This is for reset
 void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
-		if (iType == RESET) 
+		switch (iType)
 		{
+		case RESET:
 			SceneManager::DestroyInstance();
 			SceneManager::CreateInstance(iLevel);
 			*isReset = true;
-		}
-		else if (iType == PAUSE) 
-		{
+			break;
+		case PAUSE:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
-		}
-		else if (iType == PAUSE_TO_SELECT)
-		{	
+			break;
+		case PAUSE_TO_SELECT:
 			GameStateMachine::GetInstance()->PopState(StateType::STATE_LEVEL_SELECT);
-		}
-		else if (iType == NEXT_LEVEL)
-		{
+			break;
+		case NEXT_LEVEL:
 			GameStateMachine::GetInstance()->PopState();
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel + 1);
+			break;
 		}
 	}
 }
@@ -167,13 +155,13 @@ void Button::MouseClick(int x, int y, int* index, int sum)
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
-		if (iType == BACK)
+		switch (iType)
 		{
+		case BACK:
 			GameStateMachine::GetInstance()->PopState();
-		}
-		if (iType == PREV_PAGE)
-		{
-			if ((*index) == 0) 
+			break;
+		case PREV_PAGE:
+			if ((*index) == 0)
 			{
 				(*index) = sum - 1;
 			}
@@ -181,169 +169,136 @@ void Button::MouseClick(int x, int y, int* index, int sum)
 			{
 				(*index)--;
 			}
-			printf("prev click\n");
-		}
-		if (iType == NEXT_PAGE)
-		{
+			break;
+		case NEXT_PAGE:
 			if ((*index) == sum - 1)
 			{
 				(*index) = 0;
 			}
-			else 
+			else
 			{
 				(*index)++;
 			}
-			printf("next click\n");
+			break;
 		}
 	}
 }
 
+// This is for the on and off button effect when the mouse hover in
 void Button::MouseMove(int x, int y)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
-		if (iType == LEVEL_SELECT)
+		switch (iType)
 		{
+		case LEVEL_SELECT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(45));
-		}
-		if (iType == HELP)
-		{
+			break;
+		case HELP:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(48));
-		}
-		if (iType == CREDIT)
-		{
+			break;
+		case CREDIT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(49));
-		}
-		if (iType == RESUME)
-		{
+			break;
+		case RESUME:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(58));
-		}
-		if (iType == MENU)
-		{
-			// BUGFIX: Stop when its menu 
+			break;
+		case MENU:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(57));
-		}
-		if (iType == PAUSE_TO_SELECT)
-		{
-			// BUGFIX: Stop when its pause to select state
+			break;
+		case PAUSE_TO_SELECT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(47));
-		}
-		if (iType == EXIT)
-		{
+			break;
+		case EXIT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(46));
-		}
-		if (iType == BGM)
-		{
+			break;
+		case BGM:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(50));
-		}
-		if (iType == NOBGM)
-		{
+			break;
+		case NOBGM:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
-		}
-		if (iType == SFX)
-		{
+			break;
+		case SFX:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(81));
-		}
-		if (iType == NOSFX)
-		{
+			break;
+		case NOSFX:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(84));
-		}
-		if (iType == BACK)
-		{
+			break;
+		case BACK:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(52));
-		}
-		if (iType == PREV_PAGE)
-		{
+			break;
+		case PREV_PAGE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(53));
-		}
-		if (iType == NEXT_PAGE)
-		{
+			break;
+		case NEXT_PAGE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(54));
-		}
-		if (iType == PAUSE)
-		{
+			break;
+		case PAUSE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(55));
-		}
-		if (iType == RESET)
-		{
+			break;
+		case RESET:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(56));
-		}
-		if (iType == NEXT_LEVEL)
-		{
+			break;
+		case NEXT_LEVEL:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(78));
+			break;
 		}
 	}
 	else
 	{
-		if (iType == LEVEL_SELECT)
+		switch (iType)
 		{
+		case LEVEL_SELECT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(5));
-		}
-		if (iType == HELP)
-		{
+			break;
+		case HELP:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(14));
-		}
-		if (iType == CREDIT)
-		{
+			break;
+		case CREDIT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(15));
-		}
-		if (iType == RESUME)
-		{
+			break;
+		case RESUME:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(30));
-		}
-		if (iType == MENU)
-		{
-			// BUGFIX: Stop when its menu 
+			break;
+		case MENU:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(29));
-		}
-		if (iType == PAUSE_TO_SELECT)
-		{
-			// BUGFIX: Stop when its pause to select state
+			break;
+		case PAUSE_TO_SELECT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(12));
-		}
-		if (iType == EXIT)
-		{
+			break;
+		case EXIT:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(4));
-		}
-		if (iType == BGM)
-		{
+			break;
+		case BGM:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
-		}
-		if (iType == NOBGM)
-		{
+			break;
+		case NOBGM:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
-		}
-		if (iType == SFX)
-		{
+			break;
+		case SFX:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(80));
-		}
-		if (iType == NOSFX)
-		{
+			break;
+		case NOSFX:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(83));
-		}
-		if (iType == BACK)
-		{
+			break;
+		case BACK:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(19));
-		}
-		if (iType == PREV_PAGE)
-		{
+			break;
+		case PREV_PAGE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(20));
-		}
-		if (iType == NEXT_PAGE)
-		{
+			break;
+		case NEXT_PAGE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(21));
-		}
-		if (iType == PAUSE)
-		{
+			break;
+		case PAUSE:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(26));
-		}
-		if (iType == RESET)
-		{
+			break;
+		case RESET:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(27));
-		}
-		if (iType == NEXT_LEVEL)
-		{
+			break;
+		case NEXT_LEVEL:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(77));
+			break;
 		}
 	}
 }

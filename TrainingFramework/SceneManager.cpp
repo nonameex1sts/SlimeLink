@@ -53,6 +53,23 @@ SceneManager::SceneManager(int ilevelNumber) {
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
 
+	/*
+		1. wall
+		2. blank
+		6, 7, 8, 9. corner
+		10. left wall
+		11. right wall
+		12. sleep player
+		13. obsticle
+		20. left wall with obsticle
+		21. right wall with obsticle
+		22. target
+		23. spawn
+		24. player with spawn
+		44. wake player
+		85. torch
+	*/
+
 	for (int i = 0; i < iWidth * iHeight; i++) {
 		int imapType;
 		fscanf(filePointer, "%d ", &imapType);
@@ -154,10 +171,58 @@ SceneManager::SceneManager(int ilevelNumber) {
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			//"Sleep" player
-			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(44), pCamera,
+			pPlayer[iPlayerCounter] = new Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(87), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 6, 1, 0, 0.1, false); // Sleep texture here
 
 			iPlayerCounter++;
+		}
+
+		if (imapType == 14)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 2;
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(88), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+		}
+
+		if (imapType == 15)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 3;
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(89), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+		}
+
+		if (imapType == 16)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 2;
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(90), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
+		}
+
+		if (imapType == 17)
+		{
+			p_imapType[i % iWidth][i / iWidth] = 3;
+			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(91), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			iHorizontalWallCounter++;
 		}
 
 		if (imapType == 20)
@@ -490,7 +555,7 @@ int SceneManager::GetNumberOfStar()
 	return 3;
 }
 
-//Draw floor -> players -> vertical walls
+//Draw floor -> players -> obsticle -> vertical walls
 void SceneManager::Draw()
 {
 	for (int i = 0; i < iWidth * iHeight; i++)

@@ -11,7 +11,8 @@ GSLevelSelect::GSLevelSelect()
 	Vector3 levelWidthEach = Vector3(450.0f, 0.0f, 0.0f);
 	Vector3 levelHeightEach = Vector3(0.0f, 350.0f, 0.0f);
 
-	pSelectLevel = new SelectLevelButton * [6];
+	// Create level select button
+	pSelectLevel = new SelectLevelButton * [iLevelPerPage];
 	for (int i = 0; i < iRowPerPage; i++)
 	{
 		for (int j = 0; j < (iLevelPerPage / iRowPerPage); j++)

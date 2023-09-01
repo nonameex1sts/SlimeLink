@@ -5,7 +5,6 @@
 class GSPause : public GameStateBase
 {
 private:
-	// Button (resume, help, level select, menu, music, sfx)
 public:
 	GSPause();
 	~GSPause();

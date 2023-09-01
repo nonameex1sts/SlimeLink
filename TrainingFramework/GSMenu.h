@@ -4,12 +4,12 @@
 #include "Button.h"
 #include "Picture.h"
 #include "AudioManager.h"
+#include "Animation.h"
 
 class GSMenu : public GameStateBase
 {
 private:
-	// Image
-	// Sound setting (SFX, Background music)
+	Animation *slime;
 public:
 	GSMenu();
 	~GSMenu();
@@ -19,4 +19,5 @@ public:
 	void Key(int keyPressed);
 	void MouseClick(int x, int y, bool isPressed);
 	void MouseMove(int x, int y);
+	void Draw();
 };

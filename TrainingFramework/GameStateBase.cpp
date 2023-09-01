@@ -108,6 +108,7 @@ void GameStateBase::MouseMove(int x, int y)
 {
 }
 
+// Draw pictures -> buttons
 void GameStateBase::Draw()
 {
 	for (int i = 0; i < inumPics; i++)
@@ -117,6 +118,7 @@ void GameStateBase::Draw()
 			pPictures[i]->Draw();
 		}
 	}
+	// BGM and SFX button switch to on and off
 	for (int i = 0; i < inumButtons; i++)
 	{
 		if (AudioManager::GetInstance()->getBGMStatus())

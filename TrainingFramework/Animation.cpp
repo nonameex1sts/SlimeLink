@@ -16,6 +16,7 @@ Animation::Animation(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders*
 	currentTime = 0;
 }
 
+// Updating frame with deltatime
 void Animation::Update(GLfloat deltatime)
 {
 	currentTime += deltatime;
@@ -65,6 +66,7 @@ void Animation::Draw()
 	//Calculate world_view_perspective matrix
 	glUniformMatrix4fv(pShader->GetWVPUniform(), 1, false, &CalculateWVP().m[0][0]);
 
+	//Animation attribute
 	iTempShaderVariableGLID = -1;
 	iTempShaderVariableGLID = pShader->GetUniformLocation((char*)"u_numFrames");
 	if (iTempShaderVariableGLID != -1)
@@ -104,11 +106,13 @@ void Animation::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
+//Chose action
 void Animation::SetCurrentAction(GLint currentAction)
 {
 	this->currentAction = currentAction;
 }
 
+//This use for frame syncing
 void Animation::SetCurrentFrame(GLint currentFrame)
 {
 	this->currentFrame = currentFrame;
