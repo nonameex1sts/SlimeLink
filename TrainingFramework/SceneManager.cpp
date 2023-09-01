@@ -179,7 +179,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 		if (imapType == 14)
 		{
-			p_imapType[i % iWidth][i / iWidth] = 2;
+			p_imapType[i % iWidth][i / iWidth] = 3;
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -191,7 +191,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 		if (imapType == 15)
 		{
-			p_imapType[i % iWidth][i / iWidth] = 3;
+			p_imapType[i % iWidth][i / iWidth] = 2;
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -203,7 +203,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 		if (imapType == 16)
 		{
-			p_imapType[i % iWidth][i / iWidth] = 2;
+			p_imapType[i % iWidth][i / iWidth] = 3;
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
@@ -215,7 +215,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 		if (imapType == 17)
 		{
-			p_imapType[i % iWidth][i / iWidth] = 3;
+			p_imapType[i % iWidth][i / iWidth] = 2;
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(0), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
