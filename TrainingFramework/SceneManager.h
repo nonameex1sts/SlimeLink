@@ -20,6 +20,7 @@ private:
 
 	Animation** pObstacles;
 
+	int iLevelNumber;
 	int iNumObstacle;
 	int iMainPlayer;
 	int iNumPlayer;
@@ -76,5 +77,6 @@ public:
 	int* GetStarIndex();
 	bool GetEndedStatus();
 	int GetNumberOfStar();
+	void WriteResult();
 	void Draw();
 };
