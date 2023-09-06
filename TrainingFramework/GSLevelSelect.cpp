@@ -5,11 +5,11 @@
 GSLevelSelect::GSLevelSelect()
 {
 	Init("../TrainingFramework/GSLevelSelect.txt", StateType::STATE_LEVEL_SELECT);
-	Vector3 levelPos = Vector3(200.0f, 180.0f, 0.0f);
+	Vector3 levelPos = Vector3(200.0f, 200.0f, 0.0f);
 	Vector3 levelRotation = Vector3(0.0f, 0.0f, 0.0f);
 	Vector3 levelScale = Vector3(150.0f, 150.0f, 1.0f);
 	Vector3 levelWidthEach = Vector3(450.0f, 0.0f, 0.0f);
-	Vector3 levelHeightEach = Vector3(0.0f, 350.0f, 0.0f);
+	Vector3 levelHeightEach = Vector3(0.0f, 320.0f, 0.0f);
 
 	Vector3 trophyOffset = Vector3(-50.0f, 100.0f, 0.0f);
 	Vector3 trophyWidthEach = Vector3(50.0f, 0.0f, 0.0f);
