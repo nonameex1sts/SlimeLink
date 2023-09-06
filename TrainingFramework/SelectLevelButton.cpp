@@ -21,7 +21,7 @@ void SelectLevelButton::MouseClick(int x, int y)
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
 		AudioManager::GetInstance()->GetAudioById(2)->PlayMusic();
-		if (iCurrentLevel <= 12)
+		if (iCurrentLevel <= 13)
 		{
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iCurrentLevel);
 		}
