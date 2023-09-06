@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Picture.h"
 #include "GameStateMachine.h"
+#include "Transition.h"
 
 Picture::Picture() {}
 
@@ -17,8 +18,17 @@ Picture::Picture(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pSh
 	}
 }
 
-void Picture::Update()
+void Picture::Update(Vector3 newPosition, float time)
 {
+	if (position.x != newPosition.x)
+	{
+		position += Vector3((newPosition.x - startPos.x) / time, (newPosition.y - startPos.y) / time, 0.0f);
+		InitWorldMatrix();
+	}
+	else {
+		startPos = newPosition;
+		Transition::GetInstance()->SetStatus(0);
+	}
 }
 
 

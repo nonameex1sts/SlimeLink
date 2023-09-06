@@ -117,6 +117,9 @@
     <ClCompile Include="Shaders.cpp">
       <Filter>Source Files\ProjectObject</Filter>
     </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Source Files\ProjectState</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -199,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="Shaders.h">
       <Filter>Source Files\ProjectObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Source Files\ProjectState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
