@@ -10,6 +10,8 @@ SceneManager* SceneManager::ms_pInstance = nullptr;
 SceneManager::SceneManager(int ilevelNumber) {
 	ResourceManager::CreateInstance();
 
+	this->iLevelNumber = ilevelNumber;
+
 	//Read map file
 	std::string link = "../Resources/Level/map" + std::to_string(ilevelNumber) + ".txt";
 	FILE* filePointer = fopen(link.c_str(), "r");
@@ -57,8 +59,10 @@ SceneManager::SceneManager(int ilevelNumber) {
 		1. wall
 		2. blank
 		6, 7, 8, 9. corner
+		14, 15, 16, 15 small conner
 		10. left wall
-		11. right wall
+		11. right wal
+		44. playerl
 		12. sleep player
 		13. obsticle
 		20. left wall with obsticle
@@ -520,10 +524,12 @@ void SceneManager::CheckWinCondition()
 		}
 	}
 
+	//If ending criteria are satisfied, stop the game, play ending music and write the resut to file
 	if (iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
 	{
 		hasEnded = true;
 		AudioManager::GetInstance()->GetAudioById(5)->PlayMusic();
+		WriteResult();
 	}
 }
 
@@ -553,6 +559,36 @@ int SceneManager::GetNumberOfStar()
 	}
 
 	return 3;
+}
+
+//Write the number of star of current level into a file
+void SceneManager::WriteResult()
+{
+	int* pointOfLevel = new int[NUM_OF_LEVELS + 1];
+
+	//Read point of every level and store into an array
+	FILE* readPoiter = fopen("../Resources/Level/Level.txt", "r");
+
+	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
+		fscanf(readPoiter, "%d\n", &pointOfLevel[i]);
+	}
+
+	fclose(readPoiter);
+
+	//Overwrite the score of the current level if the score is higher than the score from the file
+	int star = GetNumberOfStar();
+	pointOfLevel[iLevelNumber] = pointOfLevel[iLevelNumber] > star ? pointOfLevel[iLevelNumber] : star;
+
+	//Rewrite the file storing all the score after checking high score of current level
+	FILE* writePoiter = fopen("../Resources/Level/Level.txt", "w");
+
+	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
+		fprintf(writePoiter, "%d\n", pointOfLevel[i]);
+	}
+
+	fclose(writePoiter);
+
+	delete pointOfLevel;
 }
 
 //Draw floor -> players -> obsticle -> vertical walls

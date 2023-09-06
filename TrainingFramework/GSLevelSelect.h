@@ -12,10 +12,13 @@ class GSLevelSelect : public GameStateBase
 {
 private:
 	SelectLevelButton** pSelectLevel;
+	Picture** pTrophy;
 	int iLevelPerPage = 6;
 	int iRowPerPage = 2;
 	int iCurrentPage = 0;
 	int iSumPage = NUM_OF_LEVELS / iLevelPerPage;
+
+	int* pPointOfLevel;
 
 public:
 	GSLevelSelect();
