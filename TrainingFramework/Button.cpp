@@ -149,7 +149,6 @@ void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 
 void Button::MouseClickResetGame(int x, int y, int* typeButton)
 {
-
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
 	{
 		switch (iType)

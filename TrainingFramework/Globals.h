@@ -8,6 +8,8 @@
 # define KEY_MOVE_RIGHT			VK_RIGHT
 # define KEY_MOVE_FORWARD		VK_UP
 # define KEY_MOVE_BACKWARD		VK_DOWN
+# define KEY_RESET				'R'
+# define KEY_PAUSE				'P'
 
 # define SQUARE_SIZE			40.0f
 

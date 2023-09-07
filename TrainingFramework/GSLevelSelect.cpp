@@ -201,7 +201,12 @@ void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 	{
 		SetResetGameUI(false);
 
-		//If yes (reset game progress), inactivate all trophy
+		//If yes (reset game progress), reset point array and inactivate all trophy
+		for (int i = 0; i < NUM_OF_LEVELS + 1; i++)
+		{
+			pPointOfLevel[i] = 0;
+		}
+
 		for (int i = 0; i < 3 * iLevelPerPage; i++)
 		{
 			pTrophy[i]->setActive(false);
