@@ -225,13 +225,18 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 	bool* isReset = new bool;
 	*isReset = false;
 
-	if (isPressed && pButtons != nullptr)
+	if (isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
 			if (pButtons[i]->getActive())
 			{
 				pButtons[i]->MouseClickReset(x, y, ilevelNumber, isReset);
+			}
+
+			if (pButtons == nullptr)
+			{
+				break;
 			}
 		}
 	}

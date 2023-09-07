@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 92
+#2D Textures: 99
 ID 0
 FILE ../Resources/Textures/Floor.png
 ID 1
@@ -187,6 +187,20 @@ ID 90
 FILE ../Resources/Textures/Up_left_edge.png
 ID 91
 FILE ../Resources/Textures/Up_right_edge.png
+ID 92
+FILE ../Resources/Textures/Button/Reset_game_button.png
+ID 93
+FILE ../Resources/Textures/Button/Reset_game_button_pressed.png
+ID 94
+FILE ../Resources/Textures/Button/Yes_button.png
+ID 95
+FILE ../Resources/Textures/Button/Yes_button_pressed.png
+ID 96
+FILE ../Resources/Textures/Button/No_button.png
+ID 97
+FILE ../Resources/Textures/Button/No_button_pressed.png
+ID 98
+FILE ../Resources/Textures/Reset_progress.png
 
 #Shaders: 2
 ID 0

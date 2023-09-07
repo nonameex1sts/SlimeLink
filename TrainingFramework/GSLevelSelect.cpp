@@ -151,6 +151,9 @@ void GSLevelSelect::UpdateLevel()
 
 void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 {
+	int* typeButton = new int;
+	*typeButton = 0;
+
 	// NOTE: check all button if it got click or not
 	if (isPressed && pButtons != nullptr && pSelectLevel != nullptr)
 	{
@@ -158,11 +161,79 @@ void GSLevelSelect::MouseClick(int x, int y, bool isPressed)
 		{
 			pSelectLevel[i]->MouseClick(x, y);
 		}
-		for (int i = 0; i < inumButtons; i++)
+
+		//Reset game, yes and no button
+		for (int i = inumButtons - 3; i < inumButtons; i++)
+		{
+			if (pButtons == nullptr)
+			{
+				break;
+			}
+
+			if (pButtons[i]->getActive())
+			{
+				pButtons[i]->MouseClickResetGame(x, y, typeButton);
+			}
+		}
+
+		//Back, next and prev button
+		for (int i = 0; i < inumButtons - 3; i++)
 		{
 			pButtons[i]->MouseClick(x, y, &iCurrentPage, iSumPage);
+
+			if (pButtons == nullptr) 
+			{
+				break;
+			}
 		}
+
 		UpdateLevel();
+	}
+
+	// 1. Reset game is pressed
+	// 2. Yes is pressed
+	// 3. No is pressed
+	if(*typeButton == 1)
+	{
+		SetResetGameUI(true);
+	}
+	else if (*typeButton == 2)
+	{
+		SetResetGameUI(false);
+
+		//If yes (reset game progress), inactivate all trophy
+		for (int i = 0; i < 3 * iLevelPerPage; i++)
+		{
+			pTrophy[i]->setActive(false);
+		}
+	}
+	else if (*typeButton == 3)
+	{
+		SetResetGameUI(false);
+	}
+
+	delete typeButton;
+}
+
+void GSLevelSelect::SetResetGameUI(bool status)
+{
+	//Set buttons
+	for (int i = 0; i < inumButtons; i++)
+	{
+		if (pButtons[i]->getType() == YES || pButtons[i]->getType() == NO)
+		{
+			pButtons[i]->setActive(status);
+		}
+		else
+		{
+			pButtons[i]->setActive(!status);
+		}
+	}
+
+	//Set pictures
+	for (int i = inumPics - 2; i < inumPics; i++)
+	{
+		pPictures[i]->setActive(status);
 	}
 }
 
@@ -176,7 +247,8 @@ void GSLevelSelect::MouseMove(int x, int y)
 
 void GSLevelSelect::Draw()
 {
-	for (int i = 0; i < inumPics; i++)
+	//Draw before opacity
+	for (int i = 0; i < inumPics - 2; i++)
 	{
 		if (pPictures[i]->getActive())
 		{
@@ -191,7 +263,7 @@ void GSLevelSelect::Draw()
 		}
 	}
 
-	for (int i = 0; i < inumButtons; i++)
+	for (int i = 0; i < inumButtons - 2; i++)
 	{
 		if (pButtons[i]->getActive())
 		{
@@ -204,6 +276,23 @@ void GSLevelSelect::Draw()
 		if (pTrophy[i]->getActive()) 
 		{
 			pTrophy[i]->Draw();
+		}
+	}
+
+	//Draw after opacity
+	for (int i = inumPics - 2; i < inumPics; i++)
+	{
+		if (pPictures[i]->getActive())
+		{
+			pPictures[i]->Draw();
+		}
+	}
+
+	for (int i = inumButtons - 2; i < inumButtons; i++)
+	{
+		if (pButtons[i]->getActive())
+		{
+			pButtons[i]->Draw();
 		}
 	}
 }

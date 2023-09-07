@@ -147,6 +147,39 @@ void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 	}
 }
 
+void Button::MouseClickResetGame(int x, int y, int* typeButton)
+{
+
+	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
+	{
+		switch (iType)
+		{
+		case RESET_GAME:
+			*typeButton = 1;
+			break;
+		case YES:
+			ResetGame();
+
+			*typeButton = 2;
+			break;
+		case NO:
+			*typeButton = 3;
+			break;
+		}
+	}
+}
+
+void Button::ResetGame()
+{
+	FILE* writePoiter = fopen("../Resources/Level/Level.txt", "w");
+
+	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
+		fprintf(writePoiter, "%d\n", 0);
+	}
+
+	fclose(writePoiter);
+}
+
 // This is for the prev page and next page button
 // index is for what page is it, and sum is for how many pages there is on that state
 void Button::MouseClick(int x, int y, int* index, int sum)
@@ -242,6 +275,15 @@ void Button::MouseMove(int x, int y)
 		case NEXT_LEVEL:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(78));
 			break;
+		case RESET_GAME:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(93));
+			break;
+		case YES:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(95));
+			break;
+		case NO:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(97));
+			break;
 		}
 	}
 	else
@@ -298,6 +340,15 @@ void Button::MouseMove(int x, int y)
 			break;
 		case NEXT_LEVEL:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(77));
+			break;
+		case RESET_GAME:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(92));
+			break;
+		case YES:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(94));
+			break;
+		case NO:
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(96));
 			break;
 		}
 	}

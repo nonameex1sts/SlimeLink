@@ -25,6 +25,9 @@
 #define NEXT_LEVEL		15
 #define SFX				16
 #define NOSFX			17
+#define RESET_GAME		18
+#define YES				19
+#define	NO				20
 
 class Button : public Object {
 private:
@@ -39,6 +42,8 @@ public:
 	void MouseClick(int x, int y, bool isPressed);
 	void MouseClick(int x, int y, int *index, int sumPicture);
 	void MouseClickReset(int x, int y, int iLevel, bool *isReset);
+	void MouseClickResetGame(int x, int y, int* typeButton);
+	void ResetGame();
 	void MouseMove(int x, int y);
 	void Move();
 	void Rotate();
