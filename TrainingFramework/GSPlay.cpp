@@ -15,14 +15,14 @@ GSPlay::GSPlay(int ilevelNumber)
 
 	//Generate star number on trophy based on star of the level
 	int* iStar = SceneManager::GetInstance()->GetStarIndex();
-	pPictures[1]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] / 10 + 33));
-	pPictures[2]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] % 10 + 33));
+	pPictures[1]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] / 10 + 17));
+	pPictures[2]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] % 10 + 17));
 
-	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] / 10 + 33));
-	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] % 10 + 33));
+	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] / 10 + 17));
+	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] % 10 + 17));
 
-	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] / 10 + 33));
-	pPictures[8]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] % 10 + 33));
+	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] / 10 + 17));
+	pPictures[8]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] % 10 + 17));
 }
 
 GSPlay::~GSPlay()
@@ -215,15 +215,15 @@ void GSPlay::Key(int iKeyPressed)
 	}
 
 	//Set the picture of number of moves based on number of moves in SceneManager
-	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 33));
-	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 33));
-	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 33));
+	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 17));
+	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 17));
+	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 17));
 
 	//When a star is lost, convert that picture to gray
 	int iNumOfStarLost = 3 - SceneManager::GetInstance()->GetNumberOfStar();
 	for (int i = 6; i > 6 - 3 * iNumOfStarLost; i -= 3) 
 	{
-		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(86));
+		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(91));
 	}
 }
 
@@ -250,15 +250,15 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 
 	//If the reset button is pressed after the game has ended
 	if (*isReset) {
-	//Reset set all number picture
-	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
-	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
-	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+		//Reset set all number picture
+		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 
-	for (int i = 6; i >= 0; i -= 3)
-	{
-		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
-	}
+		for (int i = 6; i >= 0; i -= 3)
+		{
+			pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+		}
 
 	//Activate Pause, Reset and deactivate other buttons
 	for (int i = 0; i < inumButtons; i++)

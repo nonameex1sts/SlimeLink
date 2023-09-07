@@ -26,7 +26,7 @@ GSLevelSelect::GSLevelSelect()
 			pSelectLevel[i * 3 + j]->SetCurrentLevel(i * 3 + j + 1);
 
 			for (int k = 0; k < 3; k++) {
-				pTrophy[3 * (i * 3 + j) + k] = new Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(43), pCamera,
+				pTrophy[3 * (i * 3 + j) + k] = new Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(16), pCamera,
 					ResourceManager::GetInstance()->GetShaderById(0), levelPos + levelHeightEach * i + levelWidthEach * j + trophyOffset + trophyWidthEach * k, levelRotation, levelScale / 3.0f, 0);
 			}
 		}
