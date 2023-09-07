@@ -252,10 +252,10 @@ void Button::MouseMove(int x, int y)
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(51));
 			break;
 		case SFX:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(81));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(80));
 			break;
 		case NOSFX:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(84));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(82));
 			break;
 		case BACK:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(52));
@@ -276,13 +276,13 @@ void Button::MouseMove(int x, int y)
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(78));
 			break;
 		case RESET_GAME:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(93));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(84));
 			break;
 		case YES:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(95));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(86));
 			break;
 		case NO:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(97));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(88));
 			break;
 		}
 	}
@@ -291,64 +291,64 @@ void Button::MouseMove(int x, int y)
 		switch (iType)
 		{
 		case LEVEL_SELECT:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(5));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(34));
 			break;
 		case HELP:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(14));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(40));
 			break;
 		case CREDIT:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(15));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(41));
 			break;
 		case RESUME:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(30));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 			break;
 		case MENU:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(29));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(32));
 			break;
 		case PAUSE_TO_SELECT:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(12));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(44));
 			break;
 		case EXIT:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(4));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(31));
 			break;
 		case BGM:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(42));
 			break;
 		case NOBGM:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
 			break;
 		case SFX:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(80));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(79));
 			break;
 		case NOSFX:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(83));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(81));
 			break;
 		case BACK:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(19));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(35));
 			break;
 		case PREV_PAGE:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(20));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(38));
 			break;
 		case NEXT_PAGE:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(21));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(39));
 			break;
 		case PAUSE:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(26));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(36));
 			break;
 		case RESET:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(27));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(37));
 			break;
 		case NEXT_LEVEL:
 			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(77));
 			break;
 		case RESET_GAME:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(92));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(83));
 			break;
 		case YES:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(94));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(85));
 			break;
 		case NO:
-			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(96));
+			Object::SetTexture(ResourceManager::GetInstance()->GetTextureById(87));
 			break;
 		}
 	}
