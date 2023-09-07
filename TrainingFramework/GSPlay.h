@@ -22,6 +22,7 @@ public:
 	void Update(GLfloat deltaTime);
 	void Key(int iKeyPressed);
 	void MouseClick(int x, int y, bool isPressed);
+	void ResetGameScreen();
 	void MouseMove(int x, int y);
 	void Draw();
 };

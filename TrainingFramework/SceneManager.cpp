@@ -254,7 +254,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(13), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
-			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(10), pCamera,
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(8), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			iHorizontalWallCounter++;
@@ -268,7 +268,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pObjects[i] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(13), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
-			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(11), pCamera,
+			pHorizontalWall[iHorizontalWallCounter] = new Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(9), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			iHorizontalWallCounter++;

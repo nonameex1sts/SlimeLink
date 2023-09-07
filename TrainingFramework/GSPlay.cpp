@@ -201,6 +201,7 @@ void GSPlay::Key(int iKeyPressed)
 		case KEY_RESET:
 			SceneManager::DestroyInstance();
 			SceneManager::CreateInstance(ilevelNumber);
+			ResetGameScreen();
 			break;
 		case KEY_PAUSE:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
@@ -250,15 +251,23 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 
 	//If the reset button is pressed after the game has ended
 	if (*isReset) {
-		//Reset set all number picture
-		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
-		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
-		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+		ResetGameScreen();
+	}
 
-		for (int i = 6; i >= 0; i -= 3)
-		{
-			pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
-		}
+	delete isReset;
+}
+
+void GSPlay::ResetGameScreen()
+{
+	//Reset set all number picture
+	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+
+	for (int i = 6; i >= 0; i -= 3)
+	{
+		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
+	}
 
 	//Activate Pause, Reset and deactivate other buttons
 	for (int i = 0; i < inumButtons; i++)
@@ -278,9 +287,6 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 	{
 		pPictures[i]->setActive(false);
 	}
-	}
-
-	delete isReset;
 }
 
 void GSPlay::MouseMove(int x, int y)
