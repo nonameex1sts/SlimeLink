@@ -198,6 +198,13 @@ void GSPlay::Key(int iKeyPressed)
 		case KEY_DOWN:
 			keyPressed |= 1 << 3;
 			break;
+		case KEY_RESET:
+			SceneManager::DestroyInstance();
+			SceneManager::CreateInstance(ilevelNumber);
+			break;
+		case KEY_PAUSE:
+			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
+			break;
 		default:
 			break;
 		}
@@ -243,34 +250,34 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 
 	//If the reset button is pressed after the game has ended
 	if (*isReset) {
-		//Reset set all number picture
-		pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
-		pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
-		pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+	//Reset set all number picture
+	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
+	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(33));
 
-		for (int i = 6; i >= 0; i -= 3)
-		{
-			pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
-		}
+	for (int i = 6; i >= 0; i -= 3)
+	{
+		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(43));
+	}
 
-		//Activate Pause, Reset and deactivate other buttons
-		for (int i = 0; i < inumButtons; i++)
+	//Activate Pause, Reset and deactivate other buttons
+	for (int i = 0; i < inumButtons; i++)
+	{
+		if (pButtons[i]->getType() == PAUSE || pButtons[i]->getType() == RESET)
 		{
-			if (pButtons[i]->getType() == PAUSE || pButtons[i]->getType() == RESET)
-			{
-				pButtons[i]->setActive(true);
-			}
-			else
-			{
-				pButtons[i]->setActive(false);
-			}
+			pButtons[i]->setActive(true);
 		}
+		else
+		{
+			pButtons[i]->setActive(false);
+		}
+	}
 
-		//Deactivate game ending picture
-		for (int i = 13; i < inumPics; i++)
-		{
-			pPictures[i]->setActive(false);
-		}
+	//Deactivate game ending picture
+	for (int i = 13; i < inumPics; i++)
+	{
+		pPictures[i]->setActive(false);
+	}
 	}
 
 	delete isReset;
