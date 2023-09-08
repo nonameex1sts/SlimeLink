@@ -31,7 +31,7 @@ void GameStateBase::Init(char* file, StateType e_type)
 	Vector3 position, rotation, scale;
 	// NOTE: read buttons
 	fscanf(filePointer, "#Buttons: %d\n", &inumButtons);
-	pButtons = new Button * [inumButtons];
+	pButtons = (Button**)malloc(sizeof(Button*) * inumButtons);
 	for (int i = 0; i < inumButtons; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
@@ -43,12 +43,14 @@ void GameStateBase::Init(char* file, StateType e_type)
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 		fscanf(filePointer, "TYPE %d\n", &buttonType);
 		fscanf(filePointer, "ACTIVE %d\n", &isActive);
-		pButtons[i] = new Button(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
+
+		pButtons[i] = (Button*)malloc(sizeof(Button));
+		*(pButtons[i]) = Button(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType, isActive);
 	}
 	// NOTE: read pictures
 	fscanf(filePointer, "#Pictures: %d\n", &inumPics);
-	pPictures = new Picture * [inumPics];
+	pPictures = (Picture**)malloc(sizeof(Picture*) * inumPics);
 	for (int i = 0; i < inumPics; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
@@ -59,7 +61,9 @@ void GameStateBase::Init(char* file, StateType e_type)
 		fscanf(filePointer, "ROTATION %f, %f, %f\n", &rotation.x, &rotation.y, &rotation.z);
 		fscanf(filePointer, "SCALE %f, %f, %f\n", &scale.x, &scale.y, &scale.z);
 		fscanf(filePointer, "ACTIVE %d\n", &isActive);
-		pPictures[i] = new Picture(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
+
+		pPictures[i] = (Picture*)malloc(sizeof(Picture));
+		*(pPictures[i]) = Picture(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, isActive);
 	}
 
@@ -72,16 +76,18 @@ void GameStateBase::Exit()
 {
 	// NOTE: Delete camera
 	delete pCamera;
-	for (int i = 0; i < inumPics; i++) {
-		delete pPictures[i];
-	}
-	delete pPictures;
+
 	// NOTE: Delete button
-	for (int i = 0; i < inumButtons; i++) {
-		delete pButtons[i];
+	for (int i = 0; i < inumPics; i++) {
+		free(pPictures[i]);
 	}
-	delete pButtons;
+	free(pPictures);
+	
 	// NOTE: Delete picture
+	for (int i = 0; i < inumButtons; i++) {
+		free(pButtons[i]);
+	}
+	free(pButtons);
 }
 
 void GameStateBase::Pause()

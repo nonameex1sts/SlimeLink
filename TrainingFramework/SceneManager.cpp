@@ -444,21 +444,25 @@ void SceneManager::Key(unsigned char keyPressed)
 		cameraFixPosition = pPlayer[iMainPlayer]->GetCoordinate();
 
 		//Fix main player in the middle of the screen with row / 2 and column / 2
-		if ((keyPressed & (1 << 0)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f))
+		//Only move camera if at least one player move
+		if(*hasMoved)
 		{
-			pCamera->Inputs(keyPressed);
-		}
-		if ((keyPressed & (1 << 1)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f))
-		{
-			pCamera->Inputs(keyPressed);
-		}
-		if ((keyPressed & (1 << 2)) && (cameraFixPosition.x >= (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
-		{
-			pCamera->Inputs(keyPressed);
-		}
-		if ((keyPressed & (1 << 3)) && (cameraFixPosition.y >= (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
-		{
-			pCamera->Inputs(keyPressed);
+			if ((keyPressed & (1 << 0)) && (cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f - 1.0f))
+			{
+				pCamera->Inputs(keyPressed);
+			}
+			if ((keyPressed & (1 << 1)) && (cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f - 1.0f))
+			{
+				pCamera->Inputs(keyPressed);
+			}
+			if ((keyPressed & (1 << 2)) && (cameraFixPosition.x >= (Globals::screenWidth / SQUARE_SIZE) * 0.5f) && (iWidth - cameraFixPosition.x > (Globals::screenWidth / SQUARE_SIZE) * 0.5f))
+			{
+				pCamera->Inputs(keyPressed);
+			}
+			if ((keyPressed & (1 << 3)) && (cameraFixPosition.y >= (Globals::screenHeight / SQUARE_SIZE) * 0.5f) && (iHeight - cameraFixPosition.y > (Globals::screenHeight / SQUARE_SIZE) * 0.5f))
+			{
+				pCamera->Inputs(keyPressed);
+			}
 		}
 
 		if (*hasMoved) 

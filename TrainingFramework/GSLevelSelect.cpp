@@ -15,18 +15,22 @@ GSLevelSelect::GSLevelSelect()
 	Vector3 trophyWidthEach = Vector3(50.0f, 0.0f, 0.0f);
 
 	// Create level select button
-	pSelectLevel = new SelectLevelButton * [iLevelPerPage];
-	pTrophy = new Picture * [iLevelPerPage * 3];
+	pSelectLevel = (SelectLevelButton**)malloc(sizeof(SelectLevelButton*) * iLevelPerPage);
+	pTrophy = (Picture**)malloc(sizeof(Picture*) * 3 * iLevelPerPage);
 	for (int i = 0; i < iRowPerPage; i++)
 	{
 		for (int j = 0; j < (iLevelPerPage / iRowPerPage); j++)
 		{
-			pSelectLevel[i * 3 + j] = new SelectLevelButton(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(59 + i * 3 + j), pCamera,
+			pSelectLevel[i * 3 + j] = (SelectLevelButton*)malloc(sizeof(SelectLevelButton));
+
+			*(pSelectLevel[i * 3 + j]) = SelectLevelButton(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(59 + i * 3 + j), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), levelPos + levelHeightEach * i + levelWidthEach * j, levelRotation, levelScale, 0, 1);
 			pSelectLevel[i * 3 + j]->SetCurrentLevel(i * 3 + j + 1);
 
 			for (int k = 0; k < 3; k++) {
-				pTrophy[3 * (i * 3 + j) + k] = new Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(16), pCamera,
+				pTrophy[3 * (i * 3 + j) + k] = (Picture*)malloc(sizeof(Picture));
+
+				*(pTrophy[3 * (i * 3 + j) + k]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(16), pCamera,
 					ResourceManager::GetInstance()->GetShaderById(0), levelPos + levelHeightEach * i + levelWidthEach * j + trophyOffset + trophyWidthEach * k, levelRotation, levelScale / 3.0f, 0);
 			}
 		}
@@ -58,34 +62,22 @@ GSLevelSelect::~GSLevelSelect()
 
 void GSLevelSelect::Exit()
 {
-	// NOTE: Delete camera
-	delete pCamera;
-
-	// NOTE: Delete picture
-	for (int i = 0; i < inumPics; i++) {
-		delete pPictures[i];
-	}
-	delete pPictures;
-
 	// NOTE: Delete select level square
 	for (int i = 0; i < iLevelPerPage; i++) {
-		delete pSelectLevel[i];
+		free(pSelectLevel[i]);
 	}
-	delete pSelectLevel;
+	free(pSelectLevel);
 
-	// NOTE: Delete button
-	for (int i = 0; i < inumButtons; i++) {
-		delete pButtons[i];
-	}
-	delete pButtons;
-
+	// NOTE: Delete all trophy pictures
 	for (int i = 0; i < 3 * iLevelPerPage; i++)
 	{
-		delete pTrophy[i];
+		free(pTrophy[i]);
 	}
-	delete pTrophy;
+	free(pTrophy);
 
 	delete pPointOfLevel;
+
+	GameStateBase::Exit();
 }
 
 void GSLevelSelect::Pause()
