@@ -44,7 +44,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	pObstacles = (Animation**)malloc(sizeof(Animation) * iNumObstacle);
 	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);
 	pHorizontalWall = (Object**)malloc(sizeof(Object*) * iNumHorizontalWall);
-	pPlayer = (Player**)malloc(sizeof(Player*) * iNumPlayer);
+	pPlayer = (Player**)malloc(sizeof(Player*) * (iNumPlayer + iNumSpawn));
 	pTargetPosition = (Vector3*)malloc(sizeof(Vector3) * iNumTarget);
 	pSpawnPosition = (Vector3*)malloc(sizeof(Vector3) * iNumSpawn);
 
