@@ -10,9 +10,6 @@
 #include "ResourceManager.h"
 #include "AudioManager.h"
 
-#pragma comment(linker, "/STACK:6000")
-#pragma comment(linker, "/HEAP:6000")
-
 int Init(ESContext* esContext)
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

@@ -12,7 +12,8 @@ ResourceManager::ResourceManager()
 
 	//Load data form RM.txt and initialize models
 	fscanf(filePointer, "#Models: %d\n", &inumModels);
-	pModels = new Model* [inumModels];
+
+	pModels = (Model**)malloc(sizeof(Model*) * inumModels);
 
 	for (int i = 0; i < inumModels; i++)
 	{
@@ -23,28 +24,32 @@ ResourceManager::ResourceManager()
 
 	//Load data form RM.txt and initialize textures
 	fscanf(filePointer, "#2D Textures: %d\n", &inumTextures);
-	pTextures = new Texture* [inumTextures];
+	pTextures = (Texture**)malloc(sizeof(Texture*) * inumTextures);
 
 	for (int i = 0; i < inumTextures; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "FILE %s\n", filePath);
-		pTextures[i] = new Texture(filePath);
+
+		pTextures[i] = (Texture*)malloc(sizeof(Texture));
+		*(pTextures[i]) = Texture(filePath);
 	}
 
 	//Load data form RM.txt and initialize shaders
 	char* fileVertexShader = new char[100];
 	char* fileFragmentShader = new char[100];
 	fscanf(filePointer, "#Shaders: %d\n", &inumShaders);
-	pShaders = new Shaders* [inumShaders];
-	p_ishaderInit = new int[inumShaders];
+
+	pShaders = (Shaders**)malloc(sizeof(Shaders*) * inumShaders);
+	p_ishaderInit = (int*)malloc(sizeof(int) * inumShaders);
 
 	for (int i = 0; i < inumShaders; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "VS %s\n", fileVertexShader);
 		fscanf(filePointer, "FS %s\n", fileFragmentShader);
-		pShaders[i] = new Shaders();
+
+		pShaders[i] = (Shaders*)malloc(sizeof(Shaders));
 		p_ishaderInit[i] = pShaders[i]->Init(fileVertexShader, fileFragmentShader);
 	}
 
@@ -81,19 +86,19 @@ ResourceManager::~ResourceManager()
 	{
 		delete pModels[i];
 	}
-	delete pModels;
+	free(pModels);
 
 	for (int i = 0; i < inumTextures; i++) 
 	{
-		delete pTextures[i];
+		free(pTextures[i]);
 	}
-	delete pTextures;
+	free(pTextures);
 
 	for (int i = 0; i < inumShaders; i++) 
 	{
-		delete pShaders[i];
+		free(pShaders[i]);
 	}
 
-	delete pShaders;
-	delete p_ishaderInit;
+	free(pShaders);
+	free(p_ishaderInit);
 }
