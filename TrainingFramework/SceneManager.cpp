@@ -41,7 +41,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	}
 
 	//Initialize objects, walls and players
-	pObstacles = (Animation**)malloc(sizeof(Animation) * iNumObstacle);
+	pObstacles = (Animation**)malloc(sizeof(Animation*) * iNumObstacle);
 	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);
 	pHorizontalWall = (Object**)malloc(sizeof(Object*) * iNumHorizontalWall);
 	pPlayer = (Player**)malloc(sizeof(Player*) * (iNumPlayer + iNumSpawn));
@@ -369,7 +369,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 			pObjects[i] = (Object*)malloc(sizeof(Object));
 
-			*(pObjects[i]) = Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(22), pCamera,
+			*(pObjects[i]) = Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(27), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
 
 			pPlayer[iPlayerCounter] = (Player*)malloc(sizeof(Player));
