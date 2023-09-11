@@ -10,6 +10,9 @@ private:
 	float fcheckKeyTime = DELAY_KEY_TIME + DELAY_STATE_PLAYER + 0.1f;
 	int check = 0;
 
+	Picture** pDigit;
+	int iNumOfDigit;
+
 public:
 	GSPlay(int ilevelNumber);
 	~GSPlay();
