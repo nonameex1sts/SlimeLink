@@ -17,6 +17,7 @@ Texture::Texture(char* tgaLink)
 	//Bind buffer
 	glGenTextures(1, &itextureId);
 	glBindTexture(GL_TEXTURE_2D, itextureId);
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 	if (iColorChannel == 4)
 	{

@@ -244,5 +244,8 @@
     <Text Include="GSIntro.txt">
       <Filter>Resources\Managers</Filter>
     </Text>
+    <Text Include="HelpPos.txt">
+      <Filter>Resources\Managers</Filter>
+    </Text>
   </ItemGroup>
 </Project>

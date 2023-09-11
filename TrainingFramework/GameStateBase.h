@@ -4,6 +4,7 @@
 #include "ResourceManager.h"
 #include "Button.h"
 #include "Picture.h"
+#include <stdlib.h>
 
 enum class StateType
 {

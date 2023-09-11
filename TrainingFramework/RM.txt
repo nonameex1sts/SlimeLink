@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 97
+#2D Textures: 103
 ID 0
 FILE ../Resources/Textures/black.png
 ID 1
@@ -10,7 +10,7 @@ FILE ../Resources/Textures/Horizontal_wall.png
 ID 2
 FILE ../Resources/Textures/Floor.png
 ID 3
-FILE ../Resources/Textures/menubg.png
+FILE ../Resources/Textures/testbg.png
 ID 4
 FILE ../Resources/Textures/Up_left_conner.png
 ID 5
@@ -197,6 +197,18 @@ ID 95
 FILE ../Resources/Textures/Up_right_edge.png
 ID 96
 FILE ../Resources/Textures/Reset_progress.png
+ID 97
+FILE ../Resources/Textures/helppic1.png
+ID 98
+FILE ../Resources/Textures/helppic2.png
+ID 99
+FILE ../Resources/Textures/helppic3.png
+ID 100
+FILE ../Resources/Textures/helppic4.png
+ID 101
+FILE ../Resources/Textures/helppic5.png
+ID 102
+FILE ../Resources/Textures/helppic6.png
 
 #Shaders: 2
 ID 0
