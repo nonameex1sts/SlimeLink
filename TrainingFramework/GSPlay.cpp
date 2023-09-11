@@ -15,14 +15,78 @@ GSPlay::GSPlay(int ilevelNumber)
 
 	//Generate star number on trophy based on star of the level
 	int* iStar = SceneManager::GetInstance()->GetStarIndex();
-	pPictures[1]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] / 10 + 17));
-	pPictures[2]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[0] % 10 + 17));
+	int* iDigitOfEachStar = new int[3];
+	iNumOfDigit = 0;
 
-	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] / 10 + 17));
-	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[1] % 10 + 17));
+	//Calculate the number of digit
+	for (int i = 0; i < 3; i++) {
+		if (iStar[i] / 100 > 0)
+		{
+			iNumOfDigit += 3;
+			iDigitOfEachStar[i] = 3;
+		}
+		else if (iStar[i] / 10 > 0)
+		{
+			iNumOfDigit += 2;
+			iDigitOfEachStar[i] = 2;
+		}
+		else
+		{
+			iNumOfDigit += 1;
+			iDigitOfEachStar[i] = 1;
+		}
+	}
 
-	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] / 10 + 17));
-	pPictures[8]->SetTexture(ResourceManager::GetInstance()->GetTextureById(iStar[2] % 10 + 17));
+	pDigit = (Picture**)malloc(sizeof(Picture*) * iNumOfDigit);
+	for (int i = 0; i < iNumOfDigit; i++) {
+		pDigit[i] = (Picture*)malloc(sizeof(Picture));
+	}
+
+	//Attributes of each digit
+	Vector3 digitScale = Vector3(20.0f, 20.0f, 1.0f);
+	Vector3 digitRotation = Vector3(0.0f, 0.0f, 0.0f);
+	Vector3 trophyPosition = Vector3(40.0f, 30.0f, 0.0f);
+
+	Vector3 twoDigitOffset = Vector3(-9.0f, 0.0f, 0.0f);
+	Vector3 threeDigitOffset = Vector3(-17.0f, 0.0f, 0.0f);
+	Vector3 digitSpacing = Vector3(15.0f, 0.0f, 0.0f);
+
+	int digitCounter = 0;
+
+	//Instantiate each digit based on the score of each trophy
+	for(int i=0; i<3; i++)
+	{
+		if (iDigitOfEachStar[i] == 3)
+		{
+			*(pDigit[digitCounter + 0]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] / 100 + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition + threeDigitOffset, digitRotation, digitScale, 1);
+
+			*(pDigit[digitCounter + 1]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] % 100 / 10 + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition + threeDigitOffset + digitSpacing, digitRotation, digitScale, 1);
+
+			*(pDigit[digitCounter + 2]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] % 100 % 10 + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition + threeDigitOffset + digitSpacing * 2, digitRotation, digitScale, 1);
+		}
+		else if (iDigitOfEachStar[i] == 2)
+		{
+			*(pDigit[digitCounter + 0]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] / 10 + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition + twoDigitOffset, digitRotation, digitScale, 1);
+
+			*(pDigit[digitCounter + 1]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] % 10 + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition + twoDigitOffset + digitSpacing, digitRotation, digitScale, 1);
+		}
+		else
+		{
+			*(pDigit[digitCounter + 0]) = Picture(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(iStar[i] + 17), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), trophyPosition, digitRotation, digitScale, 1);
+		}
+
+		digitCounter += iDigitOfEachStar[i];
+
+		trophyPosition = trophyPosition + Vector3(80.0f, 0.0f, 0.0f);
+	}
+
+	delete iDigitOfEachStar;
 }
 
 GSPlay::~GSPlay()
@@ -46,6 +110,11 @@ void GSPlay::Init(int ilevelNumber)
 void GSPlay::Exit()
 {
 	SceneManager::DestroyInstance();
+
+	for (int i = 0; i < iNumOfDigit; i++) {
+		free(pDigit[i]);
+	}
+	free(pDigit);
 
 	GameStateBase::Exit();
 }
@@ -155,13 +224,13 @@ void GSPlay::Key(int iKeyPressed)
 	}
 
 	//Set the picture of number of moves based on number of moves in SceneManager
-	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 17));
-	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 17));
-	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 17));
+	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 17));
+	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 17));
+	pPictures[6]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 17));
 
 	//When a star is lost, convert that picture to gray
 	int iNumOfStarLost = 3 - SceneManager::GetInstance()->GetNumberOfStar();
-	for (int i = 6; i > 6 - 3 * iNumOfStarLost; i -= 3) 
+	for (int i = 2; i > 2 - iNumOfStarLost; i --) 
 	{
 		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(91));
 	}
@@ -199,11 +268,11 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 void GSPlay::ResetGameScreen()
 {
 	//Reset set all number picture
-	pPictures[10]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
-	pPictures[11]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
-	pPictures[12]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[6]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 
-	for (int i = 6; i >= 0; i -= 3)
+	for (int i = 2; i >= 0; i --)
 	{
 		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
 	}
@@ -222,7 +291,7 @@ void GSPlay::ResetGameScreen()
 	}
 
 	//Deactivate game ending picture
-	for (int i = 13; i < inumPics; i++)
+	for (int i = 7; i < inumPics; i++)
 	{
 		pPictures[i]->setActive(false);
 	}
@@ -249,8 +318,7 @@ void GSPlay::Draw()
 		}
 	}
 
-
-	for (int i = 0; i < inumPics; i++) 
+	for (int i = 0; i < inumPics -5; i++) 
 	{
 		if (pPictures[i]->getActive()) 
 		{
@@ -258,7 +326,21 @@ void GSPlay::Draw()
 		}
 	}
 
+	for (int i = 0; i < iNumOfDigit; i++)
+	{
+		pDigit[i]->Draw();
+	}
+
+
 	//Draw above opacity
+	for (int i = inumPics - 5; i < inumPics; i++)
+	{
+		if (pPictures[i]->getActive())
+		{
+			pPictures[i]->Draw();
+		}
+	}
+
 	for (int i = inumButtons - 3; i < inumButtons; i++)
 	{
 		if (pButtons[i]->getActive())
