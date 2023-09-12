@@ -33,6 +33,7 @@
 #Ignore folders
 .vs
 Debug/
+Release/
 BIN/TrainingFramework.exe
 BIN/TrainingFramework.pdb
 Resource/Level/Level.txt

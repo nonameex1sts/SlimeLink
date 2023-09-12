@@ -2,7 +2,6 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include <string>
-#include <cmath>
 #include "AudioManager.h"
 
 SceneManager* SceneManager::ms_pInstance = nullptr;
