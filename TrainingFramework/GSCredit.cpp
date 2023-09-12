@@ -4,11 +4,14 @@
 GSCredit::GSCredit()
 {
 	Init("../TrainingFramework/GSCredit.txt", StateType::STATE_CREDIT);
+	slime = new Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(12), pCamera,
+		ResourceManager::GetInstance()->GetShaderById(1), Vector3(674.0f, 125.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(45.0f, 45.0f, 0.0f), 6, 1, 0, 0.1);
 }
 
 GSCredit::~GSCredit()
 {
 	Exit();
+	delete slime;
 }
 
 void GSCredit::Pause()
@@ -23,7 +26,7 @@ void GSCredit::Resume()
 
 void GSCredit::Update(GLfloat deltatime)
 {
-	//NOTE: blank
+	slime->Update(deltatime);
 }
 
 void GSCredit::Key(int iKeyPressed)
@@ -54,4 +57,24 @@ void GSCredit::MouseMove(int x, int y)
 	{
 		pButtons[i]->MouseMove(x, y);
 	}
+}
+
+void GSCredit::Draw()
+{
+	for (int i = 0; i < inumPics; i++)
+	{
+		if (pPictures[i]->getActive())
+		{
+			pPictures[i]->Draw();
+		}
+	}
+	// BGM and SFX button switch to on and off
+	for (int i = 0; i < inumButtons; i++)
+	{
+		if (pButtons[i]->getActive())
+		{
+			pButtons[i]->Draw();
+		}
+	}
+	slime->Draw();
 }

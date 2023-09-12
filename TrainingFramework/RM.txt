@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 103
+#2D Textures: 104
 ID 0
 FILE ../Resources/Textures/black.png
 ID 1
@@ -209,6 +209,8 @@ ID 101
 FILE ../Resources/Textures/helppic5.png
 ID 102
 FILE ../Resources/Textures/helppic6.png
+ID 103
+FILE ../Resources/Textures/Credit.png
 
 #Shaders: 2
 ID 0
