@@ -1,11 +1,11 @@
 #Musics: 6
 
 ID 0
-FILE ../Resources/Music/menubg.wav
+FILE ../Resources/Music/menu.wav
 LOOP 1
 SFX 0
 ID 1
-FILE ../Resources/Music/menubg_demo.wav
+FILE ../Resources/Music/intro.wav
 LOOP 1
 SFX 0
 ID 2

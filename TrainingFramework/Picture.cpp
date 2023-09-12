@@ -18,6 +18,12 @@ Picture::Picture(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pSh
 	}
 }
 
+void Picture::SetPosition(Vector3 distance)
+{
+	position += distance;
+	InitWorldMatrix();
+}
+
 void Picture::Update(Vector3 newPosition, float time)
 {
 	if (position.x != newPosition.x)

@@ -6,7 +6,7 @@
 class GSIntro : public GameStateBase 
 {
 private:
-	const float DELAY_TIME = 2.0f; // Intro time
+	const float DELAY_TIME = 28.0f; // Intro time
 	float fTime = 0.0f;
 public:
 	GSIntro();

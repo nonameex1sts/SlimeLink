@@ -5,7 +5,7 @@
 
 GSIntro::GSIntro()
 {
-	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
+	AudioManager::GetInstance()->GetAudioById(1)->PlayMusic();
 	ResourceManager::CreateInstance();
 	Init("../TrainingFramework/GSIntro.txt", StateType::STATE_INTRO);
 }
@@ -38,6 +38,8 @@ void GSIntro::Update(GLfloat deltatime)
 	if (fTime < DELAY_TIME)
 	{
 		fTime += deltatime;
+		pPictures[0]->SetPosition(Vector3(0.0f, -1600.0f, 0.0f) / DELAY_TIME * deltatime);
+		pPictures[1]->SetPosition(Vector3(0.0f, -1600.0f, 0.0f) / DELAY_TIME * deltatime);
 	}
 	else 
 	{
@@ -52,7 +54,10 @@ void GSIntro::Key(int iKeyPressed)
 
 void GSIntro::MouseClick(int x, int y, bool isPressed)
 {
-	// NOTE: blank
+	if (isPressed)
+	{
+		GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU, 0);
+	}
 }
 
 void GSIntro::MouseMove(int x, int y)
