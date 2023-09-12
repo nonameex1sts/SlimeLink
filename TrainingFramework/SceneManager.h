@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "Object.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "../Utilities/utilities.h"
 #include "Math.h"
 #include "Animation.h"
@@ -15,6 +16,7 @@ private:
 	Object** pHorizontalWall;
 	int** p_imapType;;
 	Player** pPlayer;
+	Enemy** pEnemy;
 	Vector3* pTargetPosition;
 	Vector3* pSpawnPosition;
 
@@ -24,6 +26,7 @@ private:
 	int iNumObstacle;
 	int iMainPlayer;
 	int iNumPlayer;
+	int iNumEnemy;
 	int iNumTarget;
 	int iNumSpawn;
 	int iNumHorizontalWall;
@@ -70,6 +73,7 @@ public:
 	void Update(float deltaTime);
 	void Key(unsigned char keyPressed);
 	void SetPlayerMovement();
+	void SetEnemyMovement();
 	void SpawnPlayer();
 	void ActivatePlayer();
 	void CheckWinCondition();

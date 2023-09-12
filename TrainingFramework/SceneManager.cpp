@@ -2,7 +2,6 @@
 #include "SceneManager.h"
 #include "ResourceManager.h"
 #include <string>
-#include <cmath>
 #include "AudioManager.h"
 
 SceneManager* SceneManager::ms_pInstance = nullptr;
@@ -30,6 +29,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "Height: %d\n", &iHeight);
 	fscanf(filePointer, "Horizontal wall: %d\n", &iNumHorizontalWall);
 	fscanf(filePointer, "Player: %d\n", &iNumPlayer);
+	fscanf(filePointer, "Enemy: %d\n", &iNumEnemy);
 	fscanf(filePointer, "Target: %d\n", &iNumTarget);
 	fscanf(filePointer, "Spawn: %d\n", &iNumSpawn);
 	fscanf(filePointer, "Obstacle: %d\n", &iNumObstacle);
@@ -45,11 +45,12 @@ SceneManager::SceneManager(int ilevelNumber) {
 	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);
 	pHorizontalWall = (Object**)malloc(sizeof(Object*) * iNumHorizontalWall);
 	pPlayer = (Player**)malloc(sizeof(Player*) * (iNumPlayer + iNumSpawn));
+	pEnemy = (Enemy**)malloc(sizeof(Enemy*) * iNumEnemy);
 	pTargetPosition = (Vector3*)malloc(sizeof(Vector3) * iNumTarget);
 	pSpawnPosition = (Vector3*)malloc(sizeof(Vector3) * iNumSpawn);
 
 	//Index counter
-	int iHorizontalWallCounter = 0, iPlayerCounter = 0, iTargetCounter = 0, iSpawnCounter = 0, iObstacleCounter = 0;
+	int iHorizontalWallCounter = 0, iPlayerCounter = 0, iEnemyCounter = 0, iTargetCounter = 0, iSpawnCounter = 0, iObstacleCounter = 0;
 
 	//Rotation and scale of objects and players
 	Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
@@ -62,7 +63,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		14, 15, 16, 15 small conner
 		10. left wall
 		11. right wal
-		44. playerl
+		44. player
 		12. sleep player
 		13. obsticle
 		20. left wall with obsticle
@@ -72,6 +73,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		24. player with spawn
 		44. wake player
 		85. torch
+		45. enemy
 	*/
 
 	for (int i = 0; i < iWidth * iHeight; i++) {
@@ -381,6 +383,28 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 			iPlayerCounter++;
 		}
+
+		if (imapType == 45) // Enemy
+		{
+			p_imapType[i % iWidth][i / iWidth] = 0;
+
+			pObjects[i] = (Object*)malloc(sizeof(Object));
+
+			*(pObjects[i]) = Object(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(2), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(0), position, rotation, scale);
+
+			pEnemy[iEnemyCounter] = (Enemy*)malloc(sizeof(Enemy));
+
+			//Enemy
+			*(pEnemy[iEnemyCounter]) = Enemy(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(90), pCamera,
+				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 6, 1, 0, 0.1, true, Vector3(0.0f, 0.0f, 0.0f)); // Sleep texture here
+
+			iEnemyCounter++;
+		}
+	}
+
+	for (int i = 0; i < iNumEnemy; i++) {
+		pEnemy[i]->SetPlayerLockPosition(pPlayer[iMainPlayer]->GetPosition());
 	}
 
 	iNumOfMoves = 0;
@@ -396,12 +420,19 @@ void SceneManager::Update(float deltaTime)
 {
 	//Set players movement abitity
 	SetPlayerMovement();
+	SetEnemyMovement();
 
 	//Active players move
 	for (int i = 0; i < iNumPlayer; i++) 
 	{
 		pPlayer[i]->Move(deltaTime);
 		pPlayer[i]->Update(deltaTime);
+	}
+
+	for (int i = 0; i < iNumEnemy; i++)
+	{
+		pEnemy[i]->Move(deltaTime);
+		pEnemy[i]->Update(deltaTime);
 	}
 
 	for (int i = 0; i < iNumObstacle; i++)
@@ -463,6 +494,12 @@ void SceneManager::Key(unsigned char keyPressed)
 			{
 				pCamera->Inputs(keyPressed);
 			}
+
+			for (int i = 0; i < iNumEnemy; i++)
+			{
+				pEnemy[i]->SetPlayerLockPosition(pPlayer[iMainPlayer]->GetPosition());
+				pEnemy[i]->Key();
+			}
 		}
 
 		if (*hasMoved) 
@@ -516,6 +553,51 @@ void SceneManager::SetPlayerMovement()
 			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) - 1] == 1)
 			{
 				pPlayer[i]->SetMoveUpStatus(false);
+			}
+		}
+	}
+}
+
+void SceneManager::SetEnemyMovement()
+{
+	for (int i = 0; i < iNumEnemy; i++)
+	{
+		pEnemy[i]->SetMoveRightStatus(true);
+		pEnemy[i]->SetMoveLeftStatus(true);
+		pEnemy[i]->SetMoveDownStatus(true);
+		pEnemy[i]->SetMoveUpStatus(true);
+
+		if (pEnemy[i]->GetActiveStatus())
+		{
+			Vector3 coordinate = pEnemy[i]->GetCoordinate();
+
+			//Check surrounding map after each move
+			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 3))
+			{
+				pEnemy[i]->SetMoveRightStatus(false);
+			}
+			else if (p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 1 || p_imapType[(int)std::round(coordinate.x) + 1][(int)std::round(coordinate.y)] == 2)
+			{
+				pEnemy[i]->SetMoveRightStatus(false);
+			}
+
+			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 2))
+			{
+				pEnemy[i]->SetMoveLeftStatus(false);
+			}
+			else if (p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 1 || p_imapType[(int)std::round(coordinate.x) - 1][(int)std::round(coordinate.y)] == 3)
+			{
+				pEnemy[i]->SetMoveLeftStatus(false);
+			}
+
+			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) + 1] == 1)
+			{
+				pEnemy[i]->SetMoveDownStatus(false);
+			}
+
+			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) - 1] == 1)
+			{
+				pEnemy[i]->SetMoveUpStatus(false);
 			}
 		}
 	}
@@ -697,6 +779,11 @@ void SceneManager::Draw()
 		}
 	}
 
+	for (int i = 0; i < iNumEnemy; i++)
+	{
+		pEnemy[i]->Draw();
+	}
+
 	for (int i = 0; i < iNumObstacle; i++)
 	{
 		pObstacles[i]->Draw();
@@ -733,6 +820,12 @@ SceneManager::~SceneManager()
 		free(pPlayer[i]);
 	}
 	free(pPlayer);
+
+	for (int i = 0; i < iNumEnemy; i++)
+	{
+		free(pEnemy[i]);
+	}
+	free(pEnemy);
 
 	for (int i = 0; i < iNumObstacle; i++)
 	{

@@ -124,6 +124,11 @@ bool Object::CheckPosition(Vector3 position)
 	return (this->position - position).Length() < 5.0f;
 }
 
+Vector3 Object::GetPosition()
+{
+	return position;
+}
+
 void Object::SetTexture(Texture* pTexture)
 {
 	this->pTexture = pTexture;
