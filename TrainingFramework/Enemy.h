@@ -11,5 +11,5 @@ public:
 		GLint numFrames, GLint numActions, GLint currentAction, GLfloat frametime, bool isActive, Vector3 playerLockPosition);
 	~Enemy();
 	void SetPlayerLockPosition(Vector3 playerLockPosition);
-	void Key();
+	void Key(unsigned char keyPressed);
 };

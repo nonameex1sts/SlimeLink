@@ -19,8 +19,6 @@ public:
 	int GetLevelNumber();
 	void Init(int ilevelNumber);
 	void Exit();
-	void Pause();
-	void Resume();
 	void Update(GLfloat deltaTime);
 	void Key(int iKeyPressed);
 	void MouseClick(int x, int y, bool isPressed);

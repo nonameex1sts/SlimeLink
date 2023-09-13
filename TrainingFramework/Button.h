@@ -37,16 +37,12 @@ private:
 public:
 	Button();
 	Button(Model* model, Texture* texture, Camera* camera, Shaders* shader, Vector3 position, Vector3 rotation, Vector3 scale, int iType, int isActive);
-	void Update();
-	void Key();
 	void MouseClick(int x, int y, bool isPressed);
 	void MouseClick(int x, int y, int *index, int sumPicture);
 	void MouseClickReset(int x, int y, int iLevel, bool *isReset);
 	void MouseClickResetGame(int x, int y, int* typeButton);
 	void ResetGame();
 	void MouseMove(int x, int y);
-	void Move();
-	void Rotate();
 	bool getActive();
 	void setActive(bool isActive);
 	int getType();
