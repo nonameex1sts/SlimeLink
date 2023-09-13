@@ -93,11 +93,6 @@ void GSLevelSelect::Exit()
 	GameStateBase::Exit();
 }
 
-void GSLevelSelect::Pause()
-{
-	// NOTE: blank
-}
-
 void GSLevelSelect::Resume()
 {
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
@@ -123,15 +118,6 @@ void GSLevelSelect::Resume()
 			pTrophy[3 * i + j]->setActive(true);
 		}
 	}
-}
-
-void GSLevelSelect::Update(GLfloat deltatime)
-{
-}
-
-void GSLevelSelect::Key(int iKeyPressed)
-{
-	// NOTE: blank
 }
 
 // Update what level the button will go to base on which page is it and trophy of that button

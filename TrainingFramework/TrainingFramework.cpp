@@ -16,9 +16,13 @@ int Init(ESContext* esContext)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//Initialize GameStateMachine
+	//Initialize AudioManager
 	AudioManager::CreateInstance();
+
+	//Gameplay music
 	AudioManager::GetInstance()->GetAudioById(6)->SetVolume(10);
+
+	//Initialize GameStateMachine
 	GameStateMachine::CreateInstance();
 
 
@@ -48,7 +52,6 @@ void Update(ESContext* esContext, float deltaTime)
 
 void Key(ESContext* esContext, unsigned char key, bool bIsPressed)
 {
-	//Arrowkeys for movement, ASWD for rotation
 	if (bIsPressed) 
 	{
 		GameStateMachine::GetInstance()->GetActiveState()->Key(key);

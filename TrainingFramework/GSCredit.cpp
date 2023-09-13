@@ -14,24 +14,9 @@ GSCredit::~GSCredit()
 	delete slime;
 }
 
-void GSCredit::Pause()
-{
-	// NOTE: blank
-}
-
-void GSCredit::Resume()
-{
-	// NOTE: blank
-}
-
 void GSCredit::Update(GLfloat deltatime)
 {
 	slime->Update(deltatime);
-}
-
-void GSCredit::Key(int iKeyPressed)
-{
-	// NOTE: blank
 }
 
 void GSCredit::MouseClick(int x, int y, bool isPressed)

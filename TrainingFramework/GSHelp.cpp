@@ -28,6 +28,10 @@ void GSHelp::ReadAnimation()
 		{
 			textureId = 14;
 		}
+		else if (activated == 2)
+		{
+			textureId = 107;
+		}
 		*(slime[i]) = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(1), Vector3(posX, posY, posZ), Vector3(0.0f, 0.0f, 0.0f), Vector3(SQUARE_SIZE, SQUARE_SIZE, 0.0f), 6, 1, 0, 0.1);
 	}
@@ -85,16 +89,6 @@ GSHelp::~GSHelp()
 	Exit();
 }
 
-void GSHelp::Pause()
-{
-	// NOTE: blank
-}
-
-void GSHelp::Resume()
-{
-	// NOTE: blank
-}
-
 void GSHelp::Update(GLfloat deltatime)
 {
 	for (int i = 0; i < numOfSlime; i++)
@@ -105,11 +99,6 @@ void GSHelp::Update(GLfloat deltatime)
 	{
 		torch[i]->Update(deltatime);
 	}
-}
-
-void GSHelp::Key(int iKeyPressed)
-{
-	// NOTE: blank
 }
 
 void GSHelp::MouseClick(int x, int y, bool isPressed)

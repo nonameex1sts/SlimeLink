@@ -20,11 +20,6 @@ GSMenu::~GSMenu()
 	delete slime;
 }
 
-void GSMenu::Pause()
-{
-	// NOTE: blank
-}
-
 void GSMenu::Resume()
 {
 	

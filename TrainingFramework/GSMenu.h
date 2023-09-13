@@ -13,7 +13,6 @@ private:
 public:
 	GSMenu();
 	~GSMenu();
-	void Pause();
 	void Resume();
 	void Update(GLfloat deltatime);
 	void Key(int keyPressed);

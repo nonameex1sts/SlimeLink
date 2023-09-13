@@ -23,16 +23,6 @@ void GSIntro::Exit()
 	ResourceManager::DestroyInstance();
 }
 
-void GSIntro::Pause()
-{
-	// NOTE: blank
-}
-
-void GSIntro::Resume()
-{
-	// NOTE: blank
-}
-
 void GSIntro::Update(GLfloat deltatime)
 {
 	if (fTime < DELAY_TIME)
@@ -47,20 +37,10 @@ void GSIntro::Update(GLfloat deltatime)
 	}
 }
 
-void GSIntro::Key(int iKeyPressed)
-{
-	// NOTE: blank
-}
-
 void GSIntro::MouseClick(int x, int y, bool isPressed)
 {
 	if (isPressed)
 	{
 		GameStateMachine::GetInstance()->PushState(StateType::STATE_MENU, 0);
 	}
-}
-
-void GSIntro::MouseMove(int x, int y)
-{
-	// NOTE: blank
 }

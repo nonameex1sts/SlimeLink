@@ -11,25 +11,6 @@ GSPause::~GSPause()
 	Exit();
 }
 
-void GSPause::Pause()
-{
-	// NOTE: blank
-}
-
-void GSPause::Resume()
-{
-	// NOTE: blank
-}
-
-void GSPause::Update(GLfloat deltatime)
-{
-}
-
-void GSPause::Key(int iKeyPressed)
-{
-	// NOTE: blank
-}
-
 void GSPause::MouseClick(int x, int y, bool isPressed)
 {
 	if (isPressed)
