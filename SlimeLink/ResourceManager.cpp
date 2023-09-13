@@ -6,7 +6,7 @@ ResourceManager* ResourceManager::ms_pInstance = nullptr;
 
 ResourceManager::ResourceManager()
 {
-	FILE* filePointer = fopen("../TrainingFramework/RM.txt", "r");
+	FILE* filePointer = fopen("../SlimeLink/RM.txt", "r");
 	int id;
 	char* filePath = new char[100];
 

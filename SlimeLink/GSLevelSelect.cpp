@@ -4,7 +4,7 @@
 
 GSLevelSelect::GSLevelSelect()
 {
-	Init("../TrainingFramework/GSLevelSelect.txt", StateType::STATE_LEVEL_SELECT);
+	Init("../SlimeLink/GSLevelSelect.txt", StateType::STATE_LEVEL_SELECT);
 	AudioManager::GetInstance()->GetAudioById(6)->StopMusic();
 	Vector3 levelPos = Vector3(200.0f, 200.0f, 0.0f);
 	Vector3 levelRotation = Vector3(0.0f, 0.0f, 0.0f);

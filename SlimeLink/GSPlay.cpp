@@ -102,7 +102,7 @@ int GSPlay::GetLevelNumber()
 void GSPlay::Init(int ilevelNumber)
 {
 	//Load level<ilevelNumber>
-	GameStateBase::Init("../TrainingFramework/GSPlay.txt", StateType::STATE_PLAY);
+	GameStateBase::Init("../SlimeLink/GSPlay.txt", StateType::STATE_PLAY);
 
 	SceneManager::CreateInstance(ilevelNumber);
 }

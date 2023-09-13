@@ -5,7 +5,7 @@
 // Read the animation to showcase in the help state
 void GSHelp::ReadAnimation()
 {
-	FILE* filePointer = fopen("../TrainingFramework/HelpPos.txt", "r");
+	FILE* filePointer = fopen("../SlimeLink/HelpPos.txt", "r");
 
 	fscanf(filePointer, "#PICS: %d\n", &iHelpPic);
 	startSlime = (int*)malloc(sizeof(int) * iHelpPic);
@@ -66,7 +66,7 @@ void GSHelp::ReadAnimation()
 
 GSHelp::GSHelp()
 {
-	Init("../TrainingFramework/GSHelp.txt", StateType::STATE_HELP);
+	Init("../SlimeLink/GSHelp.txt", StateType::STATE_HELP);
 	ReadAnimation();
 }
 

@@ -34,6 +34,6 @@
 .vs
 Debug/
 Release/
-BIN/TrainingFramework.exe
-BIN/TrainingFramework.pdb
+BIN/SlimeLink.exe
+BIN/SlimeLink.pdb
 Level.txt

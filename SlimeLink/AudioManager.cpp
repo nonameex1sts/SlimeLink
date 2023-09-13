@@ -8,7 +8,7 @@ AudioManager::AudioManager()
 	isSFXOn = true;
 	isBGMOn = true;
 	// Read audio and create them
-	FILE* filePointer = fopen("../TrainingFramework/Audio.txt", "r");
+	FILE* filePointer = fopen("../SlimeLink/Audio.txt", "r");
 	char* filePath = new char[50];
 	int id;
 	int isLoop;
