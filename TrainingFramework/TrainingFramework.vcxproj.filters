@@ -120,6 +120,9 @@
     <ClCompile Include="Transition.cpp">
       <Filter>Source Files\ProjectState</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\ProjectObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -205,6 +208,9 @@
     </ClInclude>
     <ClInclude Include="Transition.h">
       <Filter>Source Files\ProjectState</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source Files\ProjectObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

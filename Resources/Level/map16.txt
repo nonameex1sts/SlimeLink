@@ -8,6 +8,7 @@ Width: 35
 Height: 22
 Horizontal wall: 108
 Player: 3
+Enemy: 0
 Target: 5
 Spawn: 3
 Obstacle: 16

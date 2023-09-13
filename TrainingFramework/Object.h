@@ -31,6 +31,7 @@ public:
 	void Rotate();
 	bool CheckCloseObject(Object object);
 	bool CheckPosition(Vector3 position);
+	Vector3 GetPosition();
 	void SetTexture(Texture* pTexture);
 	void SetTexture(Object object);
 	Vector3 GetCoordinate();
