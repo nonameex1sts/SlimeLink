@@ -36,4 +36,4 @@ Debug/
 Release/
 BIN/TrainingFramework.exe
 BIN/TrainingFramework.pdb
-*/Level.txt
+Resources/Level/Level.txt
