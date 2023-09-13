@@ -1,4 +1,4 @@
-#Musics: 6
+#Musics: 7
 
 ID 0
 FILE ../Resources/Music/menu.wav
@@ -24,3 +24,7 @@ ID 5
 FILE ../Resources/Music/victory.wav
 LOOP 0
 SFX 1
+ID 6
+FILE ../Resources/Music/game.wav
+LOOP 1
+SFX 0
