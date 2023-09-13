@@ -18,6 +18,7 @@ int Init(ESContext* esContext)
 
 	//Initialize GameStateMachine
 	AudioManager::CreateInstance();
+	AudioManager::GetInstance()->GetAudioById(6)->SetVolume(10);
 	GameStateMachine::CreateInstance();
 
 
