@@ -397,7 +397,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 			pEnemy[iEnemyCounter] = (Enemy*)malloc(sizeof(Enemy));
 
 			//Enemy
-			*(pEnemy[iEnemyCounter]) = Enemy(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(90), pCamera,
+			*(pEnemy[iEnemyCounter]) = Enemy(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(107), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(1), position, rotation, scale, 6, 1, 0, 0.1, true, Vector3(0.0f, 0.0f, 0.0f)); // Sleep texture here
 
 			iEnemyCounter++;
