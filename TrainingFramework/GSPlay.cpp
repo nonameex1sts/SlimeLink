@@ -119,14 +119,6 @@ void GSPlay::Exit()
 	GameStateBase::Exit();
 }
 
-void GSPlay::Pause()
-{
-}
-
-void GSPlay::Resume()
-{
-}
-
 void GSPlay::Update(GLfloat deltaTime)
 {
 	SceneManager::GetInstance()->Update(deltaTime);

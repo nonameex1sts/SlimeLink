@@ -504,7 +504,7 @@ void SceneManager::Key(unsigned char keyPressed)
 			for (int i = 0; i < iNumEnemy; i++)
 			{
 				pEnemy[i]->SetPlayerLockPosition(pPlayer[iMainPlayer]->GetPosition());
-				pEnemy[i]->Key();
+				pEnemy[i]->Key(keyPressed);
 			}
 		}
 
@@ -642,19 +642,19 @@ void SceneManager::SetEnemyPlayerBehavior()
 				}
 
 				//Disable enemy movement ability based on position of nearby player, so the enemy doesn't crash into player
-				if ((int)std::floor(nearEnemyCoordinate.x) == 1)
+				if ((int)std::floor(nearEnemyCoordinate.x) == 1 && std::fabs(nearEnemyCoordinate.y) <= 1.0f)
 				{
 					pEnemy[j]->SetMoveLeftStatus(false);
 				}
-				if ((int)std::floor(nearEnemyCoordinate.x) == -1)
+				if ((int)std::floor(nearEnemyCoordinate.x) == -1 && std::fabs(nearEnemyCoordinate.y) <= 1.0f)
 				{
 					pEnemy[j]->SetMoveRightStatus(false);
 				}
-				if ((int)std::floor(nearEnemyCoordinate.y) == -1)
+				if ((int)std::floor(nearEnemyCoordinate.y) == -1 && std::fabs(nearEnemyCoordinate.x) <= 1.0f)
 				{
 					pEnemy[j]->SetMoveDownStatus(false);
 				}
-				if ((int)std::floor(nearEnemyCoordinate.y) == 1)
+				if ((int)std::floor(nearEnemyCoordinate.y) == 1 && std::fabs(nearEnemyCoordinate.x) <= 1.0f)
 				{
 					pEnemy[j]->SetMoveUpStatus(false);
 				}

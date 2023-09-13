@@ -26,9 +26,5 @@ void SelectLevelButton::MouseClick(int x, int y)
 			AudioManager::GetInstance()->GetAudioById(6)->PlayMusic();
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iCurrentLevel);
 		}
-		else
-		{
-			printf("Level %d\n", iCurrentLevel);
-		}
 	}
 }

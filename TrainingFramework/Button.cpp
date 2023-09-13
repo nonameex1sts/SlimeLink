@@ -21,23 +21,6 @@ Button::Button(Model* pModel, Texture* pTexture, Camera* pCamera, Shaders* pShad
 	}
 }
 
-void Button::Update()
-{
-}
-
-
-void Button::Key()
-{
-}
-
-void Button::Move()
-{
-}
-
-void Button::Rotate()
-{
-}
-
 bool Button::getActive()
 {
 	return isActive;

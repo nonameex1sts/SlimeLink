@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Picture.h"
 #include "GameStateMachine.h"
-#include "Transition.h"
 
 Picture::Picture() {}
 
@@ -33,7 +32,6 @@ void Picture::Update(Vector3 newPosition, float time)
 	}
 	else {
 		startPos = newPosition;
-		Transition::GetInstance()->SetStatus(0);
 	}
 }
 

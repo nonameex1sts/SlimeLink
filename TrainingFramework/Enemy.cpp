@@ -17,7 +17,7 @@ void Enemy::SetPlayerLockPosition(Vector3 playerLockPosition)
 	this->playerLockPosition = playerLockPosition;
 }
 
-void Enemy::Key()
+void Enemy::Key(unsigned char keyPressed)
 {
 	//Get direction towards main player
 	Vector3 direction = playerLockPosition - this->position;
@@ -27,11 +27,11 @@ void Enemy::Key()
 	//if the direction.x is longer than direction.y, move horizontally, otherwise move vertically
 	if (fabs(direction.x) > fabs(direction.y))
 	{
-		if (direction.x < 0)
+		if (direction.x < 0 && !(direction.x == -80.0f && keyPressed == 1<<2))
 		{
 			Player::Key(1 << 0, hasMoved);
 		}
-		else if (direction.x > 0)
+		else if (direction.x > 0 && !(direction.x == 80.0f && keyPressed == 1 << 0))
 		{
 			Player::Key(1 << 2, hasMoved);
 		}
@@ -39,11 +39,11 @@ void Enemy::Key()
 		//if the enemy has not move horizontally, e.g blocked by an obstacle, it moves vertically
 		if (!(*hasMoved))
 		{
-			if (direction.y < 0)
+			if (direction.y < 0 && !(direction.y == -80.0f && keyPressed == 1 << 3))
 			{
 				Player::Key(1 << 1, hasMoved);
 			}
-			else if (direction.y > 0)
+			else if (direction.y > 0 && !(direction.y == 80.0f && keyPressed == 1 << 1))
 			{
 				Player::Key(1 << 3, hasMoved);
 			}
@@ -51,11 +51,11 @@ void Enemy::Key()
 	}
 	else
 	{
-		if (direction.y < 0)
+		if (direction.y < 0 && !(direction.y == -80.0f && keyPressed == 1 << 3))
 		{
 			Player::Key(1 << 1, hasMoved);
 		}
-		else if (direction.y > 0)
+		else if (direction.y > 0 && !(direction.y == 80.0f && keyPressed == 1 << 1))
 		{
 			Player::Key(1 << 3, hasMoved);
 		}
@@ -63,11 +63,11 @@ void Enemy::Key()
 		//if the enemy has not move vertically, e.g blocked by an obstacle, it moves horizontally
 		if (!(*hasMoved))
 		{
-			if (direction.x < 0)
+			if (direction.x < 0 && !(direction.x == -80.0f && keyPressed == 1 << 2))
 			{
 				Player::Key(1 << 0, hasMoved);
 			}
-			else if (direction.x > 0)
+			else if (direction.x > 0 && !(direction.x == 80.0f && keyPressed == 1 << 0))
 			{
 				Player::Key(1 << 2, hasMoved);
 			}

@@ -52,10 +52,6 @@ void Object::InitWorldMatrix()
 	mt_world = Scale * Rotation * Translation;
 }
 
-void Object::Update()
-{
-}
-
 void Object::Draw() 
 {
 	//Bind pModel, texture and shader buffer
@@ -102,18 +98,6 @@ void Object::Draw()
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void Object::Key(unsigned char keyPressed)
-{
-}
-
-void Object::Move(Vector3 deltaPosition)
-{
-}
-
-void Object::Rotate()
-{
-}
-
 bool Object::CheckCloseObject(Object object)
 {
 	return (position - object.position).Length() < 1.5f * SQUARE_SIZE;
@@ -142,14 +126,6 @@ void Object::SetTexture(Object object)
 Vector3 Object::GetCoordinate()
 {
 	return Vector3((position.x - SQUARE_SIZE/2) / SQUARE_SIZE, (position.y - SQUARE_SIZE/2) / SQUARE_SIZE, position.z);
-}
-
-void Object::MouseClick(int x, int y)
-{
-}
-
-void Object::MouseMove(int x, int y)
-{
 }
 
 Matrix Object::CalculateWVP()
