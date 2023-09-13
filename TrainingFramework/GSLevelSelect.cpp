@@ -39,14 +39,26 @@ GSLevelSelect::GSLevelSelect()
 
 	pPointOfLevel = new int[NUM_OF_LEVELS + 1];
 
-	//Read point of every level and store into pointOfLevel
-	FILE* filePoiter = fopen("../Resources/Level/Level.txt", "r");
+	//If the file contains all score does not exists, create a new file with score of all levels = 0
+	if (fopen("../Resources/Level/Level.txt", "r") == nullptr)
+	{
+		FILE* writePointer = fopen("../Resources/Level/Level.txt", "w");
 
-	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
-		fscanf(filePoiter, "%d\n", &pPointOfLevel[i]);
+		for (int i = 1; i <= NUM_OF_LEVELS; i++) {
+			fprintf(writePointer, "%d\n", 0);
+		}
+
+		fclose(writePointer);
 	}
 
-	fclose(filePoiter);
+	//Read point of every level and store into pointOfLevel
+	FILE* filePointer = fopen("../Resources/Level/Level.txt", "r");
+
+	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
+		fscanf(filePointer, "%d\n", &pPointOfLevel[i]);
+	}
+
+	fclose(filePointer);
 
 	//Activate trophy pictures of first page based on scores read from file
 	for (int i = 1; i <= iLevelPerPage; i++) {
