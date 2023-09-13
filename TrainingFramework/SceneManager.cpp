@@ -24,7 +24,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "SPEED %f\n", &speed);
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
-	//Width height of the map
+	//Attributes of the map
 	fscanf(filePointer, "Width: %d\n", &iWidth);
 	fscanf(filePointer, "Height: %d\n", &iHeight);
 	fscanf(filePointer, "Horizontal wall: %d\n", &iNumHorizontalWall);
@@ -34,13 +34,13 @@ SceneManager::SceneManager(int ilevelNumber) {
 	fscanf(filePointer, "Spawn: %d\n", &iNumSpawn);
 	fscanf(filePointer, "Obstacle: %d\n", &iNumObstacle);
 
-	//O - can move, 1 - cannot move, 2 - left wall, 3 - right wall
+	//Map's logic matrix: O - can move, 1 - cannot move, 2 - left wall, 3 - right wall
 	p_imapType = (int**)malloc(sizeof(int*) * iWidth);
 	for (int i = 0; i < iWidth; i++) {
 		p_imapType[i] = (int*)malloc(sizeof(int) * iHeight);
 	}
 
-	//Initialize objects, walls and players
+	//Initialize objects, walls, players, enemies, spawns and targets
 	pObstacles = (Animation**)malloc(sizeof(Animation*) * iNumObstacle);
 	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);
 	pHorizontalWall = (Object**)malloc(sizeof(Object*) * iNumHorizontalWall);
@@ -73,7 +73,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 		24. player with spawn
 		44. wake player
 		85. torch
-		45. enemy
+		45. enemy - follow and block player
 	*/
 
 	for (int i = 0; i < iWidth * iHeight; i++) {
@@ -215,7 +215,8 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 		if (imapType == 12) // sleep player
 		{
-			p_imapType[i % iWidth][i / iWidth] = 0;
+			//A sleep player is marked as an obstacle (for enemy movement)
+			p_imapType[i % iWidth][i / iWidth] = 1;
 
 			pObjects[i] = (Object*)malloc(sizeof(Object));
 
@@ -403,13 +404,14 @@ SceneManager::SceneManager(int ilevelNumber) {
 		}
 	}
 
+	//Set the targeting position of all enemies according to the main player
 	for (int i = 0; i < iNumEnemy; i++) {
 		pEnemy[i]->SetPlayerLockPosition(pPlayer[iMainPlayer]->GetPosition());
 	}
 
 	iNumOfMoves = 0;
 
-	//Each move limit for each star
+	//Get move limit for each star
 	iStar = new int[3];
 	fscanf(filePointer, "Star: %d %d %d\n", &iStar[0], &iStar[1], &iStar[2]);
 
@@ -418,9 +420,10 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 void SceneManager::Update(float deltaTime)
 {
-	//Set players movement abitity
+	//Set players and enemies movement abitity
 	SetPlayerMovement();
 	SetEnemyMovement();
+	SetEnemyPlayerBehavior();
 
 	//Active players move
 	for (int i = 0; i < iNumPlayer; i++) 
@@ -429,12 +432,14 @@ void SceneManager::Update(float deltaTime)
 		pPlayer[i]->Update(deltaTime);
 	}
 
+	//Enemies move
 	for (int i = 0; i < iNumEnemy; i++)
 	{
 		pEnemy[i]->Move(deltaTime);
 		pEnemy[i]->Update(deltaTime);
 	}
 
+	//Animation
 	for (int i = 0; i < iNumObstacle; i++)
 	{
 		pObstacles[i]->Update(deltaTime);
@@ -495,6 +500,7 @@ void SceneManager::Key(unsigned char keyPressed)
 				pCamera->Inputs(keyPressed);
 			}
 
+			//Update the targeting position of all enemies according to the main player
 			for (int i = 0; i < iNumEnemy; i++)
 			{
 				pEnemy[i]->SetPlayerLockPosition(pPlayer[iMainPlayer]->GetPosition());
@@ -502,6 +508,7 @@ void SceneManager::Key(unsigned char keyPressed)
 			}
 		}
 
+		//Update score if at least one active player has moved
 		if (*hasMoved) 
 		{
 			iNumOfMoves++;
@@ -603,6 +610,59 @@ void SceneManager::SetEnemyMovement()
 	}
 }
 
+void SceneManager::SetEnemyPlayerBehavior()
+{
+	for (int i = 0; i < iNumPlayer; i++)
+	{
+		if (pPlayer[i]->GetActiveStatus())
+		{
+			for (int j = 0; j < iNumEnemy; j++) 
+			{
+				//Get position of enemy in player perspective (means vector player->enemy)
+				Vector3 nearEnemyCoordinate;
+				nearEnemyCoordinate.x = (int)std::round(pEnemy[j]->GetCoordinate().x) - (int)std::round(pPlayer[i]->GetCoordinate().x);
+				nearEnemyCoordinate.y = (int)std::round(pEnemy[j]->GetCoordinate().y) - (int)std::round(pPlayer[i]->GetCoordinate().y);
+
+				//Disable player movement ability based on position of nearby enemy
+				if ((int)std::floor(nearEnemyCoordinate.x) == 1 && (int)std::floor(nearEnemyCoordinate.y) == 0)
+				{
+					pPlayer[i]->SetMoveRightStatus(false);
+				}
+				else if ((int)std::floor(nearEnemyCoordinate.x) == -1 && (int)std::floor(nearEnemyCoordinate.y) == 0)
+				{
+					pPlayer[i]->SetMoveLeftStatus(false);
+				}
+				else if ((int)std::floor(nearEnemyCoordinate.y) == 1 && (int)std::floor(nearEnemyCoordinate.x) == 0)
+				{
+					pPlayer[i]->SetMoveDownStatus(false);
+				}
+				else if ((int)std::floor(nearEnemyCoordinate.y) == -1 && (int)std::floor(nearEnemyCoordinate.x) == 0)
+				{
+					pPlayer[i]->SetMoveUpStatus(false);
+				}
+
+				//Disable enemy movement ability based on position of nearby player, so the enemy doesn't crash into player
+				if ((int)std::floor(nearEnemyCoordinate.x) == 1)
+				{
+					pEnemy[j]->SetMoveLeftStatus(false);
+				}
+				if ((int)std::floor(nearEnemyCoordinate.x) == -1)
+				{
+					pEnemy[j]->SetMoveRightStatus(false);
+				}
+				if ((int)std::floor(nearEnemyCoordinate.y) == -1)
+				{
+					pEnemy[j]->SetMoveDownStatus(false);
+				}
+				if ((int)std::floor(nearEnemyCoordinate.y) == 1)
+				{
+					pEnemy[j]->SetMoveUpStatus(false);
+				}
+			}
+		}
+	}
+}
+
 //Spawn new players in all spawn square
 void SceneManager::SpawnPlayer()
 {
@@ -625,8 +685,10 @@ void SceneManager::SpawnPlayer()
 				iNumPlayer += iNumSpawn;
 
 				pPlayer[j]->SetDrawnStatus(false);
+
 				//Spawn audio
 				AudioManager::GetInstance()->GetAudioById(4)->PlayMusic();
+
 				//Disable spawn square
 				for (int k = 0; k < iWidth * iHeight; k++)
 				{
@@ -654,10 +716,14 @@ void SceneManager::ActivatePlayer()
 		{
 			for (int j = 0; j < iNumPlayer; j++)
 			{
-				if (pPlayer[i]->CheckCloseObject(*pPlayer[j]))
+				//If player j is close to player i and player j is asleep
+				if (pPlayer[i]->CheckCloseObject(*pPlayer[j]) && !pPlayer[j]->GetActiveStatus())
 				{
 					pPlayer[j]->SetActiveStatus(true);
 					pPlayer[j]->SetTexture(*pPlayer[i]); // When wake up
+
+					//When a player wake up, that position is no longer marked as obstacle
+					p_imapType[(int)std::round(pPlayer[j]->GetCoordinate().x)][(int)std::round(pPlayer[j]->GetCoordinate().y)] = 0;
 				}
 			}
 		}
@@ -763,7 +829,7 @@ void SceneManager::WriteResult()
 	delete pointOfLevel;
 }
 
-//Draw floor -> players -> obsticle -> vertical walls
+//Draw floor -> players & enemies -> obsticle -> vertical walls
 void SceneManager::Draw()
 {
 	for (int i = 0; i < iWidth * iHeight; i++)

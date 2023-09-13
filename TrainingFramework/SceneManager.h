@@ -74,6 +74,7 @@ public:
 	void Key(unsigned char keyPressed);
 	void SetPlayerMovement();
 	void SetEnemyMovement();
+	void SetEnemyPlayerBehavior();
 	void SpawnPlayer();
 	void ActivatePlayer();
 	void CheckWinCondition();
