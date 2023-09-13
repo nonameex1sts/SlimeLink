@@ -71,6 +71,7 @@ void Button::MouseClick(int x, int y, bool isPressed)
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_CREDIT, 1);
 			break;
 		case RESUME:
+			AudioManager::GetInstance()->GetAudioById(6)->PlayMusic();
 			GameStateMachine::GetInstance()->PopState();
 			break;
 		case MENU:
@@ -135,12 +136,14 @@ void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 			break;
 		case PAUSE:
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PAUSE, 1);
+			AudioManager::GetInstance()->GetAudioById(6)->PauseMusic();
 			break;
 		case PAUSE_TO_SELECT:
 			GameStateMachine::GetInstance()->PopState(StateType::STATE_LEVEL_SELECT);
 			break;
 		case NEXT_LEVEL:
 			GameStateMachine::GetInstance()->PopState();
+			AudioManager::GetInstance()->GetAudioById(6)->SetVolume(30);
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel + 1);
 			break;
 		}

@@ -11,6 +11,7 @@ public:
 	~Audio();
 	void PlayMusic();
 	void StopMusic();
+	void PauseMusic();
 	void SetVolume(float volume);
 	bool GetIsSfx();
 };

@@ -32,6 +32,11 @@ void Audio::StopMusic()
 	music.stop();
 }
 
+void Audio::PauseMusic()
+{
+	music.pause();
+}
+
 void Audio::SetVolume(float volume)
 {
 	music.setVolume(volume);
