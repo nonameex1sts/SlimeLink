@@ -104,7 +104,7 @@ void Button::MouseClick(int x, int y, bool isPressed)
 	}
 }
 
-// This is for reset
+// Button in GSPlay
 void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))
@@ -144,7 +144,6 @@ void Button::MouseClickResetGame(int x, int y, int* typeButton)
 			break;
 		case YES:
 			ResetGame();
-
 			*typeButton = 2;
 			break;
 		case NO:
@@ -156,7 +155,17 @@ void Button::MouseClickResetGame(int x, int y, int* typeButton)
 
 void Button::ResetGame()
 {
-	FILE* writePoiter = fopen("../Resources/Level/Level.txt", "w");
+	//Rewrite all data in score file to 0
+	FILE* writePoiter;
+
+	try
+	{
+		writePoiter = fopen("../Resources/Level/Level.txt", "w");
+	}
+	catch (...)
+	{
+		printf("Cannot open score file to reset game file");
+	}
 
 	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
 		fprintf(writePoiter, "%d\n", 0);
@@ -202,7 +211,7 @@ void Button::MouseClick(int x, int y, int* index, int sum)
 	}
 }
 
-// This is for the on and off button effect when the mouse hover in
+// This is for the up and down button effect when the mouse hover in
 void Button::MouseMove(int x, int y)
 {
 	if ((position.x - scale.x / 2) < x && x < (position.x + scale.x / 2) && (position.y - scale.y / 2) < y && y < (position.y + scale.y / 2))

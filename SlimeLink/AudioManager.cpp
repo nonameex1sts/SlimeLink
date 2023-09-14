@@ -8,7 +8,17 @@ AudioManager::AudioManager()
 	isSFXOn = true;
 	isBGMOn = true;
 	// Read audio and create them
-	FILE* filePointer = fopen("../SlimeLink/Audio.txt", "r");
+	FILE* filePointer;
+
+	try
+	{
+		filePointer = fopen("../SlimeLink/Audio.txt", "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open audio file");
+	}
+	
 	char* filePath = new char[50];
 	int id;
 	int isLoop;
@@ -22,6 +32,7 @@ AudioManager::AudioManager()
 		fscanf(filePointer, "SFX %d\n", &isSfx);
 		music[i] = new Audio(filePath, isLoop, isSfx);
 	}
+
 	delete filePath;
 	fclose(filePointer);
 }

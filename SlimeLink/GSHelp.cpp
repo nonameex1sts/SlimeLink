@@ -5,8 +5,18 @@
 // Read the animation to showcase in the help state
 void GSHelp::ReadAnimation()
 {
-	FILE* filePointer = fopen("../SlimeLink/HelpPos.txt", "r");
+	FILE* filePointer;
 
+	try
+	{
+		filePointer = fopen("../SlimeLink/HelpPos.txt", "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open animation in help file");
+	}
+
+	//Instantiate data
 	fscanf(filePointer, "#PICS: %d\n", &iHelpPic);
 	startSlime = (int*)malloc(sizeof(int) * iHelpPic);
 	endSlime = (int*)malloc(sizeof(int) * iHelpPic);
@@ -16,6 +26,7 @@ void GSHelp::ReadAnimation()
 	// Read slimes pos
 	fscanf(filePointer, "#SLIMES: %d\n", &numOfSlime);
 	slime = (Animation**)malloc(sizeof(Animation*) * numOfSlime);
+
 	for (int i = 0; i < numOfSlime; i++)
 	{
 		int id, activated, textureId = 12;
@@ -24,6 +35,7 @@ void GSHelp::ReadAnimation()
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "POS %f, %f, %f\n", &posX, &posY, &posZ);
 		fscanf(filePointer, "ACTIVE %d\n", &activated);
+
 		if (activated == 0)
 		{
 			textureId = 14;
@@ -32,6 +44,7 @@ void GSHelp::ReadAnimation()
 		{
 			textureId = 107;
 		}
+
 		*(slime[i]) = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(1), Vector3(posX, posY, posZ), Vector3(0.0f, 0.0f, 0.0f), Vector3(SQUARE_SIZE, SQUARE_SIZE, 0.0f), 6, 1, 0, 0.1);
 	}
@@ -39,6 +52,7 @@ void GSHelp::ReadAnimation()
 	// Read torches pos
 	fscanf(filePointer, "#TORCHES: %d\n", &numOfTorch);
 	torch = (Animation**)malloc(sizeof(Animation*) * numOfTorch);
+
 	for (int i = 0; i < numOfTorch; i++)
 	{
 		int id;
@@ -46,6 +60,7 @@ void GSHelp::ReadAnimation()
 		torch[i] = (Animation*)malloc(sizeof(Animation));
 		fscanf(filePointer, "ID %d\n", &id);
 		fscanf(filePointer, "POS %f, %f, %f\n", &posX, &posY, &posZ);
+
 		*(torch[i]) = Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(90), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(1), Vector3(posX, posY, posZ), Vector3(0.0f, 0.0f, 0.0f), Vector3(SQUARE_SIZE, SQUARE_SIZE, 0.0f), 4, 1, 0, 0.1);
 	}
@@ -76,12 +91,14 @@ GSHelp::~GSHelp()
 	{
 		free(slime[i]);
 	}
+	free(slime);
+
 	for (int i = 0; i < numOfTorch; i++)
 	{
 		free(torch[i]);
 	}
 	free(torch);
-	free(slime);
+	
 	free(startSlime);
 	free(endSlime);
 	free(startTorch);
@@ -95,6 +112,7 @@ void GSHelp::Update(GLfloat deltatime)
 	{
 		slime[i]->Update(deltatime);
 	}
+
 	for (int i = 0; i < numOfTorch; i++)
 	{
 		torch[i]->Update(deltatime);
@@ -143,6 +161,7 @@ void GSHelp::Draw()
 	{
 		slime[i]->Draw();
 	}
+
 	for (int i = startTorch[iCurrentPic]; i < endTorch[iCurrentPic]; i++)
 	{
 		torch[i]->Draw();

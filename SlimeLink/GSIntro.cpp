@@ -25,6 +25,7 @@ void GSIntro::Exit()
 
 void GSIntro::Update(GLfloat deltatime)
 {
+	//The storyline picture moves up according to deltatime
 	if (fTime < DELAY_TIME)
 	{
 		fTime += deltatime;

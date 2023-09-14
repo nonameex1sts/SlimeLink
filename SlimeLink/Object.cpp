@@ -39,6 +39,7 @@ Object::Object(char* pModelLink, char* pTextureLink, Camera* camera, Vector3 pos
 
 void Object::InitWorldMatrix()
 {
+	//Caculate world matrix based on Scale, Rotation and Translation
 	Matrix Scale, Rotation, RotationX, RotationY, RotationZ, Translation;
 	Scale.SetScale(scale.x , scale.y, scale.z);
 

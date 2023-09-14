@@ -6,7 +6,17 @@ ResourceManager* ResourceManager::ms_pInstance = nullptr;
 
 ResourceManager::ResourceManager()
 {
-	FILE* filePointer = fopen("../SlimeLink/RM.txt", "r");
+	FILE* filePointer;
+
+	try
+	{
+		filePointer = fopen("../SlimeLink/RM.txt", "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open resource manager file");
+	}
+
 	int id;
 	char* filePath = new char[100];
 
