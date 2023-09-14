@@ -12,7 +12,16 @@ Texture::Texture(char* tgaLink)
 	int widthImage;
 	int heightImage;
 	int iColorChannel;
-	unsigned char* imageData = stbi_load(tgaLink, &widthImage, &heightImage, &iColorChannel, 0);
+	unsigned char* imageData;
+
+	try
+	{
+		imageData = stbi_load(tgaLink, &widthImage, &heightImage, &iColorChannel, 0);
+	}
+	catch (...)
+	{
+		printf("Cannot open image file");
+	}
 
 	//Bind buffer
 	glGenTextures(1, &itextureId);

@@ -12,10 +12,14 @@ Model::Model(char* filePath)
 	Vertex* p_vertices;
 	GLuint* p_ivereticalIndices;
 
-	FILE* filePointer = fopen(filePath, "r");
-	if (filePointer == NULL) 
+	FILE* filePointer;
+	try
 	{
-		// Unknown
+		filePointer = fopen(filePath, "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open model file");
 	}
 
 	//Read vertex from file

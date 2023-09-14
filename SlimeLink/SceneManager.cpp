@@ -13,7 +13,16 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 	//Read map file
 	std::string link = "../Resources/Level/map" + std::to_string(ilevelNumber) + ".txt";
-	FILE* filePointer = fopen(link.c_str(), "r");
+	FILE* filePointer;
+
+	try
+	{
+		filePointer = fopen(link.c_str(), "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open scene manager file");
+	}
 
 	//Initialize camera
 	float fovY, nearPlane, farPlane, speed;
@@ -42,7 +51,7 @@ SceneManager::SceneManager(int ilevelNumber) {
 
 	//Initialize objects, walls, players, enemies, spawns and targets
 	pObstacles = (Animation**)malloc(sizeof(Animation*) * iNumObstacle);
-	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);
+	pObjects = (Object**)malloc(sizeof(Object*) * iWidth * iHeight);		//title map
 	pHorizontalWall = (Object**)malloc(sizeof(Object*) * iNumHorizontalWall);
 	pPlayer = (Player**)malloc(sizeof(Player*) * (iNumPlayer + iNumSpawn));
 	pEnemy = (Enemy**)malloc(sizeof(Enemy*) * iNumEnemy);
@@ -467,10 +476,11 @@ void SceneManager::Key(unsigned char keyPressed)
 	//Player movement
 	if (!hasEnded) 
 	{
-		//Call Key function of each player
+		//Check if at least one player has moved
 		bool* hasMoved = new bool;
 		*hasMoved = false;
 
+		//Call Key function of each player
 		for (int i = 0; i < iNumPlayer; i++) {
 			pPlayer[i]->Key(keyPressed, hasMoved);
 		}
@@ -524,6 +534,7 @@ void SceneManager::SetPlayerMovement()
 {
 	for (int i = 0; i < iNumPlayer; i++)
 	{
+		//Enable all movement ability before checking
 		pPlayer[i]->SetMoveRightStatus(true);
 		pPlayer[i]->SetMoveLeftStatus(true);
 		pPlayer[i]->SetMoveDownStatus(true);
@@ -534,6 +545,7 @@ void SceneManager::SetPlayerMovement()
 			Vector3 coordinate = pPlayer[i]->GetCoordinate();
 
 			//Check surrounding map after each move
+			//If the right of player is an obstacle (or left wall), or player is on right wall, the player cannot move right
 			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 3))
 			{
 				pPlayer[i]->SetMoveRightStatus(false);
@@ -543,6 +555,7 @@ void SceneManager::SetPlayerMovement()
 				pPlayer[i]->SetMoveRightStatus(false);
 			}
 
+			//If the left of player is an obstacle (or right wall), or player is on left wall, the player cannot move left
 			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 2))
 			{
 				pPlayer[i]->SetMoveLeftStatus(false);
@@ -552,11 +565,13 @@ void SceneManager::SetPlayerMovement()
 				pPlayer[i]->SetMoveLeftStatus(false);
 			}
 
+			//If the bottom of player is an obstacle, the player cannot move down
 			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) + 1] == 1)
 			{
 				pPlayer[i]->SetMoveDownStatus(false);
 			}
 
+			//If the top of player is an obstacle, the player cannot move down
 			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) - 1] == 1)
 			{
 				pPlayer[i]->SetMoveUpStatus(false);
@@ -569,6 +584,7 @@ void SceneManager::SetEnemyMovement()
 {
 	for (int i = 0; i < iNumEnemy; i++)
 	{
+		//Enable all movement ability before checking
 		pEnemy[i]->SetMoveRightStatus(true);
 		pEnemy[i]->SetMoveLeftStatus(true);
 		pEnemy[i]->SetMoveDownStatus(true);
@@ -579,6 +595,7 @@ void SceneManager::SetEnemyMovement()
 			Vector3 coordinate = pEnemy[i]->GetCoordinate();
 
 			//Check surrounding map after each move
+			//If the right of enemy is an obstacle (or left wall), or enemy is on right wall, the enemy cannot move right
 			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 3))
 			{
 				pEnemy[i]->SetMoveRightStatus(false);
@@ -588,6 +605,7 @@ void SceneManager::SetEnemyMovement()
 				pEnemy[i]->SetMoveRightStatus(false);
 			}
 
+			//If the left of enemy is an obstacle (or right wall), or enemy is on left wall, the enemy cannot move left
 			if ((p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y)] == 2))
 			{
 				pEnemy[i]->SetMoveLeftStatus(false);
@@ -597,11 +615,13 @@ void SceneManager::SetEnemyMovement()
 				pEnemy[i]->SetMoveLeftStatus(false);
 			}
 
+			//If the bottom of enemy is an obstacle, the enemy cannot move down
 			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) + 1] == 1)
 			{
 				pEnemy[i]->SetMoveDownStatus(false);
 			}
 
+			//If the top of enemy is an obstacle, the enemy cannot move down
 			if (p_imapType[(int)std::round(coordinate.x)][(int)std::round(coordinate.y) - 1] == 1)
 			{
 				pEnemy[i]->SetMoveUpStatus(false);
@@ -675,6 +695,7 @@ void SceneManager::SpawnPlayer()
 				//Check if any active player step into spawn square
 				Vector3 rotation = Vector3(0.0f, 0.0f, 0.0f);
 				Vector3 scale = Vector3(SQUARE_SIZE, SQUARE_SIZE, 1.0f);
+
 				for (int k = 0; k < iNumSpawn; k++)
 				{
 					pPlayer[iNumPlayer + k] = (Player*)malloc(sizeof(Player));
@@ -682,11 +703,12 @@ void SceneManager::SpawnPlayer()
 					*(pPlayer[iNumPlayer + k]) = Player(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(12), pCamera,
 						ResourceManager::GetInstance()->GetShaderById(1), pSpawnPosition[k], rotation, scale, 6, 1, 0, 0.1, true);
 				}
+
 				iNumPlayer += iNumSpawn;
 
 				pPlayer[j]->SetDrawnStatus(false);
 
-				//Spawn audio
+				//Play spawn audio
 				AudioManager::GetInstance()->GetAudioById(4)->PlayMusic();
 
 				//Disable spawn square
@@ -806,7 +828,16 @@ void SceneManager::WriteResult()
 	int* pointOfLevel = new int[NUM_OF_LEVELS + 1];
 
 	//Read point of every level and store into an array
-	FILE* readPoiter = fopen("../Resources/Level/Level.txt", "r");
+	FILE* readPoiter;
+
+	try
+	{
+		readPoiter = fopen("../Resources/Level/Level.txt", "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open score file");
+	}
 
 	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
 		fscanf(readPoiter, "%d\n", &pointOfLevel[i]);
@@ -819,7 +850,16 @@ void SceneManager::WriteResult()
 	pointOfLevel[iLevelNumber] = pointOfLevel[iLevelNumber] > star ? pointOfLevel[iLevelNumber] : star;
 
 	//Rewrite the file storing all the score after checking high score of current level
-	FILE* writePoiter = fopen("../Resources/Level/Level.txt", "w");
+	FILE* writePoiter;
+
+	try
+	{
+		writePoiter = fopen("../Resources/Level/Level.txt", "w");
+	}
+	catch (...)
+	{
+		printf("Cannot open score file");
+	}
 
 	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
 		fprintf(writePoiter, "%d\n", pointOfLevel[i]);
@@ -902,6 +942,7 @@ SceneManager::~SceneManager()
 	
 	free(pTargetPosition);
 	free(pSpawnPosition);
+
 	delete iStar;
 	delete pCamera;
 }

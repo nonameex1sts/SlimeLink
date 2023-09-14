@@ -123,6 +123,7 @@ void GSPlay::Update(GLfloat deltaTime)
 {
 	SceneManager::GetInstance()->Update(deltaTime);
 
+	//The key only register after DELAY_KEY_TIME + DELAY_STATE_PLAYER, fcheckKeyTime to check that according to deltaTime
 	if (fcheckKeyTime <= DELAY_KEY_TIME + DELAY_STATE_PLAYER) {
 		fcheckKeyTime += FRAME_TIME;
 	}

@@ -17,7 +17,17 @@ GameStateBase::~GameStateBase()
 
 void GameStateBase::Init(char* file, StateType e_type)
 {
-	FILE* filePointer = fopen(file, "r");
+	FILE* filePointer;
+
+	try
+	{
+		filePointer = fopen(file, "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open state initiate file: %s\n", file);
+	}
+
 	// NOTE: read camera
 	float fovY, nearPlane, farPlane, speed;
 	fscanf(filePointer, "#CAMERA\n");
@@ -25,13 +35,16 @@ void GameStateBase::Init(char* file, StateType e_type)
 	fscanf(filePointer, "FAR %f\n", &farPlane);
 	fscanf(filePointer, "FOV %f\n", &fovY);
 	fscanf(filePointer, "SPEED %f\n", &speed);
+
 	pCamera = new Camera(Vector3(0.0f, 0.0f, 0.0f), Vector3(0.0f, 0.0f, -1.0f), fovY, nearPlane, farPlane, speed);
 
 	int id, modelId, textureId, shaderId, buttonType, isActive;
 	Vector3 position, rotation, scale;
+
 	// NOTE: read buttons
 	fscanf(filePointer, "#Buttons: %d\n", &inumButtons);
 	pButtons = (Button**)malloc(sizeof(Button*) * inumButtons);
+
 	for (int i = 0; i < inumButtons; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
@@ -48,9 +61,11 @@ void GameStateBase::Init(char* file, StateType e_type)
 		*(pButtons[i]) = Button(ResourceManager::GetInstance()->GetModelById(modelId), ResourceManager::GetInstance()->GetTextureById(textureId), pCamera,
 			ResourceManager::GetInstance()->GetShaderById(shaderId), position, rotation, scale, buttonType, isActive);
 	}
+
 	// NOTE: read pictures
 	fscanf(filePointer, "#Pictures: %d\n", &inumPics);
 	pPictures = (Picture**)malloc(sizeof(Picture*) * inumPics);
+
 	for (int i = 0; i < inumPics; i++)
 	{
 		fscanf(filePointer, "ID %d\n", &id);
@@ -124,7 +139,8 @@ void GameStateBase::Draw()
 			pPictures[i]->Draw();
 		}
 	}
-	// BGM and SFX button switch to on and off
+
+	// BGM and SFX button switch between up and down status
 	for (int i = 0; i < inumButtons; i++)
 	{
 		if (AudioManager::GetInstance()->getBGMStatus())

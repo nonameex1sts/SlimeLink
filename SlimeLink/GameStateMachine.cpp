@@ -54,6 +54,7 @@ void GameStateMachine::PushState(StateType type, int ilevelNumber)
 	m_stateStack.push(newState);
 }
 
+//Pop current state
 void GameStateMachine::PopState()
 {
 	m_stateStack.pop();
@@ -62,15 +63,14 @@ void GameStateMachine::PopState()
 	p_activeState->Resume();
 }
 
+//Pop state until the type of current state = type
 void GameStateMachine::PopState(StateType type)
 {
-	//printf("%d\n", type);
 	do 
 	{
 		delete p_activeState;
 		m_stateStack.pop();
 		p_activeState = m_stateStack.top();
-		//printf("%d\n", p_activeState->GetStateType());
 	} 
 	while (p_activeState->GetStateType() !=  type);
 

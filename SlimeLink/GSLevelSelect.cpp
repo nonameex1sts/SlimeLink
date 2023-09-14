@@ -15,19 +15,21 @@ GSLevelSelect::GSLevelSelect()
 	Vector3 trophyOffset = Vector3(-50.0f, 100.0f, 0.0f);
 	Vector3 trophyWidthEach = Vector3(50.0f, 0.0f, 0.0f);
 
-	// Create level select button
+	// Create level select button and trophy pictures
 	pSelectLevel = (SelectLevelButton**)malloc(sizeof(SelectLevelButton*) * iLevelPerPage);
 	pTrophy = (Picture**)malloc(sizeof(Picture*) * 3 * iLevelPerPage);
 	for (int i = 0; i < iRowPerPage; i++)
 	{
 		for (int j = 0; j < (iLevelPerPage / iRowPerPage); j++)
 		{
+			//Level select button
 			pSelectLevel[i * 3 + j] = (SelectLevelButton*)malloc(sizeof(SelectLevelButton));
 
 			*(pSelectLevel[i * 3 + j]) = SelectLevelButton(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(59 + i * 3 + j), pCamera,
 				ResourceManager::GetInstance()->GetShaderById(0), levelPos + levelHeightEach * i + levelWidthEach * j, levelRotation, levelScale, 0, 1);
 			pSelectLevel[i * 3 + j]->SetCurrentLevel(i * 3 + j + 1);
 
+			//Trophy pictures
 			for (int k = 0; k < 3; k++) {
 				pTrophy[3 * (i * 3 + j) + k] = (Picture*)malloc(sizeof(Picture));
 
@@ -52,7 +54,16 @@ GSLevelSelect::GSLevelSelect()
 	}
 
 	//Read point of every level and store into pointOfLevel
-	FILE* filePointer = fopen("../Resources/Level/Level.txt", "r");
+	FILE* filePointer;
+
+	try
+	{
+		filePointer = fopen("../Resources/Level/Level.txt", "r");
+	}
+	catch (...)
+	{
+		printf("Cannot open score file\n");
+	}
 
 	for (int i = 1; i <= NUM_OF_LEVELS; i++) {
 		fscanf(filePointer, "%d\n", &pPointOfLevel[i]);

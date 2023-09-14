@@ -53,7 +53,8 @@ void GSCredit::Draw()
 			pPictures[i]->Draw();
 		}
 	}
-	// BGM and SFX button switch to on and off
+
+	// BGM and SFX button switch between uo and down status
 	for (int i = 0; i < inumButtons; i++)
 	{
 		if (pButtons[i]->getActive())
@@ -61,5 +62,6 @@ void GSCredit::Draw()
 			pButtons[i]->Draw();
 		}
 	}
+
 	slime->Draw();
 }
