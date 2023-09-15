@@ -7,7 +7,7 @@ GSIntro::GSIntro()
 {
 	AudioManager::GetInstance()->GetAudioById(1)->PlayMusic();
 	ResourceManager::CreateInstance();
-	Init("../SlimeLink/GSIntro.txt", StateType::STATE_INTRO);
+	Init("../Resources/StateData/GSIntro.txt", StateType::STATE_INTRO);
 }
 
 GSIntro::~GSIntro()

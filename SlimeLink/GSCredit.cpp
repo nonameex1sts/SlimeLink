@@ -3,7 +3,7 @@
 
 GSCredit::GSCredit()
 {
-	Init("../SlimeLink/GSCredit.txt", StateType::STATE_CREDIT);
+	Init("../Resources/StateData/GSCredit.txt", StateType::STATE_CREDIT);
 	slime = new Animation(ResourceManager::GetInstance()->GetModelById(0), ResourceManager::GetInstance()->GetTextureById(12), pCamera,
 		ResourceManager::GetInstance()->GetShaderById(1), Vector3(674.0f, 125.0f, 0.0f), Vector3(0.0f, 0.0f, 0.0f), Vector3(45.0f, 45.0f, 0.0f), 6, 1, 0, 0.1);
 }

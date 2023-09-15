@@ -9,7 +9,7 @@ void GSHelp::ReadAnimation()
 
 	try
 	{
-		filePointer = fopen("../SlimeLink/HelpPos.txt", "r");
+		filePointer = fopen("../Resources/StateData/HelpPos.txt", "r");
 	}
 	catch (...)
 	{
@@ -81,7 +81,7 @@ void GSHelp::ReadAnimation()
 
 GSHelp::GSHelp()
 {
-	Init("../SlimeLink/GSHelp.txt", StateType::STATE_HELP);
+	Init("../Resources/StateData/GSHelp.txt", StateType::STATE_HELP);
 	ReadAnimation();
 }
 

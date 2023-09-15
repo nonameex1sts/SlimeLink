@@ -10,7 +10,7 @@ ResourceManager::ResourceManager()
 
 	try
 	{
-		filePointer = fopen("../SlimeLink/RM.txt", "r");
+		filePointer = fopen("../Resources/StateData/RM.txt", "r");
 	}
 	catch (...)
 	{

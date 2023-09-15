@@ -3,7 +3,7 @@
 
 GSPause::GSPause()
 {
-	Init("../SlimeLink/GSPause.txt", StateType::STATE_PAUSE);
+	Init("../Resources/StateData/GSPause.txt", StateType::STATE_PAUSE);
 }
 
 GSPause::~GSPause()

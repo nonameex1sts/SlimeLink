@@ -12,7 +12,7 @@ AudioManager::AudioManager()
 
 	try
 	{
-		filePointer = fopen("../SlimeLink/Audio.txt", "r");
+		filePointer = fopen("../Resources/StateData/Audio.txt", "r");
 	}
 	catch (...)
 	{

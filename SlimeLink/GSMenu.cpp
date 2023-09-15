@@ -6,7 +6,7 @@
 
 GSMenu::GSMenu()
 {
-	Init("../SlimeLink/GSMenu.txt", StateType::STATE_MENU);
+	Init("../Resources/StateData/GSMenu.txt", StateType::STATE_MENU);
 	AudioManager::GetInstance()->GetAudioById(6)->StopMusic();
 	AudioManager::GetInstance()->GetAudioById(0)->PlayMusic();
 	AudioManager::GetInstance()->GetAudioById(1)->StopMusic();
