@@ -1,5 +1,9 @@
+Ý tưởng: Dựa trên Sleeping Block - top 20 game của GameJam 2021.
+
 - Thể loại: Game giải đố.
 - Điều khiển: WASD hoặc 4 phím mũi tên.
-- Mô tả: Người chơi điều khiển các khối lập phương trong bản đồ ô lưới. Các khối lập phương có 2 trạng thái: active (người chơi điều khiển được) và inactive (người chơi không điều khiển được). Các khối inactive sẽ được kích hoạt nếu có khối active lại gần. Khi bấm phím tất cả các ô active sẽ cùng di chuyển.
-- Mục tiêu: Di chuyển các khối lập phương đến đích với số lượng nước đi nhỏ nhất, tất cả các khối đều phải ở trong ô đích để chiến thắng.
-- Chướng ngại vật: Tường khiến hạn chế di chuyển, cơ chế tăng giảm số lượng khối lập phương.
+- Mô tả: 
++ Nhân vật di chuyển trong bản đồ ô lưới. Nhân vật có 2 trạng thái: active (điều khiển được) và inactive (không điều khiển được). 
++ Nhân vật inactive được kích hoạt nếu nhân vật active lại gần. Khi Điều khiển tất cả các nhân vật active sẽ cùng di chuyển.
+- Mục tiêu: Di chuyển các nhân vật phương đến đích với số lượng nước đi nhỏ nhất, tất cả các nhân vật active đều phải ở trong ô đích và tất cả ô đích đều có nhân vật active để chiến thắng.
+- Chướng ngại vật: Tường khiến hạn chế di chuyển, cơ chế tăng giảm số lượng khối nhân vật, kẻ địch chặn đuờng.
