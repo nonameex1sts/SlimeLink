@@ -788,7 +788,7 @@ void SceneManager::CheckWinCondition()
 	if (iNumberTargetReached == iNumTarget && iNumberActivePlayer == iNumberActivePlayerReached)
 	{
 		hasEnded = true;
-		AudioManager::GetInstance()->GetAudioById(6)->SetVolume(0);
+		AudioManager::GetInstance()->GetAudioById(6)->StopMusic();
 		AudioManager::GetInstance()->GetAudioById(5)->PlayMusic();
 		WriteResult();
 	}
