@@ -126,7 +126,7 @@ void Button::MouseClickReset(int x, int y, int iLevel, bool* isReset)
 			break;
 		case NEXT_LEVEL:
 			GameStateMachine::GetInstance()->PopState();
-			AudioManager::GetInstance()->GetAudioById(6)->SetVolume(10);
+			AudioManager::GetInstance()->GetAudioById(6)->PlayMusic();
 			GameStateMachine::GetInstance()->PushState(StateType::STATE_PLAY, iLevel + 1);
 			break;
 		}
