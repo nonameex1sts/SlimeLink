@@ -1,4 +1,4 @@
-Ý tưởng: Dựa trên Sleeping Block - top 20 game của GameJam 2021.
+Ý tưởng: Dựa trên Sleeping Block - top 20 game của GameJam 2021 (https://davifox.itch.io/sleepy-blocks).
 
 - Thể loại: Game giải đố.
 - Điều khiển: WASD hoặc 4 phím mũi tên.
