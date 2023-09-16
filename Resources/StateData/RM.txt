@@ -2,7 +2,7 @@
 ID 0
 FILE ../Resources/Models/Square.nfg
 
-#2D Textures: 108
+#2D Textures: 114
 ID 0
 FILE ../Resources/Textures/black.png
 ID 1
@@ -219,6 +219,18 @@ ID 106
 FILE ../Resources/Textures/Intro_logo.png
 ID 107
 FILE ../Resources/Textures/enemyslime.png
+ID 108
+FILE ../Resources/Textures/Tutorial1.png
+ID 109
+FILE ../Resources/Textures/Tutorial2.png
+ID 110
+FILE ../Resources/Textures/Tutorial3.png
+ID 111
+FILE ../Resources/Textures/Tutorial4.png
+ID 112
+FILE ../Resources/Textures/Tutorial5.png
+ID 113
+FILE ../Resources/Textures/Tutorial6.png
 
 #Shaders: 2
 ID 0

@@ -19,9 +19,6 @@
     <Filter Include="Resources\Shaders">
       <UniqueIdentifier>{2282dbff-09d2-4dc5-9e1d-e8b68f4514a1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources\Managers">
-      <UniqueIdentifier>{48e3fc93-dd8e-4cee-949b-4dfb1f328836}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\ProjectManager">
       <UniqueIdentifier>{12e0ff3b-e468-4b1a-b1b9-de09d574fa34}</UniqueIdentifier>
     </Filter>
@@ -215,37 +212,5 @@
       <Filter>Resources\Shaders</Filter>
     </None>
     <None Include="..\Readme.doc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="RM.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSMenu.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSCredit.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSHelp.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="Audio.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSLevelSelect.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSPlay.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSPause.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="GSIntro.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
-    <Text Include="HelpPos.txt">
-      <Filter>Resources\Managers</Filter>
-    </Text>
   </ItemGroup>
 </Project>

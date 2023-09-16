@@ -13,6 +13,32 @@ GSPlay::GSPlay(int ilevelNumber)
 	// Load level with the coresponding number
 	Init(ilevelNumber);
 
+	//Set texture of tutorial picture in specific levels, otherwise disable the tutorial
+	switch (ilevelNumber)
+	{
+	case 1:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(108));
+		break;
+	case 3:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(109));
+		break;
+	case 4:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(110));
+		break;
+	case 5:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(111));
+		break;
+	case 7:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(112));
+		break;
+	case 16:
+		pPictures[0]->SetTexture(ResourceManager::GetInstance()->GetTextureById(113));
+		break;
+	default:
+		pPictures[0]->setActive(false);
+		break;
+	}
+
 	//Generate star number on trophy based on star of the level
 	int* iStar = SceneManager::GetInstance()->GetStarIndex();
 	int* iDigitOfEachStar = new int[3];
@@ -158,8 +184,8 @@ void GSPlay::Update(GLfloat deltaTime)
 			}
 		}
 
-		//Activate all picture
-		for (int i = 0; i < inumPics - iNumOfStarNotActive; i++)
+		//Activate all picture except tutorial
+		for (int i = 1; i < inumPics - iNumOfStarNotActive; i++)
 		{
 			pPictures[i]->setActive(true);
 		}
@@ -217,13 +243,13 @@ void GSPlay::Key(int iKeyPressed)
 	}
 
 	//Set the picture of number of moves based on number of moves in SceneManager
-	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 17));
-	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 17));
-	pPictures[6]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 17));
+	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() / 100 + 17));
+	pPictures[6]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 / 10 + 17));
+	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(SceneManager::GetInstance()->GetNumberOfMoves() % 100 % 10 + 17));
 
 	//When a star is lost, convert that picture to gray
 	int iNumOfStarLost = 3 - SceneManager::GetInstance()->GetNumberOfStar();
-	for (int i = 2; i > 2 - iNumOfStarLost; i --) 
+	for (int i = 3; i > 3 - iNumOfStarLost; i --) 
 	{
 		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(91));
 	}
@@ -262,11 +288,11 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 void GSPlay::ResetGameScreen()
 {
 	//Reset set all number picture
-	pPictures[4]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 	pPictures[5]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 	pPictures[6]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
+	pPictures[7]->SetTexture(ResourceManager::GetInstance()->GetTextureById(17));
 
-	for (int i = 2; i >= 0; i --)
+	for (int i = 3; i >= 1; i --)
 	{
 		pPictures[i]->SetTexture(ResourceManager::GetInstance()->GetTextureById(16));
 	}
@@ -285,7 +311,7 @@ void GSPlay::ResetGameScreen()
 	}
 
 	//Deactivate game ending picture
-	for (int i = 7; i < inumPics; i++)
+	for (int i = 8; i < inumPics; i++)
 	{
 		pPictures[i]->setActive(false);
 	}
