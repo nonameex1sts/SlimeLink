@@ -264,7 +264,7 @@ void GSPlay::MouseClick(int x, int y, bool isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
-			if (pButtons[i] == nullptr || inumButtons > 4 || inumButtons < 0)
+			if (inumButtons != 4 || pButtons[i] == nullptr)
 			{
 				break;
 			}

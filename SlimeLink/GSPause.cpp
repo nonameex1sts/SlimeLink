@@ -17,12 +17,10 @@ void GSPause::MouseClick(int x, int y, bool isPressed)
 	{
 		for (int i = 0; i < inumButtons; i++)
 		{
-			pButtons[i]->MouseClick(x, y, isPressed);
-
-			if (pButtons == nullptr) 
-			{
+			if (inumButtons != 8 || pButtons[i] == nullptr) {
 				break;
 			}
+			pButtons[i]->MouseClick(x, y, isPressed);
 		}
 	}
 }
