@@ -1,0 +1,12 @@
+﻿  stdafx.cpp
+  esShader.cpp
+  esUtil.cpp
+  esUtil_win.cpp
+  Math.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\Utilities\Math.cpp(10,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\Utilities\Math.cpp(104,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\Utilities\Math.cpp(208,13): warning C4244: 'return': conversion from 'double' to 'GLfloat', possible loss of data
+  MemoryManager.cpp
+  MemoryOperators.cpp
+  TGA.cpp
+  Utilities.vcxproj -> C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\Release\Utilities.lib

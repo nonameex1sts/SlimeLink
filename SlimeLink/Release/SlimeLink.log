@@ -1,0 +1,145 @@
+﻿  stdafx.cpp
+  Animation.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Animation.cpp(74,40): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Animation.cpp(81,40): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Animation.cpp(88,40): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Animation.cpp(95,40): warning C4244: 'argument': conversion from 'GLint' to 'GLfloat', possible loss of data
+  Audio.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Audio.cpp(26,18): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Audio.cpp(43,17): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  AudioManager.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(15,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(26,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(29,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(30,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(31,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\AudioManager.cpp(32,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Button.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Button.cpp(163,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Camera.cpp
+  Enemy.cpp
+  GameStateBase.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(24,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(33,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(34,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(35,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(36,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(37,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(45,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(50,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(51,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(52,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(53,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(54,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(55,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(56,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(57,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(58,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(66,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(71,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(72,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(73,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(74,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(75,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(76,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(77,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GameStateBase.cpp(78,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GameStateMachine.cpp
+  GSCredit.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSCredit.cpp(8,149): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  GSHelp.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(49,158): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(65,158): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(12,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(20,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(27,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(35,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(36,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(37,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(53,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(61,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(62,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(72,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(73,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(74,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(75,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSHelp.cpp(76,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GSIntro.cpp
+  GSPlay.cpp
+  GSLevelSelect.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(29,84): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(29,105): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(37,85): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(37,106): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(37,143): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(45,6): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(47,24): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(61,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(69,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(112,21): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSLevelSelect.cpp(115,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GSMenu.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\GSMenu.cpp(14,149): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  GSPause.cpp
+  Model.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(29,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(18,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(26,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(31,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(36,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\Model.cpp(41,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Object.cpp
+  Picture.cpp
+  Player.cpp
+  ResourceManager.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(13,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(24,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(30,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(31,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(36,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(41,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(42,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(51,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(58,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(59,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\ResourceManager.cpp(60,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  Compiling...
+  SceneManager.cpp
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(165,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(184,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(239,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(390,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(410,91): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(20,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(29,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(30,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(31,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(32,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(33,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(37,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(38,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(39,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(40,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(41,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(42,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(43,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(44,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(90,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(425,2): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(643,75): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(644,75): warning C4244: '=': conversion from 'int' to 'GLfloat', possible loss of data
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(704,102): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(835,16): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(843,3): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\SlimeLink\SceneManager.cpp(857,17): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  SelectLevelButton.cpp
+  Shaders.cpp
+  stb.cpp
+  Texture.cpp
+  SlimeLink.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 645 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  SlimeLink.vcxproj -> C:\Users\Bach\Desktop\HIN032_NguyenMinhHieu\BIN\SlimeLink.exe
