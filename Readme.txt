@@ -1,9 +1,9 @@
-Ý tưởng: Dựa trên Sleeping Block - top 20 game của GameJam 2021 (https://davifox.itch.io/sleepy-blocks).
+Idea: Based on Sleeping Block - a top 20 game of GameJam 2021 (https://davifox.itch.io/sleepy-blocks).
+- Genre: Puzzle game.
+- Controls: WASD or arrow keys.
 
-- Thể loại: Game giải đố.
-- Điều khiển: WASD hoặc 4 phím mũi tên.
-- Mô tả: 
-+ Nhân vật di chuyển trong bản đồ ô lưới. Nhân vật có 2 trạng thái: active (điều khiển được) và inactive (không điều khiển được). 
-+ Nhân vật inactive được kích hoạt nếu nhân vật active lại gần. Khi Điều khiển tất cả các nhân vật active sẽ cùng di chuyển.
-- Mục tiêu: Di chuyển các nhân vật phương đến đích với số lượng nước đi nhỏ nhất, tất cả các nhân vật active đều phải ở trong ô đích và tất cả ô đích đều có nhân vật active để chiến thắng.
-- Chướng ngại vật: Tường khiến hạn chế di chuyển, cơ chế tăng giảm số lượng khối nhân vật, kẻ địch chặn đuờng.
+Description:
+- The character moves on a grid-based map. The character has two states: active (controllable) and inactive (non-controllable).
+- The inactive character becomes activated when the active character gets close. When controlling, all active characters will move together.
+- Objective: Move the characters to the destination with the fewest moves. All active characters must be in the destination cell, and all destination cells must contain an active character to win.
+- Obstacles: Walls that restrict movement, mechanisms for increasing or decreasing the number of character blocks, and enemies blocking the path.
